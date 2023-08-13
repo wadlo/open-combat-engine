@@ -2,9 +2,9 @@
 <!-- Created with Inkscape (http://www.inkscape.org/) -->
 
 <svg
-   width="33.866669mm"
-   height="33.866669mm"
-   viewBox="0 0 33.866669 33.866669"
+   width="128.00002"
+   height="128.00002"
+   viewBox="0 0 33.866671 33.866671"
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
@@ -22,7 +22,7 @@
      inkscape:pageopacity="0.0"
      inkscape:pagecheckerboard="0"
      inkscape:deskcolor="#d1d1d1"
-     inkscape:document-units="mm"
+     inkscape:document-units="px"
      showgrid="false"
      inkscape:zoom="0.7652427"
      inkscape:cx="37.896474"
@@ -38,19 +38,31 @@
        y="-5.9706058e-06"
        width="33.866669"
        height="33.866669"
-       id="page3272" />
+       id="page3272"
+       inkscape:label="circle"
+       inkscape:export-filename="diepGraphics\circle.png"
+       inkscape:export-xdpi="95.999992"
+       inkscape:export-ydpi="95.999992" />
     <inkscape:page
        x="41.120022"
        y="0.20253156"
-       width="33.866676"
+       width="33.866673"
        height="33.866669"
-       id="page3325" />
+       id="page3325"
+       inkscape:label="turret1"
+       inkscape:export-filename="diepGraphics\turret1.png"
+       inkscape:export-xdpi="95.999992"
+       inkscape:export-ydpi="95.999992" />
     <inkscape:page
        x="84.986694"
        y="0"
-       width="33.866673"
-       height="33.866667"
-       id="page3377" />
+       width="33.866669"
+       height="33.866669"
+       id="page3377"
+       inkscape:label="turret2"
+       inkscape:export-filename="diepGraphics\turret2.png"
+       inkscape:export-xdpi="95.999992"
+       inkscape:export-ydpi="95.999992" />
   </sodipodi:namedview>
   <defs
      id="defs2" />

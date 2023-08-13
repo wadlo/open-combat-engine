@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bs53mfah464s2"
-path="res://.godot/imported/diep.svg-44d287d024f709c7bf961e98ac0afc2b.ctex"
+path="res://.godot/imported/diep.svg-75cf4c5fc4dcfc5556c78d582961ae3b.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demos/diep/diep.svg"
-dest_files=["res://.godot/imported/diep.svg-44d287d024f709c7bf961e98ac0afc2b.ctex"]
+source_file="res://demos/diep/diepGraphics/diep.svg"
+dest_files=["res://.godot/imported/diep.svg-75cf4c5fc4dcfc5556c78d582961ae3b.ctex"]
 
 [params]
 

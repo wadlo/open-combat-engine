@@ -13,6 +13,7 @@ using Godot;
 	Recoil - The period of time after using the weapon before you can use again. This is the amount of time between bullets in a machine gun, or the amount of time between sword swings.
 */
 public partial class Usable: Node {
+
 	enum FireState {
 		Idle = 0,
 		Reloading = 1,
@@ -20,6 +21,10 @@ public partial class Usable: Node {
 		Recoil = 3
 	}
 
+
+	[Signal]
+	public delegate void OnFireEventHandler();
+	
 
 	// Ammo variables
   	[Export]
@@ -31,13 +36,16 @@ public partial class Usable: Node {
 
 	// State times
 	[Export]
-	public float recoilTime = 0.1f;
+	public float recoilTime = 0.4f;
 
 	[Export]
-	public float reloadTimePerUnit = 0.1f;
+	public float reloadTimePerUnit = 0.8f;
 
 	[Export]
 	public float fireDuration = 0.0f;
+	
+	[Export]
+	public bool autoReload = false;
 
 	// Private
 	private FireState currentState = FireState.Idle;
@@ -108,7 +116,7 @@ public partial class Usable: Node {
 		currentState = FireState.Firing;
 		currentStateCooldown += fireDuration;
 		ammo -= 1.0f;
-		// Todo -- Fire a "on start fire" event.
+		EmitSignal(SignalName.OnFire);
 	}
 
 	private void ProcessReloadState() {
@@ -140,7 +148,7 @@ public partial class Usable: Node {
 	}
 
 	public bool ShouldReload() {
-		return CanReload() && Input.IsKeyPressed(Key.Space);
+		return CanReload() && (autoReload || Input.IsKeyPressed(Key.Space));
 	}
 
 	public bool CanReload() {
