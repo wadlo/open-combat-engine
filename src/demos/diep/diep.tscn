@@ -7,25 +7,27 @@
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="5_b3doq"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="6_i3mjg"]
 
-[node name="diep" type="Node2D"]
+[node name="Diep" type="Node2D"]
+
+[node name="Tank1" type="Node2D" parent="."]
 script = ExtResource("1_nboct")
 recoilTime = 0.1
 reloadTimePerUnit = 0.0
 autoReload = true
 
-[node name="Turret1" type="Sprite2D" parent="."]
+[node name="TurretVisuals" type="Sprite2D" parent="Tank1"]
 position = Vector2(1, 0)
 scale = Vector2(0.53125, 0.53125)
 texture = ExtResource("2_3p8xu")
 script = ExtResource("3_oxwb1")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Turret1"]
+[node name="Sprite2D2" type="Sprite2D" parent="Tank1/TurretVisuals"]
 z_index = -1
 position = Vector2(77, 0)
 scale = Vector2(1.14844, 1.14844)
 texture = ExtResource("3_luk60")
 
-[node name="BulletSpawner" type="Node2D" parent="Turret1/Sprite2D2"]
+[node name="BulletSpawner" type="Node2D" parent="Tank1/TurretVisuals/Sprite2D2"]
 position = Vector2(12.435, 0)
 script = ExtResource("5_b3doq")
 bulletPrefab = ExtResource("6_i3mjg")
@@ -34,4 +36,4 @@ bulletPrefab = ExtResource("6_i3mjg")
 position = Vector2(1, 0)
 scale = Vector2(0.53125, 0.53125)
 
-[connection signal="OnFire" from="." to="Turret1/Sprite2D2/BulletSpawner" method="SpawnBullet"]
+[connection signal="OnFire" from="Tank1" to="Tank1/TurretVisuals/Sprite2D2/BulletSpawner" method="SpawnBullet"]
