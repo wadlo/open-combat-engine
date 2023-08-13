@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://bak1yv20f63hy"]
+
+[ext_resource type="Script" path="res://core/gun/Usable.cs" id="1_vo3yg"]
+
+[node name="diep" type="Node2D"]
+script = ExtResource("1_vo3yg")
+reloadTimePerUnit = 0.4

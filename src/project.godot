@@ -11,7 +11,8 @@ config_version=5
 [application]
 
 config/name="Open Top Down Engine"
-config/features=PackedStringArray("4.1", "GL Compatibility")
+run/main_scene="res://demos/diep/diep.tscn"
+config/features=PackedStringArray("4.1", "C#", "GL Compatibility")
 config/icon="res://icon.svg"
 
 [dotnet]
