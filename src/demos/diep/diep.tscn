@@ -1,7 +1,23 @@
-[gd_scene load_steps=2 format=3 uid="uid://bak1yv20f63hy"]
+[gd_scene load_steps=5 format=3 uid="uid://bebnmlaiyp3ds"]
 
-[ext_resource type="Script" path="res://core/gun/Usable.cs" id="1_vo3yg"]
+[ext_resource type="Script" path="res://core/usable/Usable.cs" id="1_nboct"]
+[ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/diep/diepGraphics/circle.png" id="2_3p8xu"]
+[ext_resource type="Texture2D" uid="uid://blkh7movnvbv8" path="res://demos/diep/diepGraphics/turret1.png" id="3_luk60"]
+[ext_resource type="Script" path="res://demos/diep/diepScripts/FaceMouse.cs" id="3_oxwb1"]
 
 [node name="diep" type="Node2D"]
-script = ExtResource("1_vo3yg")
-reloadTimePerUnit = 0.4
+script = ExtResource("1_nboct")
+
+[node name="Turret1" type="Sprite2D" parent="."]
+position = Vector2(1, 0)
+scale = Vector2(0.53125, 0.53125)
+texture = ExtResource("2_3p8xu")
+script = ExtResource("3_oxwb1")
+
+[node name="Sprite2D2" type="Sprite2D" parent="Turret1"]
+z_index = -1
+position = Vector2(77, 0)
+scale = Vector2(1.14844, 1.14844)
+texture = ExtResource("3_luk60")
+
+[node name="Camera2D" type="Camera2D" parent="Turret1"]
