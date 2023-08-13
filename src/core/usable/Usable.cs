@@ -3,7 +3,7 @@ using System.Diagnostics;
 using Godot;
 
 /**
-	Used for Guns, spells, weapons, abilities, or tools. Anything that has a concept of cooldown or ammo.
+	Used for Guns, spells, weapons, abilities, or tools. Anything that has a concept of cooldown, ammo, and stamina.
 
 	A Usable is assumed to always be in one of the following states:
 
