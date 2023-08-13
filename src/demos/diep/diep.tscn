@@ -1,7 +1,8 @@
-[gd_scene load_steps=7 format=3 uid="uid://fd61hetj3fk3"]
+[gd_scene load_steps=8 format=3 uid="uid://fd61hetj3fk3"]
 
 [ext_resource type="Script" path="res://core/usable/Usable.cs" id="1_nboct"]
 [ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/diep/diepGraphics/circle.png" id="2_3p8xu"]
+[ext_resource type="Resource" uid="uid://ccry4q0yij2vk" path="res://demos/diep/diepResources/diep_machine_gun.tres" id="2_risdu"]
 [ext_resource type="Texture2D" uid="uid://blkh7movnvbv8" path="res://demos/diep/diepGraphics/turret1.png" id="3_luk60"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/FaceMouse.cs" id="3_oxwb1"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="5_b3doq"]
@@ -11,9 +12,7 @@
 
 [node name="Tank1" type="Node2D" parent="."]
 script = ExtResource("1_nboct")
-recoilTime = 0.1
-reloadTimePerUnit = 0.0
-autoReload = true
+config = ExtResource("2_risdu")
 
 [node name="TurretVisuals" type="Sprite2D" parent="Tank1"]
 position = Vector2(1, 0)

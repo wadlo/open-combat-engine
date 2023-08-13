@@ -25,27 +25,13 @@ public partial class Usable: Node {
 	[Signal]
 	public delegate void OnFireEventHandler();
 	
+	[Export]
+	private UsableConfig config;
 
 	// Ammo variables
   	[Export]
 	public float ammo = 0.0f;
 
-	[Export]
-	public float maxUses = 10.0f;
-
-
-	// State times
-	[Export]
-	public float recoilTime = 0.4f;
-
-	[Export]
-	public float reloadTimePerUnit = 0.8f;
-
-	[Export]
-	public float fireDuration = 0.0f;
-	
-	[Export]
-	public bool autoReload = false;
 
 	// Private
 	private FireState currentState = FireState.Idle;
@@ -109,12 +95,12 @@ public partial class Usable: Node {
 
 	private void StartReload() {
 		currentState = FireState.Reloading;
-		currentStateCooldown += reloadTimePerUnit;
+		currentStateCooldown += config.reloadTimePerUnit;
 	}
 
 	private void Fire() {
 		currentState = FireState.Firing;
-		currentStateCooldown += fireDuration;
+		currentStateCooldown += config.fireDuration;
 		ammo -= 1.0f;
 		EmitSignal(SignalName.OnFire);
 	}
@@ -122,14 +108,15 @@ public partial class Usable: Node {
 	private void ProcessReloadState() {
 		if (currentStateCooldown <= 0) {
 			currentState = FireState.Idle;
-			ammo = Mathf.Min(ammo + 1.0f, maxUses);
+			ammo += 1.0f;
+			ammo = Mathf.Min(ammo + 1.0f, config.maxUses);
 		}
 	}
 
 	private void ProcessFireState() {
 		if (currentStateCooldown <= 0) {
 			currentState = FireState.Recoil;
-			currentStateCooldown += recoilTime;
+			currentStateCooldown += config.recoilTime;
 		}
 	}
 
@@ -144,14 +131,14 @@ public partial class Usable: Node {
 	}
 
 	public bool CanFire() {
-		return ammo > 1.0f && (currentState == FireState.Idle || currentState == FireState.Reloading);
+		return ammo >= 1.0f && (currentState == FireState.Idle || currentState == FireState.Reloading);
 	}
 
 	public bool ShouldReload() {
-		return CanReload() && (autoReload || Input.IsKeyPressed(Key.Space));
+		return CanReload() && (config.autoReload || Input.IsKeyPressed(Key.Space));
 	}
 
 	public bool CanReload() {
-		return ammo < maxUses && currentState == FireState.Idle;
+		return ammo < config.maxUses && currentState == FireState.Idle;
 	}
 }
