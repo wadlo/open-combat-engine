@@ -3,8 +3,8 @@
 [ext_resource type="Script" path="res://core/usable/Usable.cs" id="1_nboct"]
 [ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/diep/diepGraphics/circle.png" id="2_3p8xu"]
 [ext_resource type="Resource" uid="uid://ccry4q0yij2vk" path="res://demos/diep/diepResources/diep_machine_gun.tres" id="2_risdu"]
-[ext_resource type="Texture2D" uid="uid://blkh7movnvbv8" path="res://demos/diep/diepGraphics/turret1.png" id="3_luk60"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/FaceMouse.cs" id="3_oxwb1"]
+[ext_resource type="Texture2D" uid="uid://dalf6ysj30b4v" path="res://demos/diep/diepGraphics/turret2.png" id="5_11ub4"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="5_b3doq"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="6_i3mjg"]
 
@@ -22,14 +22,15 @@ script = ExtResource("3_oxwb1")
 
 [node name="Sprite2D2" type="Sprite2D" parent="Tank1/TurretVisuals"]
 z_index = -1
-position = Vector2(77, 0)
-scale = Vector2(1.14844, 1.14844)
-texture = ExtResource("3_luk60")
+position = Vector2(67.7647, -1.90735e-06)
+scale = Vector2(1.35225, 1.42716)
+texture = ExtResource("5_11ub4")
 
 [node name="BulletSpawner" type="Node2D" parent="Tank1/TurretVisuals/Sprite2D2"]
-position = Vector2(12.435, 0)
+position = Vector2(-17.905, 0)
 script = ExtResource("5_b3doq")
 bulletPrefab = ExtResource("6_i3mjg")
+bulletAngleVariance = 20.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
