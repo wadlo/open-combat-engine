@@ -7,7 +7,7 @@ To install Godot, go to https://godotengine.org/download. Make sure to download 
 To run the examples locally, download this repo as a `.zip` and open up `src/project.godot`.
 
 # Beta
-This project is still in its early stages. There may be lack of documentation or features that you want added. If this is the case. Please file a request in "Issues". Or if you want to contribute to the project, file a Pull Request. 
+This project is still in its early stages. There may be lack of documentation or features that you want added. If this is the case. Please file a request in "Issues". Or if you want to contribute to the project, please create or pick up an issue and request that it be assigned to you. 
 
 # Demos
 The following demos are in progress:
