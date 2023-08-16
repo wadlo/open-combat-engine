@@ -31,18 +31,19 @@ config = ExtResource("3_v6bck")
 
 [node name="GunVisuals" type="Node2D" parent="Player/TankGun"]
 modulate = Color(0.372549, 0.341176, 0.309804, 1)
-scale = Vector2(0.5, 0.5)
 script = ExtResource("4_pr6vi")
+stayUpright = true
 
 [node name="Square" type="Sprite2D" parent="Player/TankGun/GunVisuals"]
-position = Vector2(84, 14)
-scale = Vector2(-0.153202, 0.318982)
+position = Vector2(42, 7)
+rotation = 3.14159
+scale = Vector2(0.076601, -0.159491)
 texture = ExtResource("5_5ndvi")
 
 [node name="Barrel" type="Sprite2D" parent="Player/TankGun/GunVisuals"]
 z_index = -1
-position = Vector2(108.047, -7.6294e-07)
-scale = Vector2(0.5409, 0.170864)
+position = Vector2(54.0235, -3.8147e-07)
+scale = Vector2(0.27045, 0.0854321)
 texture = ExtResource("5_5ndvi")
 
 [node name="BulletSpawner" type="Node2D" parent="Player/TankGun/GunVisuals/Barrel"]
