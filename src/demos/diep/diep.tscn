@@ -1,14 +1,14 @@
 [gd_scene load_steps=11 format=3 uid="uid://fd61hetj3fk3"]
 
-[ext_resource type="Script" path="res://core/Usable/Usable.cs" id="1_1k4hu"]
-[ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_i34qg"]
-[ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/diep/diepGraphics/circle.png" id="2_3p8xu"]
-[ext_resource type="Resource" uid="uid://ccry4q0yij2vk" path="res://demos/diep/diepResources/diep_machine_gun.tres" id="2_risdu"]
-[ext_resource type="Script" path="res://demos/diep/diepScripts/FaceMouse.cs" id="3_oxwb1"]
-[ext_resource type="Texture2D" uid="uid://dalf6ysj30b4v" path="res://demos/diep/diepGraphics/turret2.png" id="5_11ub4"]
-[ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="5_b3doq"]
-[ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="6_i3mjg"]
-[ext_resource type="Script" path="res://demos/diep/SimpleKnockback.cs" id="9_3cmme"]
+[ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_pkrce"]
+[ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_rdpbj"]
+[ext_resource type="Resource" uid="uid://ccry4q0yij2vk" path="res://demos/diep/diepResources/diep_machine_gun.tres" id="3_nebeb"]
+[ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/diep/diepGraphics/circle.png" id="4_jyle0"]
+[ext_resource type="Script" path="res://demos/diep/diepScripts/FaceMouse.cs" id="5_edgu7"]
+[ext_resource type="Texture2D" uid="uid://dalf6ysj30b4v" path="res://demos/diep/diepGraphics/turret2.png" id="6_aadu1"]
+[ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_a8yyg"]
+[ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="8_4qbk3"]
+[ext_resource type="Script" path="res://demos/diep/SimpleKnockback.cs" id="9_yw7ba"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2m56"]
 radius = 30.0666
@@ -17,39 +17,36 @@ radius = 30.0666
 
 [node name="PlayerTank" type="CharacterBody2D" parent="."]
 motion_mode = 1
-script = ExtResource("1_i34qg")
-maxSpeed = 200.0
-userAcceleration = 400.0
-maxAcceleration = 250.0
-friction = 175.0
+script = ExtResource("1_pkrce")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTank"]
 shape = SubResource("CircleShape2D_y2m56")
 
 [node name="TankGun" type="Node2D" parent="PlayerTank"]
-script = ExtResource("1_1k4hu")
-config = ExtResource("2_risdu")
+script = ExtResource("2_rdpbj")
+config = ExtResource("3_nebeb")
 
 [node name="TurretVisuals" type="Sprite2D" parent="PlayerTank/TankGun"]
 scale = Vector2(0.53125, 0.53125)
-texture = ExtResource("2_3p8xu")
-script = ExtResource("3_oxwb1")
+texture = ExtResource("4_jyle0")
+script = ExtResource("5_edgu7")
 
 [node name="Barrel" type="Sprite2D" parent="PlayerTank/TankGun/TurretVisuals"]
 z_index = -1
 position = Vector2(67.7647, -1.90735e-06)
 scale = Vector2(1.35225, 1.42716)
-texture = ExtResource("5_11ub4")
+texture = ExtResource("6_aadu1")
 
 [node name="BulletSpawner" type="Node2D" parent="PlayerTank/TankGun/TurretVisuals/Barrel"]
 position = Vector2(12.5281, 1.33647e-06)
-script = ExtResource("5_b3doq")
-bulletPrefab = ExtResource("6_i3mjg")
+script = ExtResource("7_a8yyg")
+bulletPrefab = ExtResource("8_4qbk3")
 bulletAngleVariance = 17.0
 
-[node name="SimpleKnockback" type="Node2D" parent="PlayerTank/TankGun"]
-script = ExtResource("9_3cmme")
-characterBody2DRef = NodePath("../..")
+[node name="SimpleKnockback" type="Node2D" parent="PlayerTank/TankGun" node_paths=PackedStringArray("characterBody2D")]
+script = ExtResource("9_yw7ba")
+characterBody2D = NodePath("../..")
+forceMultiplier = 0.01
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)

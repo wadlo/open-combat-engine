@@ -5,16 +5,16 @@ using System;
 public partial class QuickPlayerMovement : CharacterBody2D
 {
     [Export]
-    public float maxSpeed = 500.0f;
+    public float maxSpeed = 200.0f;
 
     [Export]
-    public float userAcceleration = 500.0f;
+    public float userAcceleration = 400.0f;
 
     [Export]
-    public float maxAcceleration = 200.0f;
+    public float maxAcceleration = 250.0f;
 
     [Export]
-    public float friction = 10.0f;
+    public float friction = 175.0f;
 
     public override void _PhysicsProcess(double delta)
     {
