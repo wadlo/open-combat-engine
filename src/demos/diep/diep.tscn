@@ -30,7 +30,6 @@ script = ExtResource("1_1k4hu")
 config = ExtResource("2_risdu")
 
 [node name="TurretVisuals" type="Sprite2D" parent="PlayerTank/TankGun"]
-position = Vector2(1, 0)
 scale = Vector2(0.53125, 0.53125)
 texture = ExtResource("2_3p8xu")
 script = ExtResource("3_oxwb1")
