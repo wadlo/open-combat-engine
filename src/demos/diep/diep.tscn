@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://fd61hetj3fk3"]
+[gd_scene load_steps=11 format=3 uid="uid://fd61hetj3fk3"]
 
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="1_1k4hu"]
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_i34qg"]
@@ -8,6 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://dalf6ysj30b4v" path="res://demos/diep/diepGraphics/turret2.png" id="5_11ub4"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="5_b3doq"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="6_i3mjg"]
+[ext_resource type="Script" path="res://demos/diep/SimpleKnockback.cs" id="9_3cmme"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2m56"]
 radius = 30.0666
@@ -46,8 +47,13 @@ script = ExtResource("5_b3doq")
 bulletPrefab = ExtResource("6_i3mjg")
 bulletAngleVariance = 17.0
 
+[node name="SimpleKnockback" type="Node2D" parent="PlayerTank/TankGun"]
+script = ExtResource("9_3cmme")
+characterBody2DRef = NodePath("../..")
+
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
 scale = Vector2(0.53125, 0.53125)
 
 [connection signal="OnFire" from="PlayerTank/TankGun" to="PlayerTank/TankGun/TurretVisuals/Barrel/BulletSpawner" method="SpawnBullet"]
+[connection signal="BulletSpawn" from="PlayerTank/TankGun/TurretVisuals/Barrel/BulletSpawner" to="PlayerTank/TankGun/SimpleKnockback" method="ApplyKnockback"]
