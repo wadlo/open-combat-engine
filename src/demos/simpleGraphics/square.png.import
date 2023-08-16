@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bs53mfah464s2"
-path="res://.godot/imported/diep.svg-75cf4c5fc4dcfc5556c78d582961ae3b.ctex"
+uid="uid://dox0lxufwguhp"
+path="res://.godot/imported/square.png-c2dc8b4ec0ec151899146f40e235af99.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demos/diep/diepGraphics/diep.svg"
-dest_files=["res://.godot/imported/diep.svg-75cf4c5fc4dcfc5556c78d582961ae3b.ctex"]
+source_file="res://demos/simpleGraphics/square.png"
+dest_files=["res://.godot/imported/square.png-c2dc8b4ec0ec151899146f40e235af99.ctex"]
 
 [params]
 
@@ -32,6 +32,3 @@ process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
 detect_3d/compress_to=1
-svg/scale=1.0
-editor/scale_with_editor_scale=false
-editor/convert_colors_with_editor_theme=false

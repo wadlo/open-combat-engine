@@ -1,12 +1,13 @@
 [gd_scene load_steps=2 format=3 uid="uid://eva18l8vsr8y"]
 
-[ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/diep/diepGraphics/circle.png" id="1_4wbia"]
+[ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/simpleGraphics/circle.png" id="1_r27tj"]
 
 [node name="RigidBody2D" type="RigidBody2D"]
 gravity_scale = 0.0
 linear_velocity = Vector2(322.905, 0)
 
 [node name="Bullet" type="Sprite2D" parent="."]
+self_modulate = Color(0.160784, 0.67451, 0.996078, 1)
 z_index = -3
 scale = Vector2(0.183594, 0.183594)
-texture = ExtResource("1_4wbia")
+texture = ExtResource("1_r27tj")

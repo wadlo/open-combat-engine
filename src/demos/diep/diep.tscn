@@ -3,15 +3,15 @@
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_pkrce"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_rdpbj"]
 [ext_resource type="Resource" uid="uid://ccry4q0yij2vk" path="res://demos/diep/diepResources/diep_machine_gun.tres" id="3_nebeb"]
-[ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/diep/diepGraphics/circle.png" id="4_jyle0"]
+[ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/simpleGraphics/circle.png" id="4_33jyl"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/FaceMouse.cs" id="5_edgu7"]
-[ext_resource type="Texture2D" uid="uid://dalf6ysj30b4v" path="res://demos/diep/diepGraphics/turret2.png" id="6_aadu1"]
+[ext_resource type="Texture2D" uid="uid://c0inc23nna5e7" path="res://demos/simpleGraphics/triangle1.png" id="6_jkgkt"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_a8yyg"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="8_4qbk3"]
 [ext_resource type="Script" path="res://demos/diep/SimpleKnockback.cs" id="9_yw7ba"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2m56"]
-radius = 30.0666
+radius = 32.0
 
 [node name="Diep" type="Node2D"]
 
@@ -27,18 +27,21 @@ script = ExtResource("2_rdpbj")
 config = ExtResource("3_nebeb")
 
 [node name="TurretVisuals" type="Sprite2D" parent="PlayerTank/TankGun"]
-scale = Vector2(0.53125, 0.53125)
-texture = ExtResource("4_jyle0")
+self_modulate = Color(0.160784, 0.67451, 0.996078, 1)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("4_33jyl")
 script = ExtResource("5_edgu7")
 
 [node name="Barrel" type="Sprite2D" parent="PlayerTank/TankGun/TurretVisuals"]
+self_modulate = Color(0.372549, 0.341176, 0.309804, 1)
 z_index = -1
-position = Vector2(67.7647, -1.90735e-06)
-scale = Vector2(1.35225, 1.42716)
-texture = ExtResource("6_aadu1")
+position = Vector2(28, -1.90735e-06)
+scale = Vector2(1.2, 0.75)
+texture = ExtResource("6_jkgkt")
 
 [node name="BulletSpawner" type="Node2D" parent="PlayerTank/TankGun/TurretVisuals/Barrel"]
-position = Vector2(12.5281, 1.33647e-06)
+position = Vector2(50.3754, 1.33647e-06)
+scale = Vector2(1, 7.57944)
 script = ExtResource("7_a8yyg")
 bulletPrefab = ExtResource("8_4qbk3")
 bulletAngleVariance = 17.0

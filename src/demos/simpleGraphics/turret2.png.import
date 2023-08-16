@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://0vlambbhsr1i"
-path="res://.godot/imported/circle.png-daeafd82cb2c7fbb6679041ade1509a1.ctex"
+uid="uid://dalf6ysj30b4v"
+path="res://.godot/imported/turret2.png-62c75aae9bd5996dc6167557dfbf6ebb.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demos/diep/diepGraphics/circle.png"
-dest_files=["res://.godot/imported/circle.png-daeafd82cb2c7fbb6679041ade1509a1.ctex"]
+source_file="res://demos/simpleGraphics/turret2.png"
+dest_files=["res://.godot/imported/turret2.png-62c75aae9bd5996dc6167557dfbf6ebb.ctex"]
 
 [params]
 
