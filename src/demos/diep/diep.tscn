@@ -1,6 +1,7 @@
-[gd_scene load_steps=8 format=3 uid="uid://fd61hetj3fk3"]
+[gd_scene load_steps=10 format=3 uid="uid://fd61hetj3fk3"]
 
-[ext_resource type="Script" path="res://core/usable/Usable.cs" id="1_nboct"]
+[ext_resource type="Script" path="res://core/Usable/Usable.cs" id="1_1k4hu"]
+[ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_i34qg"]
 [ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/diep/diepGraphics/circle.png" id="2_3p8xu"]
 [ext_resource type="Resource" uid="uid://ccry4q0yij2vk" path="res://demos/diep/diepResources/diep_machine_gun.tres" id="2_risdu"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/FaceMouse.cs" id="3_oxwb1"]
@@ -8,32 +9,46 @@
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="5_b3doq"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="6_i3mjg"]
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2m56"]
+radius = 30.0666
+
 [node name="Diep" type="Node2D"]
 
-[node name="Tank1" type="Node2D" parent="."]
-script = ExtResource("1_nboct")
+[node name="PlayerTank" type="CharacterBody2D" parent="."]
+motion_mode = 1
+script = ExtResource("1_i34qg")
+maxSpeed = 200.0
+userAcceleration = 400.0
+maxAcceleration = 250.0
+friction = 175.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTank"]
+shape = SubResource("CircleShape2D_y2m56")
+
+[node name="TankGun" type="Node2D" parent="PlayerTank"]
+script = ExtResource("1_1k4hu")
 config = ExtResource("2_risdu")
 
-[node name="TurretVisuals" type="Sprite2D" parent="Tank1"]
+[node name="TurretVisuals" type="Sprite2D" parent="PlayerTank/TankGun"]
 position = Vector2(1, 0)
 scale = Vector2(0.53125, 0.53125)
 texture = ExtResource("2_3p8xu")
 script = ExtResource("3_oxwb1")
 
-[node name="Sprite2D2" type="Sprite2D" parent="Tank1/TurretVisuals"]
+[node name="Barrel" type="Sprite2D" parent="PlayerTank/TankGun/TurretVisuals"]
 z_index = -1
 position = Vector2(67.7647, -1.90735e-06)
 scale = Vector2(1.35225, 1.42716)
 texture = ExtResource("5_11ub4")
 
-[node name="BulletSpawner" type="Node2D" parent="Tank1/TurretVisuals/Sprite2D2"]
-position = Vector2(-17.905, 0)
+[node name="BulletSpawner" type="Node2D" parent="PlayerTank/TankGun/TurretVisuals/Barrel"]
+position = Vector2(12.5281, 1.33647e-06)
 script = ExtResource("5_b3doq")
 bulletPrefab = ExtResource("6_i3mjg")
-bulletAngleVariance = 20.0
+bulletAngleVariance = 17.0
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
 scale = Vector2(0.53125, 0.53125)
 
-[connection signal="OnFire" from="Tank1" to="Tank1/TurretVisuals/Sprite2D2/BulletSpawner" method="SpawnBullet"]
+[connection signal="OnFire" from="PlayerTank/TankGun" to="PlayerTank/TankGun/TurretVisuals/Barrel/BulletSpawner" method="SpawnBullet"]
