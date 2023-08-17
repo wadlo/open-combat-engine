@@ -5,7 +5,7 @@ using System;
 public partial class MoveTowardPlayer : CharacterBody2D
 {
     [Export]
-    public QuickPlayerMovement player;
+    public NodePath targetablePath;
 
     [Export]
     public float maxSpeed = 200.0f;
@@ -21,8 +21,12 @@ public partial class MoveTowardPlayer : CharacterBody2D
 
     public override void _Ready()
     {
+        GSAITargetable targetable = GetNode<GSAITargetable>(targetablePath);
         agent = new GSAIKinematicBody2DAgent(this);
-        steering = new GSAIArrive(agent, player.gSAIAgentLocation);
+
+        GD.Print(targetable);
+        GD.Print(targetable.GetAgentLocation());
+        steering = new GSAIArrive(agent, targetable.GetAgentLocation());
         agent.LinearSpeedMax = maxSpeed;
         agent.LinearAccelerationMax = maxAcceleration;
         agent.CalculateVelocities = false;

@@ -2,7 +2,7 @@ using Godot;
 using GodotSteeringAI;
 using System;
 
-public partial class QuickPlayerMovement : CharacterBody2D
+public partial class QuickPlayerMovement : CharacterBody2D, GSAITargetable
 {
     [Export]
     public float maxSpeed = 200.0f;
@@ -16,7 +16,12 @@ public partial class QuickPlayerMovement : CharacterBody2D
     [Export]
     public float friction = 175.0f;
 
-    public GSAIAgentLocation gSAIAgentLocation = new GSAIAgentLocation();
+    public GSAIAgentLocation gSAIAgentLocation;
+
+    public override void _Ready()
+    {
+        gSAIAgentLocation = new GSAIKinematicBodyAgentLocation(this);
+    }
 
     public override void _PhysicsProcess(double delta)
     {
@@ -38,7 +43,10 @@ public partial class QuickPlayerMovement : CharacterBody2D
         Velocity += acceleration;
         Velocity = Velocity.LimitLength(maxSpeed);
         MoveAndSlide();
+    }
 
-        gSAIAgentLocation.Position = GSAIUtils.ToVector3(Position);
+    public GSAIAgentLocation GetAgentLocation()
+    {
+        return this.gSAIAgentLocation;
     }
 }

@@ -65,11 +65,11 @@ texture = ExtResource("5_5ndvi")
 position = Vector2(61, -5.68434e-14)
 scale = Vector2(0.287353, 0.303272)
 
-[node name="Enemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player")]
+[node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(179.315, 0)
 motion_mode = 1
 script = ExtResource("8_ipddl")
-player = NodePath("../Player")
+targetablePath = NodePath("../Player")
 maxSpeed = 100.0
 maxAcceleration = 500.0
 
