@@ -8,7 +8,7 @@ namespace GodotSteeringAI
     /// of mass of the agents in the area defined by the `GSAIProximity`.
     /// @category - Group behaviors
     /// </summary>
-    class GSAICohesion : GSAIGroupBehavior
+    partial class GSAICohesion : GSAIGroupBehavior
     {
         private Vector3 _center_of_mass;
 
@@ -25,7 +25,8 @@ namespace GodotSteeringAI
             if (neighbor_count > 0)
             {
                 _center_of_mass *= 1.0f / neighbor_count;
-                acceleration.Linear = (_center_of_mass - Agent.Position).Normalized() * Agent.LinearAccelerationMax;
+                acceleration.Linear =
+                    (_center_of_mass - Agent.Position).Normalized() * Agent.LinearAccelerationMax;
             }
         }
 

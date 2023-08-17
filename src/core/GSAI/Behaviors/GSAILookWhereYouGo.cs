@@ -7,11 +7,10 @@ namespace GodotSteeringAI
     /// Calculates an angular acceleration to match an agent's orientation to its direction of travel.
     /// @category - Individual behaviors
     /// </summary>
-    class GSAILookWhereYouGo : GSAIMatchOrientation
+    partial class GSAILookWhereYouGo : GSAIMatchOrientation
     {
         public GSAILookWhereYouGo(GSAISteeringAgent agent, bool use_z = false)
             : base(agent, null, use_z) { }
-
 
         protected override void _CalculateSteering(GSAITargetAcceleration accel)
         {
@@ -19,9 +18,9 @@ namespace GodotSteeringAI
                 accel.SetZero();
             else
             {
-                var orientation = UseZ ?
-                    GSAIUtils.Vector3ToAngle(Agent.LinearVelocity) :
-                    GSAIUtils.Vector2ToAngle(GSAIUtils.ToVector2(Agent.LinearVelocity));
+                var orientation = UseZ
+                    ? GSAIUtils.Vector3ToAngle(Agent.LinearVelocity)
+                    : GSAIUtils.Vector2ToAngle(GSAIUtils.ToVector2(Agent.LinearVelocity));
                 _MatchOrientation(accel, orientation);
             }
         }

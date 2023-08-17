@@ -8,7 +8,7 @@ namespace GodotSteeringAI
     /// its target. Attempts to make the agent arrive with zero remaining angular velocity.
     /// @category - Individual behaviors
     /// </summary>
-    class GSAIMatchOrientation : GSAISteeringBehavior
+    partial class GSAIMatchOrientation : GSAISteeringBehavior
     {
         /// <summary>
         /// The target orientation for the behavior to try and match rotations to.
@@ -37,16 +37,21 @@ namespace GodotSteeringAI
         /// </summary>
         public bool UseZ { get; set; }
 
-
-        public GSAIMatchOrientation(GSAISteeringAgent agent, GSAIAgentLocation target, bool use_z = false)
+        public GSAIMatchOrientation(
+            GSAISteeringAgent agent,
+            GSAIAgentLocation target,
+            bool use_z = false
+        )
             : base(agent)
         {
             UseZ = use_z;
             Target = target;
         }
 
-
-        protected virtual void _MatchOrientation(GSAITargetAcceleration acceleration, float desired_orientation)
+        protected virtual void _MatchOrientation(
+            GSAITargetAcceleration acceleration,
+            float desired_orientation
+        )
         {
             var rotation = Mathf.Wrap(desired_orientation - Agent.Orientation, -Mathf.Pi, Mathf.Pi);
 

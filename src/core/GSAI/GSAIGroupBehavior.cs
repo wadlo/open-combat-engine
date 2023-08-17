@@ -7,7 +7,7 @@ namespace GodotSteeringAI
     /// Base type for group-based steering behaviors.
     /// @category - Base types
     /// </summary>
-    abstract class GSAIGroupBehavior : GSAISteeringBehavior
+    abstract partial class GSAIGroupBehavior : GSAISteeringBehavior
     {
         /// <summary>
         /// Container to find neighbors of the agent and calculate group behavior.

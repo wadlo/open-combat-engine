@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="5_5ndvi"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_1ahq0"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/demoPrefabs/demoBullet.tscn" id="7_44yfi"]
-[ext_resource type="Script" path="res://demos/gungeon/MoveTowardPlayer.cs" id="8_ipddl"]
+[ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="8_qt6xg"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkgfs"]
 radius = 25.0
@@ -17,40 +17,41 @@ size = Vector2(33, 64)
 
 [node name="Gungeon" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="."]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("weapon")]
 motion_mode = 1
 script = ExtResource("1_22a33")
 maxSpeed = 240.0
 userAcceleration = 2000.0
 maxAcceleration = 2000.0
-friction = 800.0
+friction = 5.0
+weapon = NodePath("GunVisuals/TankGun")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 12)
 shape = SubResource("CircleShape2D_fkgfs")
 
-[node name="TankGun" type="Node2D" parent="Player"]
-script = ExtResource("2_pjf18")
-config = ExtResource("3_v6bck")
-
-[node name="GunVisuals" type="Node2D" parent="Player/TankGun"]
+[node name="GunVisuals" type="Node2D" parent="Player"]
 modulate = Color(0.372549, 0.341176, 0.309804, 1)
 script = ExtResource("4_pr6vi")
 stayUpright = true
 
-[node name="Square" type="Sprite2D" parent="Player/TankGun/GunVisuals"]
+[node name="TankGun" type="Node2D" parent="Player/GunVisuals"]
+script = ExtResource("2_pjf18")
+config = ExtResource("3_v6bck")
+
+[node name="Square" type="Sprite2D" parent="Player/GunVisuals"]
 position = Vector2(42, 7)
 rotation = 3.14159
 scale = Vector2(0.076601, -0.159491)
 texture = ExtResource("5_5ndvi")
 
-[node name="Barrel" type="Sprite2D" parent="Player/TankGun/GunVisuals"]
+[node name="Barrel" type="Sprite2D" parent="Player/GunVisuals"]
 z_index = -1
 position = Vector2(54.0235, -3.8147e-07)
 scale = Vector2(0.27045, 0.0854321)
 texture = ExtResource("5_5ndvi")
 
-[node name="BulletSpawner" type="Node2D" parent="Player/TankGun/GunVisuals/Barrel"]
+[node name="BulletSpawner" type="Node2D" parent="Player/GunVisuals/Barrel"]
 position = Vector2(12.5281, 1.33647e-06)
 script = ExtResource("7_1ahq0")
 bulletPrefab = ExtResource("7_44yfi")
@@ -68,10 +69,9 @@ scale = Vector2(0.287353, 0.303272)
 [node name="Enemy" type="CharacterBody2D" parent="."]
 position = Vector2(179.315, 0)
 motion_mode = 1
-script = ExtResource("8_ipddl")
+script = ExtResource("8_qt6xg")
 targetablePath = NodePath("../Player")
 maxSpeed = 100.0
-maxAcceleration = 500.0
 
 [node name="Body" type="Sprite2D" parent="Enemy"]
 modulate = Color(0.996078, 0, 0.301961, 1)
@@ -82,4 +82,4 @@ texture = ExtResource("5_5ndvi")
 position = Vector2(0.184998, 0)
 shape = SubResource("RectangleShape2D_3foxp")
 
-[connection signal="OnFire" from="Player/TankGun" to="Player/TankGun/GunVisuals/Barrel/BulletSpawner" method="SpawnBullet"]
+[connection signal="OnFire" from="Player/GunVisuals/TankGun" to="Player/GunVisuals/Barrel/BulletSpawner" method="FireBullet"]

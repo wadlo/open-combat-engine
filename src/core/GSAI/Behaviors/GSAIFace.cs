@@ -8,11 +8,10 @@ namespace GodotSteeringAI
     /// position. The behavior attemps to arrive with zero remaining angular velocity.
     /// @category - Individual behaviors
     /// </summary>
-    class GSAIFace : GSAIMatchOrientation
+    partial class GSAIFace : GSAIMatchOrientation
     {
         public GSAIFace(GSAISteeringAgent agent, GSAIAgentLocation target, bool use_z = false)
             : base(agent, target, use_z) { }
-
 
         protected virtual void _Face(GSAITargetAcceleration acceleration, Vector3 target_position)
         {
@@ -25,10 +24,10 @@ namespace GodotSteeringAI
             }
             else
             {
-                var orientation = UseZ ?
-                    GSAIUtils.Vector3ToAngle(to_target) :
-                    GSAIUtils.Vector2ToAngle(GSAIUtils.ToVector2(to_target));
-                
+                var orientation = UseZ
+                    ? GSAIUtils.Vector3ToAngle(to_target)
+                    : GSAIUtils.Vector2ToAngle(GSAIUtils.ToVector2(to_target));
+
                 _MatchOrientation(acceleration, orientation);
             }
         }

@@ -8,7 +8,7 @@ namespace GodotSteeringAI
     /// calculation attempts to arrive with zero remaining velocity.
     /// @category - Individual behaviors
     /// </summary>
-    class GSAIArrive : GSAISteeringBehavior
+    partial class GSAIArrive : GSAISteeringBehavior
     {
         /// <summary>
         /// Target agent to arrive to.
@@ -29,7 +29,6 @@ namespace GodotSteeringAI
         /// Represents the time it takes to change acceleration.
         /// </summary>
         public float TimeToReach { get; set; } = 0.1f;
-
 
         public GSAIArrive(GSAISteeringAgent agent, GSAIAgentLocation target)
             : base(agent)
@@ -55,7 +54,10 @@ namespace GodotSteeringAI
                 var desired_velocity = to_target * desired_speed / distance;
                 desired_velocity = (desired_velocity - Agent.LinearVelocity) * 1.0f / TimeToReach;
 
-                acceleration.Linear = GSAIUtils.ClampedV3(desired_velocity, Agent.LinearAccelerationMax);
+                acceleration.Linear = GSAIUtils.ClampedV3(
+                    desired_velocity,
+                    Agent.LinearAccelerationMax
+                );
                 acceleration.Angular = 0;
             }
         }
@@ -64,6 +66,5 @@ namespace GodotSteeringAI
         {
             _Arrive(acceleration, target.Position);
         }
-
     }
 }

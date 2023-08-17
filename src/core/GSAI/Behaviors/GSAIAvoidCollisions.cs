@@ -7,7 +7,7 @@ namespace GodotSteeringAI
     /// Steers the agent to avoid obstacles in its path. Approximates obstacles as spheres.
     /// @category - Group behaviors
     /// </summary>
-    class GSAIAvoidCollisions : GSAIGroupBehavior
+    partial class GSAIAvoidCollisions : GSAIGroupBehavior
     {
         private GSAISteeringAgent _first_neighbor;
         private float _shortest_time;
@@ -18,7 +18,6 @@ namespace GodotSteeringAI
 
         public GSAIAvoidCollisions(GSAISteeringAgent agent, GSAIProximity proximity)
             : base(agent, proximity) { }
-
 
         protected override void _CalculateSteering(GSAITargetAcceleration acceleration)
         {
@@ -33,13 +32,17 @@ namespace GodotSteeringAI
                 acceleration.SetZero();
             else
             {
-                if (_first_minimum_separation <= 0 || _first_distance < Agent.BoundingRadius + _first_neighbor.BoundingRadius)
+                if (
+                    _first_minimum_separation <= 0
+                    || _first_distance < Agent.BoundingRadius + _first_neighbor.BoundingRadius
+                )
                 {
                     acceleration.Linear = _first_neighbor.Position - Agent.Position;
                 }
                 else
                 {
-                    acceleration.Linear = _first_relative_position + _first_relative_velocity * _shortest_time;
+                    acceleration.Linear =
+                        _first_relative_position + _first_relative_velocity * _shortest_time;
                 }
             }
 
@@ -64,14 +67,16 @@ namespace GodotSteeringAI
                 return false;
             else
             {
-                var time_to_collision = -relative_position.Dot(relative_velocity) / relative_speed_squared;
+                var time_to_collision =
+                    -relative_position.Dot(relative_velocity) / relative_speed_squared;
 
                 if (time_to_collision <= 0 || time_to_collision >= _shortest_time)
                     return false;
 
                 var distance = relative_position.Length();
-                var minimum_separation = distance - Mathf.Sqrt(relative_speed_squared) * time_to_collision;
-                
+                var minimum_separation =
+                    distance - Mathf.Sqrt(relative_speed_squared) * time_to_collision;
+
                 if (minimum_separation > Agent.BoundingRadius + neighbor.BoundingRadius)
                     return false;
 

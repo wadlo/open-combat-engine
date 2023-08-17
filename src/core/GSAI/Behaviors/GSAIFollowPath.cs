@@ -3,12 +3,11 @@ using System;
 
 namespace GodotSteeringAI
 {
-
     /// <summary>
     /// Produces a linear acceleration that moves the agent along the specified path.
     /// @category - Individual behaviors
     /// </summary>
-    class GSAIFollowPath : GSAIArrive
+    partial class GSAIFollowPath : GSAIArrive
     {
         /// <summary>
         /// The path to follow and travel along.
@@ -31,9 +30,13 @@ namespace GodotSteeringAI
         /// </summary>
         public float PredictionTime { get; set; } = 0;
 
-
-        public GSAIFollowPath(GSAISteeringAgent agent, GSAIPath path, float path_offset = 0, float prediction_time = 0)
-            :base(agent, null)
+        public GSAIFollowPath(
+            GSAISteeringAgent agent,
+            GSAIPath path,
+            float path_offset = 0,
+            float prediction_time = 0
+        )
+            : base(agent, null)
         {
             Path3D = path;
             PathOffset = path_offset;
@@ -42,9 +45,10 @@ namespace GodotSteeringAI
 
         protected override void _CalculateSteering(GSAITargetAcceleration acceleration)
         {
-            var location = PredictionTime == 0 ?
-                Agent.Position :
-                Agent.Position + (Agent.LinearVelocity * PredictionTime);
+            var location =
+                PredictionTime == 0
+                    ? Agent.Position
+                    : Agent.Position + (Agent.LinearVelocity * PredictionTime);
 
             var distance = Path3D.CalculateDistance(location);
             var target_distance = distance + PathOffset;

@@ -9,7 +9,7 @@ namespace GodotSteeringAI
     /// behavior with non-zero acceleration.
     /// @category - Combination behaviors
     /// </summary>
-    class GSAIPriority : GSAISteeringBehavior
+    partial class GSAIPriority : GSAISteeringBehavior
     {
         private List<GSAISteeringBehavior> _behaviors = new List<GSAISteeringBehavior>();
 
@@ -23,7 +23,6 @@ namespace GodotSteeringAI
         /// considers it has an acceleration of zero.
         /// </summary>
         public float ZeroThreshold { get; set; }
-
 
         public GSAIPriority(GSAISteeringAgent agent, float zero_threshold = 0.001f)
             : base(agent)
@@ -53,7 +52,6 @@ namespace GodotSteeringAI
             GD.PrintErr("Tried to get index " + index + " in array of size " + _behaviors.Count);
             return null;
         }
-
 
         protected override void _CalculateSteering(GSAITargetAcceleration accel)
         {

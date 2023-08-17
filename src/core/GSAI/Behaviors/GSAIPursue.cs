@@ -8,9 +8,8 @@ namespace GodotSteeringAI
     /// target agent's movement.
     /// @category - Individual behaviors
     /// </summary>
-    class GSAIPursue : GSAISteeringBehavior
+    partial class GSAIPursue : GSAISteeringBehavior
     {
-
         /// <summary>
         /// The target agent that the behavior is trying to intercept.
         /// </summary>
@@ -21,14 +20,16 @@ namespace GodotSteeringAI
         /// </summary>
         public float PredictTimeMax { get; set; }
 
-
-        public GSAIPursue(GSAISteeringAgent agent, GSAISteeringAgent target, float predict_time_max = 1)
-            :base(agent)
+        public GSAIPursue(
+            GSAISteeringAgent agent,
+            GSAISteeringAgent target,
+            float predict_time_max = 1
+        )
+            : base(agent)
         {
             Target = target;
             PredictTimeMax = predict_time_max;
         }
-
 
         protected override void _CalculateSteering(GSAITargetAcceleration acceleration)
         {
@@ -45,7 +46,9 @@ namespace GodotSteeringAI
                     predict_time = Mathf.Sqrt(predict_time_squared);
             }
 
-            acceleration.Linear = (target_position + (Target.LinearVelocity * predict_time) - Agent.Position).Normalized();
+            acceleration.Linear = (
+                target_position + (Target.LinearVelocity * predict_time) - Agent.Position
+            ).Normalized();
             acceleration.Linear *= _GetModifiedAcceleration();
 
             acceleration.Angular = 0; // There may be a problem here.

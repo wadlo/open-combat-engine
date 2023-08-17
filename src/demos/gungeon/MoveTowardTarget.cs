@@ -2,7 +2,7 @@ using Godot;
 using GodotSteeringAI;
 using System;
 
-public partial class MoveTowardPlayer : CharacterBody2D
+public partial class MoveTowardTarget : CharacterBody2D
 {
     [Export]
     public NodePath targetablePath;
@@ -16,7 +16,7 @@ public partial class MoveTowardPlayer : CharacterBody2D
     // These variables are essentially a representation of velocity and acceleration inside the steering model.
     private GSAITargetAcceleration acceleration = new GSAITargetAcceleration();
 
-    private GSAIKinematicBody2DAgent agent;
+    private GSAISteeringAgent agent;
     private GSAIArrive steering;
 
     public override void _Ready()
@@ -27,7 +27,7 @@ public partial class MoveTowardPlayer : CharacterBody2D
         steering = new GSAIArrive(agent, targetable.GetAgentLocation());
         agent.LinearSpeedMax = maxSpeed;
         agent.LinearAccelerationMax = maxAcceleration;
-        agent.CalculateVelocities = false;
+        //agent.CalculateVelocities = false;
         steering.DecelerationRadius = 300.0f;
     }
 
@@ -37,6 +37,7 @@ public partial class MoveTowardPlayer : CharacterBody2D
         steering.CalculateSteering(acceleration);
 
         Velocity += delta * GSAIUtils.ToVector2(acceleration.Linear);
+        Velocity = Velocity.LimitLength(maxSpeed);
 
         MoveAndSlide();
         agent.LinearVelocity = GSAIUtils.ToVector3(Velocity);

@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://fd61hetj3fk3"]
+[gd_scene load_steps=10 format=3 uid="uid://fd61hetj3fk3"]
 
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_pkrce"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_rdpbj"]
@@ -8,52 +8,49 @@
 [ext_resource type="Texture2D" uid="uid://c0inc23nna5e7" path="res://demos/simpleGraphics/triangle1.png" id="6_jkgkt"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_a8yyg"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/demoPrefabs/demoBullet.tscn" id="8_ndchc"]
-[ext_resource type="Script" path="res://demos/diep/SimpleKnockback.cs" id="9_yw7ba"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2m56"]
 radius = 32.0
 
 [node name="Diep" type="Node2D"]
 
-[node name="PlayerTank" type="CharacterBody2D" parent="."]
+[node name="PlayerTank" type="CharacterBody2D" parent="." node_paths=PackedStringArray("weapon")]
 motion_mode = 1
 script = ExtResource("1_pkrce")
+friction = 1.0
+weapon = NodePath("TurretVisuals/TankGun")
+knockbackDuration = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTank"]
 shape = SubResource("CircleShape2D_y2m56")
 
-[node name="TankGun" type="Node2D" parent="PlayerTank"]
-script = ExtResource("2_rdpbj")
-config = ExtResource("3_nebeb")
-
-[node name="TurretVisuals" type="Sprite2D" parent="PlayerTank/TankGun"]
+[node name="TurretVisuals" type="Sprite2D" parent="PlayerTank"]
 self_modulate = Color(0.160784, 0.67451, 0.996078, 1)
 scale = Vector2(0.5, 0.5)
 texture = ExtResource("4_33jyl")
 script = ExtResource("5_edgu7")
 
-[node name="Barrel" type="Sprite2D" parent="PlayerTank/TankGun/TurretVisuals"]
+[node name="Barrel" type="Sprite2D" parent="PlayerTank/TurretVisuals"]
 self_modulate = Color(0.372549, 0.341176, 0.309804, 1)
 z_index = -1
 position = Vector2(28, -1.90735e-06)
 scale = Vector2(1.2, 0.75)
 texture = ExtResource("6_jkgkt")
 
-[node name="BulletSpawner" type="Node2D" parent="PlayerTank/TankGun/TurretVisuals/Barrel"]
+[node name="BulletSpawner" type="Node2D" parent="PlayerTank/TurretVisuals/Barrel"]
 position = Vector2(50.3754, 1.33647e-06)
 scale = Vector2(1, 7.57944)
 script = ExtResource("7_a8yyg")
 bulletPrefab = ExtResource("8_ndchc")
 bulletAngleVariance = 17.0
 
-[node name="SimpleKnockback" type="Node2D" parent="PlayerTank/TankGun" node_paths=PackedStringArray("characterBody2D")]
-script = ExtResource("9_yw7ba")
-characterBody2D = NodePath("../..")
-forceMultiplier = 0.01
+[node name="TankGun" type="Node2D" parent="PlayerTank/TurretVisuals"]
+scale = Vector2(2, 2)
+script = ExtResource("2_rdpbj")
+config = ExtResource("3_nebeb")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(1, 0)
 scale = Vector2(0.53125, 0.53125)
 
-[connection signal="OnFire" from="PlayerTank/TankGun" to="PlayerTank/TankGun/TurretVisuals/Barrel/BulletSpawner" method="SpawnBullet"]
-[connection signal="BulletSpawn" from="PlayerTank/TankGun/TurretVisuals/Barrel/BulletSpawner" to="PlayerTank/TankGun/SimpleKnockback" method="ApplyKnockback"]
+[connection signal="OnFire" from="PlayerTank/TurretVisuals/TankGun" to="PlayerTank/TurretVisuals/Barrel/BulletSpawner" method="FireBullet"]

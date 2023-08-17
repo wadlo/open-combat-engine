@@ -1,7 +1,6 @@
 using Godot;
 using System;
 
-
 namespace GodotSteeringAI
 {
     /// <summary>
@@ -9,19 +8,17 @@ namespace GodotSteeringAI
     /// The acceleration is an average based on all neighbors, multiplied by a strength decreasing by the inverse square law in relation to distance, and it accumulates.
     /// @category - Group behaviors
     /// </summary>
-    class GSAISeparation : GSAIGroupBehavior
+    partial class GSAISeparation : GSAIGroupBehavior
     {
         /// <summary>
         /// The coefficient to calculate how fast the separation strength decays with distance.
         /// </summary>
         public float DecayCoefficient { get; set; } = 1;
 
-
         private GSAITargetAcceleration _acceleration;
 
         public GSAISeparation(GSAISteeringAgent agent, GSAIProximity proximity)
             : base(agent, proximity) { }
-
 
         protected override void _CalculateSteering(GSAITargetAcceleration acceleration)
         {
