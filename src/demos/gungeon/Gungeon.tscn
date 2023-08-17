@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://w0eyot1e728o"]
+[gd_scene load_steps=11 format=3 uid="uid://w0eyot1e728o"]
 
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_22a33"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_pjf18"]
@@ -7,9 +7,13 @@
 [ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="5_5ndvi"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_1ahq0"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="8_imln3"]
+[ext_resource type="Script" path="res://demos/gungeon/MoveTowardPlayer.cs" id="8_ipddl"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkgfs"]
 radius = 25.0
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_3foxp"]
+size = Vector2(33, 64)
 
 [node name="Gungeon" type="Node2D"]
 
@@ -52,7 +56,7 @@ script = ExtResource("7_1ahq0")
 bulletPrefab = ExtResource("8_imln3")
 bulletAngleVariance = 17.0
 
-[node name="Sprite2D" type="Sprite2D" parent="Player"]
+[node name="Body" type="Sprite2D" parent="Player"]
 modulate = Color(0.160784, 0.67451, 0.996078, 1)
 scale = Vector2(0.260002, 0.5)
 texture = ExtResource("5_5ndvi")
@@ -60,5 +64,22 @@ texture = ExtResource("5_5ndvi")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(61, -5.68434e-14)
 scale = Vector2(0.287353, 0.303272)
+
+[node name="Enemy" type="CharacterBody2D" parent="." node_paths=PackedStringArray("player")]
+position = Vector2(179.315, 0)
+motion_mode = 1
+script = ExtResource("8_ipddl")
+player = NodePath("../Player")
+maxSpeed = 100.0
+maxAcceleration = 500.0
+
+[node name="Body" type="Sprite2D" parent="Enemy"]
+modulate = Color(0.996078, 0, 0.301961, 1)
+scale = Vector2(0.260002, 0.5)
+texture = ExtResource("5_5ndvi")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
+position = Vector2(0.184998, 0)
+shape = SubResource("RectangleShape2D_3foxp")
 
 [connection signal="OnFire" from="Player/TankGun" to="Player/TankGun/GunVisuals/Barrel/BulletSpawner" method="SpawnBullet"]

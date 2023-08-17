@@ -16,6 +16,8 @@ public partial class QuickPlayerMovement : CharacterBody2D
     [Export]
     public float friction = 175.0f;
 
+    public GSAIAgentLocation gSAIAgentLocation = new GSAIAgentLocation();
+
     public override void _PhysicsProcess(double delta)
     {
         Vector2 userInputAcceleration =
@@ -36,5 +38,7 @@ public partial class QuickPlayerMovement : CharacterBody2D
         Velocity += acceleration;
         Velocity = Velocity.LimitLength(maxSpeed);
         MoveAndSlide();
+
+        gSAIAgentLocation.Position = GSAIUtils.ToVector3(Position);
     }
 }
