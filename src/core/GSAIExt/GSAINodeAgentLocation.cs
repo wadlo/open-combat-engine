@@ -7,16 +7,16 @@ namespace GodotSteeringAI
     /**
     * Automatically updates the agent's position every physics frame
     */
-    public partial class GSAIKinematicBodyAgentLocation : GSAIAgentLocation
+    public partial class GSAINodeAgentLocation : GSAIAgentLocation
     {
         private WeakRef bodyRef;
 
-        private CharacterBody2D GetBody()
+        private Node2D GetBody()
         {
-            return bodyRef.GetRef().As<CharacterBody2D>();
+            return bodyRef.GetRef().As<Node2D>();
         }
 
-        public GSAIKinematicBodyAgentLocation(CharacterBody2D body)
+        public GSAINodeAgentLocation(Node2D body)
         {
             bodyRef = WeakRef(body);
             if (!body.IsInsideTree())

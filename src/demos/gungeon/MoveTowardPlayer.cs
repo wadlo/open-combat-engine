@@ -24,8 +24,6 @@ public partial class MoveTowardPlayer : CharacterBody2D
         GSAITargetable targetable = GetNode<GSAITargetable>(targetablePath);
         agent = new GSAIKinematicBody2DAgent(this);
 
-        GD.Print(targetable);
-        GD.Print(targetable.GetAgentLocation());
         steering = new GSAIArrive(agent, targetable.GetAgentLocation());
         agent.LinearSpeedMax = maxSpeed;
         agent.LinearAccelerationMax = maxAcceleration;

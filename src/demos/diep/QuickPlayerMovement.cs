@@ -20,7 +20,7 @@ public partial class QuickPlayerMovement : CharacterBody2D, GSAITargetable
 
     public override void _Ready()
     {
-        gSAIAgentLocation = new GSAIKinematicBodyAgentLocation(this);
+        gSAIAgentLocation = new GSAINodeAgentLocation(this);
     }
 
     public override void _PhysicsProcess(double delta)

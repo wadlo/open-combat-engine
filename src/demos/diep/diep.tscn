@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://demos/diep/diepScripts/FaceMouse.cs" id="5_edgu7"]
 [ext_resource type="Texture2D" uid="uid://c0inc23nna5e7" path="res://demos/simpleGraphics/triangle1.png" id="6_jkgkt"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_a8yyg"]
-[ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/diep/diepPrefabs/diepBullet.tscn" id="8_4qbk3"]
+[ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/demoPrefabs/demoBullet.tscn" id="8_ndchc"]
 [ext_resource type="Script" path="res://demos/diep/SimpleKnockback.cs" id="9_yw7ba"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_y2m56"]
@@ -43,7 +43,7 @@ texture = ExtResource("6_jkgkt")
 position = Vector2(50.3754, 1.33647e-06)
 scale = Vector2(1, 7.57944)
 script = ExtResource("7_a8yyg")
-bulletPrefab = ExtResource("8_4qbk3")
+bulletPrefab = ExtResource("8_ndchc")
 bulletAngleVariance = 17.0
 
 [node name="SimpleKnockback" type="Node2D" parent="PlayerTank/TankGun" node_paths=PackedStringArray("characterBody2D")]
