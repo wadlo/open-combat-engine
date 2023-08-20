@@ -86,4 +86,32 @@ shape = SubResource("RectangleShape2D_3foxp")
 [node name="Health" type="Node" parent="Enemy"]
 script = ExtResource("9_0jhuw")
 
+[node name="GunVisuals2" type="Node2D" parent="Enemy"]
+modulate = Color(0.372549, 0.341176, 0.309804, 1)
+script = ExtResource("4_pr6vi")
+stayUpright = true
+
+[node name="TankGun" type="Node2D" parent="Enemy/GunVisuals2"]
+script = ExtResource("2_pjf18")
+config = ExtResource("3_v6bck")
+
+[node name="Square" type="Sprite2D" parent="Enemy/GunVisuals2"]
+position = Vector2(42, 7)
+rotation = 3.14159
+scale = Vector2(0.076601, -0.159491)
+texture = ExtResource("5_5ndvi")
+
+[node name="Barrel" type="Sprite2D" parent="Enemy/GunVisuals2"]
+z_index = -1
+position = Vector2(54.0235, -3.8147e-07)
+scale = Vector2(0.27045, 0.0854321)
+texture = ExtResource("5_5ndvi")
+
+[node name="BulletSpawner" type="Node2D" parent="Enemy/GunVisuals2/Barrel"]
+position = Vector2(12.5281, 1.33647e-06)
+script = ExtResource("7_1ahq0")
+bulletPrefab = ExtResource("7_44yfi")
+bulletAngleVariance = 17.0
+
 [connection signal="OnFire" from="Player/GunVisuals/TankGun" to="Player/GunVisuals/Barrel/BulletSpawner" method="FireBullet"]
+[connection signal="OnFire" from="Enemy/GunVisuals2/TankGun" to="Enemy/GunVisuals2/Barrel/BulletSpawner" method="FireBullet"]

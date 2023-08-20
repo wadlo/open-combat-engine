@@ -20,7 +20,9 @@ texture = ExtResource("1_3m7bo")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CircleShape2D_kn0l0")
 
-[node name="Node" type="Node" parent="."]
+[node name="CollisionDamage" type="Node" parent="."]
 script = ExtResource("3_wvucm")
+damage = 2.0
+knockback = 200.0
 
-[connection signal="body_entered" from="." to="Node" method="BodyEntered"]
+[connection signal="body_entered" from="." to="CollisionDamage" method="BodyEntered"]
