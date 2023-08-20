@@ -8,8 +8,8 @@
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_1ahq0"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/demoPrefabs/demoBullet.tscn" id="7_44yfi"]
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="8_qt6xg"]
-[ext_resource type="Script" path="res://demos/Health.cs" id="9_0jhuw"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="9_imdjb"]
+[ext_resource type="Script" path="res://core/Health.cs" id="10_0ew15"]
 [ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="11_qk1b8"]
 [ext_resource type="Resource" uid="uid://cwbi52tsclk8u" path="res://demos/diep/diepResources/diep_pistol.tres" id="12_f8bqh"]
 [ext_resource type="PackedScene" uid="uid://bcjmddr2juylg" path="res://demos/demoPrefabs/demoEnemyBullet.tscn" id="12_v2lu1"]
@@ -92,7 +92,7 @@ script = ExtResource("9_imdjb")
 target = NodePath("../../Player")
 
 [node name="Health" type="Node" parent="Enemy"]
-script = ExtResource("9_0jhuw")
+script = ExtResource("10_0ew15")
 
 [node name="GunVisuals2" type="Node2D" parent="Enemy" node_paths=PackedStringArray("target")]
 modulate = Color(0.372549, 0.341176, 0.309804, 1)
