@@ -5,7 +5,7 @@ namespace OpenTDE
 {
     public class Utils
     {
-        public static Array<T> GetChildrenOfType<T>(Node parent)
+        public static Array<T> GetChildrenOfType<[MustBeVariant] T>(Node parent)
             where T : Node
         {
             Array<T> items = new Array<T>();
