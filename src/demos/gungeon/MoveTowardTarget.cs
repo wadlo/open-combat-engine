@@ -2,7 +2,7 @@ using Godot;
 using GodotSteeringAI;
 using System;
 
-public partial class MoveTowardTarget : CharacterBody2D
+public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
 {
     [Export]
     public NodePath targetablePath;
@@ -18,6 +18,7 @@ public partial class MoveTowardTarget : CharacterBody2D
 
     private GSAISteeringAgent agent;
     private GSAIArrive steering;
+    private GSAIApplyForce force;
 
     public override void _Ready()
     {
@@ -29,11 +30,19 @@ public partial class MoveTowardTarget : CharacterBody2D
         agent.LinearAccelerationMax = maxAcceleration;
         //agent.CalculateVelocities = false;
         steering.DecelerationRadius = 300.0f;
+        force = new GSAIApplyForce(this, agent, Vector3.Zero);
     }
 
     public override void _PhysicsProcess(double _delta)
     {
         float delta = (float)_delta;
+
+        this.force.CalculateSteering(acceleration);
+        Vector2 lastVelocity = Velocity;
+        Velocity = GSAIUtils.ToVector2(this.acceleration.Linear);
+        MoveAndSlide();
+        Velocity = lastVelocity;
+
         steering.CalculateSteering(acceleration);
 
         Velocity += delta * GSAIUtils.ToVector2(acceleration.Linear);
@@ -41,5 +50,10 @@ public partial class MoveTowardTarget : CharacterBody2D
 
         MoveAndSlide();
         agent.LinearVelocity = GSAIUtils.ToVector3(Velocity);
+    }
+
+    public GSAIApplyForce GetKnockbackForce()
+    {
+        return this.force;
     }
 }

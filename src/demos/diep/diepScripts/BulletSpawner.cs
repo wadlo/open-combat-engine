@@ -20,7 +20,7 @@ public partial class BulletSpawner : Node2D
 
     public void FireBullet(float angle)
     {
-        RigidBody2D instantiated = bulletPrefab.Instantiate<RigidBody2D>();
+        KinematicArea2D instantiated = bulletPrefab.Instantiate<KinematicArea2D>();
         GetTree().Root.AddChild(instantiated);
 
         instantiated.GlobalPosition = GlobalPosition;

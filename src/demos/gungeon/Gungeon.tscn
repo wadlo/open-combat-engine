@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://w0eyot1e728o"]
+[gd_scene load_steps=12 format=3 uid="uid://w0eyot1e728o"]
 
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_22a33"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_pjf18"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_1ahq0"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/demoPrefabs/demoBullet.tscn" id="7_44yfi"]
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="8_qt6xg"]
+[ext_resource type="Script" path="res://demos/Health.cs" id="9_0jhuw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkgfs"]
 radius = 25.0
@@ -81,5 +82,8 @@ texture = ExtResource("5_5ndvi")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Enemy"]
 position = Vector2(0.184998, 0)
 shape = SubResource("RectangleShape2D_3foxp")
+
+[node name="Health" type="Node" parent="Enemy"]
+script = ExtResource("9_0jhuw")
 
 [connection signal="OnFire" from="Player/GunVisuals/TankGun" to="Player/GunVisuals/Barrel/BulletSpawner" method="FireBullet"]
