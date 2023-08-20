@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://w0eyot1e728o"]
+[gd_scene load_steps=16 format=3 uid="uid://w0eyot1e728o"]
 
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_22a33"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_pjf18"]
@@ -11,6 +11,8 @@
 [ext_resource type="Script" path="res://demos/Health.cs" id="9_0jhuw"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="9_imdjb"]
 [ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="11_qk1b8"]
+[ext_resource type="Resource" uid="uid://cwbi52tsclk8u" path="res://demos/diep/diepResources/diep_pistol.tres" id="12_f8bqh"]
+[ext_resource type="PackedScene" uid="uid://bcjmddr2juylg" path="res://demos/demoPrefabs/demoEnemyBullet.tscn" id="12_v2lu1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkgfs"]
 radius = 25.0
@@ -99,7 +101,7 @@ target = NodePath("../Target")
 
 [node name="TankGun" type="Node2D" parent="Enemy/GunVisuals2"]
 script = ExtResource("2_pjf18")
-config = ExtResource("3_v6bck")
+config = ExtResource("12_f8bqh")
 alwaysFire = true
 
 [node name="Square" type="Sprite2D" parent="Enemy/GunVisuals2"]
@@ -117,7 +119,7 @@ texture = ExtResource("5_5ndvi")
 [node name="BulletSpawner" type="Node2D" parent="Enemy/GunVisuals2/Barrel"]
 position = Vector2(12.5281, 1.33647e-06)
 script = ExtResource("7_1ahq0")
-bulletPrefab = ExtResource("7_44yfi")
+bulletPrefab = ExtResource("12_v2lu1")
 bulletAngleVariance = 17.0
 
 [connection signal="OnFire" from="Player/GunVisuals/TankGun" to="Player/GunVisuals/Barrel/BulletSpawner" method="FireBullet"]

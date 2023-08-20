@@ -16,15 +16,18 @@ public partial class FaceTarget : Node2D
         steeringAgent = new GSAISteeringAgent();
         face = new GSAIFace(steeringAgent, target.targetLocation);
         targetAcceleration = new GSAITargetAcceleration();
+        GlobalRotation = GSAIUtils.Vector2ToAngle(
+            GSAIUtils.ToVector2(target.targetLocation.Position) - Position
+        );
 
         steeringAgent.AngularAccelerationMax = 10.0f;
-        steeringAgent.AngularSpeedMax = 10.0f;
+        steeringAgent.AngularSpeedMax = 100.0f;
     }
 
     public override void _PhysicsProcess(double _delta)
     {
         float delta = (float)_delta;
-        steeringAgent.AngularVelocity *= 0.9f;
+        steeringAgent.AngularVelocity *= 0.95f;
         steeringAgent.Orientation = GlobalRotation + Mathf.Pi / 2.0f;
         steeringAgent.Position = GSAIUtils.ToVector3(GlobalPosition);
 
