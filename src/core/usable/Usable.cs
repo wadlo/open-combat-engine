@@ -28,6 +28,9 @@ public partial class Usable : Node2D
     [Export]
     private UsableConfig config;
 
+    [Export]
+    public bool alwaysFire;
+
     // Ammo variables
     [Export]
     public float ammo = 0.0f;
@@ -140,7 +143,7 @@ public partial class Usable : Node2D
 
     public bool ShouldFire()
     {
-        return CanFire() && Input.IsMouseButtonPressed(MouseButton.Left);
+        return CanFire() && (alwaysFire || Input.IsMouseButtonPressed(MouseButton.Left));
     }
 
     public bool CanFire()

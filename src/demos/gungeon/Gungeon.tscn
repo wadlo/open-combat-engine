@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://w0eyot1e728o"]
+[gd_scene load_steps=14 format=3 uid="uid://w0eyot1e728o"]
 
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_22a33"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_pjf18"]
@@ -9,6 +9,8 @@
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/demoPrefabs/demoBullet.tscn" id="7_44yfi"]
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="8_qt6xg"]
 [ext_resource type="Script" path="res://demos/Health.cs" id="9_0jhuw"]
+[ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="9_imdjb"]
+[ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="11_qk1b8"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_fkgfs"]
 radius = 25.0
@@ -83,17 +85,22 @@ texture = ExtResource("5_5ndvi")
 position = Vector2(0.184998, 0)
 shape = SubResource("RectangleShape2D_3foxp")
 
+[node name="Target" type="Node" parent="Enemy" node_paths=PackedStringArray("target")]
+script = ExtResource("9_imdjb")
+target = NodePath("../../Player")
+
 [node name="Health" type="Node" parent="Enemy"]
 script = ExtResource("9_0jhuw")
 
-[node name="GunVisuals2" type="Node2D" parent="Enemy"]
+[node name="GunVisuals2" type="Node2D" parent="Enemy" node_paths=PackedStringArray("target")]
 modulate = Color(0.372549, 0.341176, 0.309804, 1)
-script = ExtResource("4_pr6vi")
-stayUpright = true
+script = ExtResource("11_qk1b8")
+target = NodePath("../Target")
 
 [node name="TankGun" type="Node2D" parent="Enemy/GunVisuals2"]
 script = ExtResource("2_pjf18")
 config = ExtResource("3_v6bck")
+alwaysFire = true
 
 [node name="Square" type="Sprite2D" parent="Enemy/GunVisuals2"]
 position = Vector2(42, 7)
