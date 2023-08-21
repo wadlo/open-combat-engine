@@ -14,7 +14,7 @@ public partial class FaceTarget : Node2D
     public override void _Ready()
     {
         steeringAgent = new GSAISteeringAgent();
-        face = new GSAIFace(steeringAgent, target?.targetLocation ?? new GSAIAgentLocation());
+        face = new GSAIFace(steeringAgent, target.targetLocation);
         targetAcceleration = new GSAITargetAcceleration();
         GlobalRotation = GSAIUtils.Vector2ToAngle(
             GSAIUtils.ToVector2(target?.targetLocation.Position ?? GSAIUtils.ToVector3(Position))

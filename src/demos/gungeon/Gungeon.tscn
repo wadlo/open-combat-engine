@@ -75,7 +75,6 @@ scale = Vector2(0.287353, 0.303272)
 position = Vector2(179.315, 0)
 motion_mode = 1
 script = ExtResource("8_qt6xg")
-targetablePath = NodePath("../Player")
 maxSpeed = 100.0
 
 [node name="Body" type="Sprite2D" parent="Enemy"]

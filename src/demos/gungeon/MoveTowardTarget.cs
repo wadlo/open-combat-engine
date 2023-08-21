@@ -5,13 +5,11 @@ using System;
 public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
 {
     [Export]
-    public NodePath targetablePath;
-
-    [Export]
     public float maxSpeed = 200.0f;
 
     [Export]
     public float maxAcceleration = 200.0f;
+    private Target target;
 
     // These variables are essentially a representation of velocity and acceleration inside the steering model.
     private GSAITargetAcceleration acceleration = new GSAITargetAcceleration();
@@ -22,16 +20,15 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
 
     public override void _Ready()
     {
-        GSAITargetable targetable = GetNode<GSAITargetable>(targetablePath);
+        target = OpenTDE.Utils.GetChildrenOfType<Target>(this)[0];
         agent = new GSAIKinematicBody2DAgent(this);
+
+        steering = new GSAIArrive(agent, target.targetLocation);
 
         agent.LinearSpeedMax = maxSpeed;
         agent.LinearAccelerationMax = maxAcceleration;
         //agent.CalculateVelocities = false;
         force = new GSAIApplyForce(this, agent, Vector3.Zero);
-
-        steering = new GSAIArrive(agent, targetable?.GetAgentLocation() ?? new GSAIAgentLocation());
-        steering.DecelerationRadius = 300.0f;
     }
 
     public override void _PhysicsProcess(double _delta)

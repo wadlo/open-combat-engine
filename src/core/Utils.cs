@@ -19,5 +19,27 @@ namespace OpenTDE
 
             return items;
         }
+
+        public static Node2D GetClosestNodeInGroup(SceneTree tree, Vector2 position, string group)
+        {
+            Array<Node> nodes = tree.GetNodesInGroup(group);
+
+            Node2D closest = null;
+            if (nodes.Count > 0)
+            {
+                float closestDist = float.MaxValue;
+                foreach (Node node in nodes)
+                {
+                    float distSqr = ((node as Node2D).Position - position).LengthSquared();
+                    if (distSqr < closestDist)
+                    {
+                        closestDist = distSqr;
+                        closest = node as Node2D;
+                    }
+                }
+            }
+
+            return closest;
+        }
     }
 }

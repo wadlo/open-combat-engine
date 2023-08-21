@@ -22,5 +22,7 @@ public partial class CollisionDamage : Node
         {
             health.Damage(damage);
         }
+
+        GetParent().QueueFree();
     }
 }
