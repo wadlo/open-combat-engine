@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bcjmddr2juylg"]
+[gd_scene load_steps=6 format=3 uid="uid://bcjmddr2juylg"]
 
 [ext_resource type="Script" path="res://core/KinematicArea2D/KinematicArea2D.cs" id="1_ir7hl"]
 [ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/simpleGraphics/circle.png" id="2_0q5wu"]
 [ext_resource type="Script" path="res://demos/demoPrefabs/CollisionDamage.cs" id="3_afvie"]
+[ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="4_ww3qv"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kn0l0"]
 radius = 12.0
@@ -13,7 +14,7 @@ LinearVelocity = Vector2(200, 0)
 
 [node name="Bullet" type="Sprite2D" parent="."]
 self_modulate = Color(0.996078, 0, 0.301961, 1)
-z_index = -3
+z_index = 100
 scale = Vector2(0.183594, 0.183594)
 texture = ExtResource("2_0q5wu")
 
@@ -24,5 +25,8 @@ shape = SubResource("CircleShape2D_kn0l0")
 script = ExtResource("3_afvie")
 damage = 2.0
 knockback = 200.0
+
+[node name="Target" type="Node" parent="."]
+script = ExtResource("4_ww3qv")
 
 [connection signal="body_entered" from="." to="CollisionDamage" method="BodyEntered"]

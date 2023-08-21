@@ -18,6 +18,9 @@ public partial class BulletSpawner : Node2D
     // Called every frame. 'delta' is the elapsed time since the previous frame.
     public override void _Process(double delta) { }
 
+    [Export]
+    public Target target;
+
     public void FireBullet(float angle)
     {
         KinematicArea2D instantiated = bulletPrefab.Instantiate<KinematicArea2D>();
@@ -28,6 +31,10 @@ public partial class BulletSpawner : Node2D
         float randomAngle = (GD.Randf() * 2 - 1) * Mathf.DegToRad(bulletAngleVariance) + angle;
         instantiated.GlobalRotation = randomAngle;
         instantiated.LinearVelocity = instantiated.LinearVelocity.Rotated(randomAngle);
+
+        OpenTDE.Utils.GetChildrenOfType<Target>(instantiated)[0].targetGroups.AddRange(
+            target.targetGroups
+        );
         EmitSignal(SignalName.BulletSpawn, instantiated.LinearVelocity.Rotated(Mathf.Pi));
     }
 }

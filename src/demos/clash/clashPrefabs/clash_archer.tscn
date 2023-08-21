@@ -56,10 +56,11 @@ position = Vector2(54.0235, -3.8147e-07)
 scale = Vector2(0.27045, 0.0854321)
 texture = ExtResource("2_5h3rd")
 
-[node name="BulletSpawner" type="Node2D" parent="GunVisuals2/Barrel"]
+[node name="BulletSpawner" type="Node2D" parent="GunVisuals2/Barrel" node_paths=PackedStringArray("target")]
 position = Vector2(12.5281, 1.33647e-06)
 script = ExtResource("8_ecrkt")
 bulletPrefab = ExtResource("9_mblxu")
 bulletAngleVariance = 17.0
+target = NodePath("../../../Target")
 
 [connection signal="OnFire" from="GunVisuals2/TankGun" to="GunVisuals2/Barrel/BulletSpawner" method="FireBullet"]
