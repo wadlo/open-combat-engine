@@ -1,0 +1,67 @@
+[gd_scene load_steps=11 format=3 uid="uid://cqfg2f501lbsl"]
+
+[ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_u8jjy"]
+[ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="2_5h3rd"]
+[ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="3_wdi67"]
+[ext_resource type="Script" path="res://core/Health.cs" id="4_apd40"]
+[ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="5_rqp6m"]
+[ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_l618p"]
+[ext_resource type="Resource" uid="uid://cwbi52tsclk8u" path="res://demos/diep/diepResources/diep_pistol.tres" id="7_lmlrg"]
+[ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="8_ecrkt"]
+[ext_resource type="PackedScene" uid="uid://bcjmddr2juylg" path="res://demos/demoPrefabs/demoEnemyBullet.tscn" id="9_mblxu"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i02pq"]
+size = Vector2(33, 64)
+
+[node name="ClashSniper" type="CharacterBody2D"]
+position = Vector2(-397.685, -5)
+motion_mode = 1
+script = ExtResource("1_u8jjy")
+targetablePath = NodePath("../Player")
+maxSpeed = 100.0
+
+[node name="Body" type="Sprite2D" parent="."]
+modulate = Color(0.996078, 0, 0.301961, 1)
+scale = Vector2(0.260002, 0.5)
+texture = ExtResource("2_5h3rd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.184998, 0)
+shape = SubResource("RectangleShape2D_i02pq")
+
+[node name="Target" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("3_wdi67")
+target = NodePath("")
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_apd40")
+
+[node name="GunVisuals2" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+modulate = Color(0.372549, 0.341176, 0.309804, 1)
+script = ExtResource("5_rqp6m")
+target = NodePath("")
+
+[node name="TankGun" type="Node2D" parent="GunVisuals2"]
+script = ExtResource("6_l618p")
+config = ExtResource("7_lmlrg")
+alwaysFire = true
+
+[node name="Square" type="Sprite2D" parent="GunVisuals2"]
+position = Vector2(42, 7)
+rotation = 3.14159
+scale = Vector2(0.076601, -0.159491)
+texture = ExtResource("2_5h3rd")
+
+[node name="Barrel" type="Sprite2D" parent="GunVisuals2"]
+z_index = -1
+position = Vector2(54.0235, -3.8147e-07)
+scale = Vector2(0.27045, 0.0854321)
+texture = ExtResource("2_5h3rd")
+
+[node name="BulletSpawner" type="Node2D" parent="GunVisuals2/Barrel"]
+position = Vector2(12.5281, 1.33647e-06)
+script = ExtResource("8_ecrkt")
+bulletPrefab = ExtResource("9_mblxu")
+bulletAngleVariance = 17.0
+
+[connection signal="OnFire" from="GunVisuals2/TankGun" to="GunVisuals2/Barrel/BulletSpawner" method="FireBullet"]

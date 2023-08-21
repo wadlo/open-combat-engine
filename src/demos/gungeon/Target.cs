@@ -11,6 +11,7 @@ public partial class Target : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        targetLocation.Position = GSAIUtils.ToVector3(target.Position);
+        if (target != null)
+            targetLocation.Position = GSAIUtils.ToVector3(target.Position);
     }
 }

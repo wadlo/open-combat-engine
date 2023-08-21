@@ -25,19 +25,20 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
         GSAITargetable targetable = GetNode<GSAITargetable>(targetablePath);
         agent = new GSAIKinematicBody2DAgent(this);
 
-        steering = new GSAIArrive(agent, targetable.GetAgentLocation());
         agent.LinearSpeedMax = maxSpeed;
         agent.LinearAccelerationMax = maxAcceleration;
         //agent.CalculateVelocities = false;
-        steering.DecelerationRadius = 300.0f;
         force = new GSAIApplyForce(this, agent, Vector3.Zero);
+
+        steering = new GSAIArrive(agent, targetable?.GetAgentLocation() ?? new GSAIAgentLocation());
+        steering.DecelerationRadius = 300.0f;
     }
 
     public override void _PhysicsProcess(double _delta)
     {
         float delta = (float)_delta;
 
-        this.force.CalculateSteering(acceleration);
+        force.CalculateSteering(acceleration);
         Vector2 lastVelocity = Velocity;
         Velocity = GSAIUtils.ToVector2(this.acceleration.Linear);
         MoveAndSlide();

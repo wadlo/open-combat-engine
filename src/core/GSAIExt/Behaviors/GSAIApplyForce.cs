@@ -35,9 +35,13 @@ namespace GodotSteeringAI
 
         private void ApplyDecay()
         {
-            float delta = (float)nodeRef.GetRef().As<Node>().GetPhysicsProcessDeltaTime();
-            // TODO fix this to be exponential decay.
-            strength = Mathf.Max(strength - delta / duration, 0.0f);
+            Node variant = nodeRef.GetRef().As<Node>();
+            if (variant != null)
+            {
+                float delta = (float)variant.GetPhysicsProcessDeltaTime();
+                // TODO fix this to be exponential decay.
+                strength = Mathf.Max(strength - delta / duration, 0.0f);
+            }
         }
 
         public void ApplyForce(Vector3 newForce)

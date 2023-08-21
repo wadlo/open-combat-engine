@@ -1,0 +1,53 @@
+[gd_scene load_steps=3 format=3 uid="uid://oebpblr7c1ls"]
+
+[ext_resource type="Script" path="res://demos/clash/ClashSpawnPoint.cs" id="1_shnhb"]
+[ext_resource type="PackedScene" uid="uid://cqfg2f501lbsl" path="res://demos/clash/clashPrefabs/clash_archer.tscn" id="2_m20vt"]
+
+[node name="clash" type="Node2D"]
+
+[node name="FriendlySpawnPoint" type="Node2D" parent="."]
+position = Vector2(-320, 0)
+script = ExtResource("1_shnhb")
+archerPrefab = ExtResource("2_m20vt")
+
+[node name="EnemySpawnPoint" type="Node2D" parent="."]
+position = Vector2(320, 0)
+script = ExtResource("1_shnhb")
+archerPrefab = ExtResource("2_m20vt")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="FriendlyButtons" type="VBoxContainer" parent="CanvasLayer"]
+offset_right = 220.0
+offset_bottom = 66.0
+
+[node name="SpawnSniper" type="Button" parent="CanvasLayer/FriendlyButtons"]
+layout_mode = 2
+text = "Spawn Friendly sniper"
+
+[node name="SpawnSwordsman" type="Button" parent="CanvasLayer/FriendlyButtons"]
+layout_mode = 2
+text = "Spawn Friendly swordsman"
+
+[node name="EnemyButtons" type="VBoxContainer" parent="CanvasLayer"]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -219.0
+offset_top = 1.0
+offset_right = 1.0
+offset_bottom = 67.0
+grow_horizontal = 0
+
+[node name="SpawnSniper" type="Button" parent="CanvasLayer/EnemyButtons"]
+layout_mode = 2
+text = "Spawn Enemy sniper"
+
+[node name="SpawnSwordsman" type="Button" parent="CanvasLayer/EnemyButtons"]
+layout_mode = 2
+text = "Spawn Enemy swordsman"
+
+[connection signal="pressed" from="CanvasLayer/FriendlyButtons/SpawnSniper" to="FriendlySpawnPoint" method="SpawnArcher"]
+[connection signal="pressed" from="CanvasLayer/EnemyButtons/SpawnSniper" to="EnemySpawnPoint" method="SpawnArcher"]
