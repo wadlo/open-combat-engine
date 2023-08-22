@@ -9,6 +9,10 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
 
     [Export]
     public float maxAcceleration = 200.0f;
+
+    [Export]
+    public float preferredRadius = 0.0f;
+
     private Target target;
 
     // These variables are essentially a representation of velocity and acceleration inside the steering model.
@@ -17,13 +21,19 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
     private GSAISteeringAgent agent;
     private GSAIArrive steering;
     private GSAIApplyForce force;
+    private GSAIAgentLocation locationWithRadius;
 
     public override void _Ready()
     {
         target = OpenTDE.Utils.GetChildrenOfType<Target>(this)[0];
         agent = new GSAIKinematicBody2DAgent(this);
 
-        steering = new GSAIArrive(agent, target.targetLocation);
+        locationWithRadius = new GSAIDistanceFromLocation(
+            this,
+            target.targetLocation,
+            preferredRadius
+        );
+        steering = new GSAIArrive(agent, locationWithRadius);
 
         agent.LinearSpeedMax = maxSpeed;
         agent.LinearAccelerationMax = maxAcceleration;

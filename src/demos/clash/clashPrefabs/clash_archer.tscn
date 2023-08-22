@@ -18,6 +18,7 @@ position = Vector2(-397.685, -5)
 motion_mode = 1
 script = ExtResource("1_u8jjy")
 maxSpeed = 100.0
+preferredRadius = 500.0
 
 [node name="Body" type="Sprite2D" parent="."]
 modulate = Color(0.996078, 0, 0.301961, 1)
