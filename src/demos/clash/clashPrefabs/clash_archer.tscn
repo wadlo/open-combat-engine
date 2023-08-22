@@ -8,10 +8,11 @@
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_l618p"]
 [ext_resource type="Resource" uid="uid://cwbi52tsclk8u" path="res://demos/diep/diepResources/diep_pistol.tres" id="7_lmlrg"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="8_ecrkt"]
-[ext_resource type="PackedScene" uid="uid://bcjmddr2juylg" path="res://demos/demoPrefabs/demoEnemyBullet.tscn" id="9_mblxu"]
+[ext_resource type="PackedScene" uid="uid://diic3wiy8kkkh" path="res://demos/demoPrefabs/clashArcherArrow.tscn" id="9_rs0ky"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_d0a76"]
-radius = 23.5213
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
+radius = 21.5
+height = 66.0
 
 [node name="ClashSniper" type="CharacterBody2D"]
 position = Vector2(-397.685, -5)
@@ -26,17 +27,18 @@ scale = Vector2(0.260002, 0.5)
 texture = ExtResource("2_5h3rd")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(0.184998, 20)
-shape = SubResource("CircleShape2D_d0a76")
+position = Vector2(0.184998, 0)
+shape = SubResource("CapsuleShape2D_lid4q")
 
 [node name="Target" type="Node" parent="."]
 script = ExtResource("3_wdi67")
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_apd40")
+health = 10.0
 
 [node name="GunVisuals2" type="Node2D" parent="." node_paths=PackedStringArray("target")]
-modulate = Color(0.372549, 0.341176, 0.309804, 1)
+modulate = Color(0.666667, 0.321569, 0.211765, 1)
 script = ExtResource("5_rqp6m")
 target = NodePath("../Target")
 
@@ -45,23 +47,34 @@ script = ExtResource("6_l618p")
 config = ExtResource("7_lmlrg")
 alwaysFire = true
 
-[node name="Square" type="Sprite2D" parent="GunVisuals2"]
-position = Vector2(42, 7)
+[node name="Bow" type="Sprite2D" parent="GunVisuals2"]
+position = Vector2(48.6855, -9)
 rotation = 3.14159
-scale = Vector2(0.076601, -0.159491)
+scale = Vector2(0.047, 0.261)
 texture = ExtResource("2_5h3rd")
 
-[node name="Barrel" type="Sprite2D" parent="GunVisuals2"]
-z_index = -1
-position = Vector2(54.0235, -3.8147e-07)
-scale = Vector2(0.27045, 0.0854321)
+[node name="Square2" type="Sprite2D" parent="GunVisuals2/Bow"]
+position = Vector2(112.074, -103.106)
+rotation = 0.115992
+scale = Vector2(0.768068, 2.25257)
+skew = 1.11039
 texture = ExtResource("2_5h3rd")
 
-[node name="BulletSpawner" type="Node2D" parent="GunVisuals2/Barrel" node_paths=PackedStringArray("target")]
-position = Vector2(12.5281, 1.33647e-06)
+[node name="Square3" type="Sprite2D" parent="GunVisuals2/Bow"]
+position = Vector2(112.077, 103.106)
+rotation = -0.116086
+scale = Vector2(0.767924, 2.25374)
+skew = -1.11056
+texture = ExtResource("2_5h3rd")
+
+[node name="BulletSpawner" type="Node2D" parent="GunVisuals2/Bow" node_paths=PackedStringArray("target")]
+position = Vector2(-85.0938, -3.05176e-05)
+rotation = -3.14159
+scale = Vector2(5.75426, 0.327326)
+skew = 1.35899e-05
 script = ExtResource("8_ecrkt")
-bulletPrefab = ExtResource("9_mblxu")
-bulletAngleVariance = 17.0
+bulletPrefab = ExtResource("9_rs0ky")
+bulletAngleVariance = 3.0
 target = NodePath("../../../Target")
 
-[connection signal="OnFire" from="GunVisuals2/TankGun" to="GunVisuals2/Barrel/BulletSpawner" method="FireBullet"]
+[connection signal="OnFire" from="GunVisuals2/TankGun" to="GunVisuals2/Bow/BulletSpawner" method="FireBullet"]
