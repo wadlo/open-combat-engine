@@ -13,6 +13,9 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
     [Export]
     public float preferredRadius = 0.0f;
 
+    [Export]
+    public float friction = 1.0f;
+
     private Target target;
 
     // These variables are essentially a representation of velocity and acceleration inside the steering model.
@@ -37,6 +40,8 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
 
         agent.LinearSpeedMax = maxSpeed;
         agent.LinearAccelerationMax = maxAcceleration;
+        steering.DecelerationRadius = 200.0f;
+        steering.ArrivalTolerance = 100.0f;
         //agent.CalculateVelocities = false;
         force = new GSAIApplyForce(this, agent, Vector3.Zero);
     }
@@ -46,13 +51,18 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
         float delta = (float)_delta;
 
         force.CalculateSteering(acceleration);
+
+        // Apply friction
+        Velocity *= (1.0f - delta * friction);
+
+        // Apply external force (knockback for example)
         Vector2 lastVelocity = Velocity;
         Velocity = GSAIUtils.ToVector2(this.acceleration.Linear);
         MoveAndSlide();
         Velocity = lastVelocity;
 
+        // Apply desired movement
         steering.CalculateSteering(acceleration);
-
         Velocity += delta * GSAIUtils.ToVector2(acceleration.Linear);
         Velocity = Velocity.LimitLength(maxSpeed);
 
