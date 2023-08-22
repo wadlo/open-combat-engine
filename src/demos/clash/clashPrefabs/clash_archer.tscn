@@ -6,7 +6,7 @@
 [ext_resource type="Script" path="res://core/Health.cs" id="4_apd40"]
 [ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="5_rqp6m"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_l618p"]
-[ext_resource type="Resource" uid="uid://cwbi52tsclk8u" path="res://demos/diep/diepResources/diep_pistol.tres" id="7_lmlrg"]
+[ext_resource type="Resource" uid="uid://b4yrr0s5cgwg5" path="res://demos/clash/clashPrefabs/archer_bow.tres" id="7_4fcoa"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="8_ecrkt"]
 [ext_resource type="PackedScene" uid="uid://diic3wiy8kkkh" path="res://demos/demoPrefabs/clashArcherArrow.tscn" id="9_rs0ky"]
 
@@ -44,7 +44,7 @@ target = NodePath("../Target")
 
 [node name="TankGun" type="Node2D" parent="GunVisuals2"]
 script = ExtResource("6_l618p")
-config = ExtResource("7_lmlrg")
+config = ExtResource("7_4fcoa")
 alwaysFire = true
 
 [node name="Bow" type="Sprite2D" parent="GunVisuals2"]
