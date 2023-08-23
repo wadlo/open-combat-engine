@@ -13,6 +13,12 @@ public partial class ClashButtons : VBoxContainer
         {
             spawnPoint.SpawnArcher();
         };
+
+        Button spawnSwordsman = GetChild<Button>(1);
+        spawnSwordsman.Pressed += () =>
+        {
+            spawnPoint.SpawnSwordsman();
+        };
     }
 
     public override void _Process(double delta) { }

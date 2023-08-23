@@ -18,7 +18,7 @@ height = 66.0
 position = Vector2(-397.685, -5)
 motion_mode = 1
 script = ExtResource("1_u8jjy")
-maxSpeed = 100.0
+maxSpeed = 70.0
 preferredRadius = 500.0
 
 [node name="Body" type="Sprite2D" parent="."]

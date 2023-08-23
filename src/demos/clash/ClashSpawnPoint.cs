@@ -13,6 +13,9 @@ public partial class ClashSpawnPoint : Node2D
     public PackedScene archerPrefab;
 
     [Export]
+    public PackedScene swordsmanPrefab;
+
+    [Export]
     public float spawnRadius = 200.0f;
 
     [Export]
@@ -21,9 +24,21 @@ public partial class ClashSpawnPoint : Node2D
     public void SpawnArcher()
     {
         CharacterBody2D instantiated = archerPrefab.Instantiate<CharacterBody2D>();
-        // Add random because physics won't separate objects with the exact same position.
         GetTree().Root.AddChild(instantiated);
 
+        RandomlyPositionUnit(instantiated);
+    }
+
+    public void SpawnSwordsman()
+    {
+        CharacterBody2D instantiated = swordsmanPrefab.Instantiate<CharacterBody2D>();
+        GetTree().Root.AddChild(instantiated);
+
+        RandomlyPositionUnit(instantiated);
+    }
+
+    public void RandomlyPositionUnit(CharacterBody2D instantiated)
+    {
         int maxIterations = 100;
         for (int i = 0; i < maxIterations; i++)
         {
