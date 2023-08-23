@@ -146,6 +146,11 @@ public partial class Usable : Node2D
         return CanFire() && (alwaysFire || Input.IsMouseButtonPressed(MouseButton.Left));
     }
 
+    public bool IsFiring()
+    {
+        return currentState == FireState.Firing;
+    }
+
     public bool CanFire()
     {
         return ammo >= 1.0f
@@ -160,5 +165,11 @@ public partial class Usable : Node2D
     public bool CanReload()
     {
         return ammo < config.maxUses && currentState == FireState.Idle;
+    }
+
+    // Returns a float between 0 and 1. 0 if the action is just staring, and 1 if it's finishing up.
+    public float GetFireStatePercent()
+    {
+        return 1.0f - (currentStateCooldown / config.fireDuration);
     }
 }

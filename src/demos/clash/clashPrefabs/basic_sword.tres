@@ -1,0 +1,11 @@
+[gd_resource type="Resource" load_steps=2 format=3 uid="uid://ltqwwo3jywue"]
+
+[ext_resource type="Script" path="res://core/Usable/UsableConfig.cs" id="1_j0jfy"]
+
+[resource]
+script = ExtResource("1_j0jfy")
+maxUses = 1.0
+recoilTime = 0.2
+reloadTimePerUnit = 0.3
+fireDuration = 0.15
+autoReload = true

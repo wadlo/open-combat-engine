@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d2fj7t1vhauhr"]
+[gd_scene load_steps=10 format=3 uid="uid://d2fj7t1vhauhr"]
 
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_pimrj"]
 [ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="2_sfi8m"]
@@ -6,7 +6,8 @@
 [ext_resource type="Script" path="res://core/Health.cs" id="4_33xxg"]
 [ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="5_053x0"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_x01o8"]
-[ext_resource type="Resource" uid="uid://b4yrr0s5cgwg5" path="res://demos/clash/clashPrefabs/archer_bow.tres" id="7_g8cdf"]
+[ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demos/clash/clashPrefabs/basic_sword.tres" id="7_jwrps"]
+[ext_resource type="Script" path="res://demos/clash/SwordSwing.cs" id="8_kr5iw"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
 radius = 21.5
@@ -20,7 +21,7 @@ preferredRadius = 20.0
 
 [node name="Body" type="Sprite2D" parent="."]
 modulate = Color(0.996078, 0, 0.301961, 1)
-scale = Vector2(0.260002, 0.5)
+scale = Vector2(0.295, 0.445)
 texture = ExtResource("2_sfi8m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -34,34 +35,36 @@ script = ExtResource("3_r0qmv")
 script = ExtResource("4_33xxg")
 health = 50.0
 
-[node name="GunVisuals2" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+[node name="FaceTarget" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 script = ExtResource("5_053x0")
 target = NodePath("../Target")
 
-[node name="TankGun" type="Node2D" parent="GunVisuals2"]
+[node name="SwordItem" type="Node2D" parent="FaceTarget"]
 script = ExtResource("6_x01o8")
-config = ExtResource("7_g8cdf")
+config = ExtResource("7_jwrps")
 alwaysFire = true
 
-[node name="Sword" type="Sprite2D" parent="GunVisuals2"]
+[node name="Sword" type="Sprite2D" parent="FaceTarget" node_paths=PackedStringArray("target", "swordItem")]
 self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
 position = Vector2(38, 7)
-rotation = 3.14411
 scale = Vector2(0.0427096, 0.222107)
 texture = ExtResource("2_sfi8m")
+script = ExtResource("8_kr5iw")
+target = NodePath("../../Target")
+swordItem = NodePath("../SwordItem")
+swingRadius = 3.0
 
-[node name="Blade" type="Sprite2D" parent="GunVisuals2/Sword"]
+[node name="Blade" type="Sprite2D" parent="FaceTarget/Sword"]
 self_modulate = Color(0.372549, 0.341176, 0.309804, 1)
-position = Vector2(2.00421, 153.079)
-rotation = 0.118006
-scale = Vector2(2.12994, 2.31405)
-skew = -0.1311
+position = Vector2(0.00012207, -153.079)
+rotation = -3.02293
+scale = Vector2(2.1268, 2.31386)
+skew = -0.118667
 texture = ExtResource("2_sfi8m")
 
-[node name="Square2" type="Sprite2D" parent="GunVisuals2/Sword"]
+[node name="Square2" type="Sprite2D" parent="FaceTarget/Sword"]
 self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
-position = Vector2(0.0588379, 4.50232)
-rotation = 1.5577
-scale = Vector2(0.238643, 3.55891)
-skew = 0.0126088
+position = Vector2(0.00012207, -4.50233)
+rotation = -1.5708
+scale = Vector2(0.238623, 3.55892)
 texture = ExtResource("2_sfi8m")
