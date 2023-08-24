@@ -26,6 +26,7 @@ swordsmanPrefab = ExtResource("3_sgwli")
 unitColor = Color(0.996078, 0, 0.301961, 1)
 
 [node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.595, 0.595)
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 
