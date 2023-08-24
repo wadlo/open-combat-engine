@@ -42,7 +42,7 @@ target = NodePath("../Target")
 [node name="SwordItem" type="Node2D" parent="FaceTarget"]
 script = ExtResource("6_x01o8")
 config = ExtResource("7_jwrps")
-alwaysFire = true
+autofire = true
 
 [node name="Sword" type="Sprite2D" parent="FaceTarget" node_paths=PackedStringArray("target", "swordItem")]
 self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
@@ -52,7 +52,6 @@ texture = ExtResource("2_sfi8m")
 script = ExtResource("8_kr5iw")
 target = NodePath("../../Target")
 swordItem = NodePath("../SwordItem")
-swingRadius = 3.0
 
 [node name="Blade" type="Sprite2D" parent="FaceTarget/Sword"]
 self_modulate = Color(0.372549, 0.341176, 0.309804, 1)

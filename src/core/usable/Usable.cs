@@ -9,6 +9,7 @@ using Godot;
 
     Idle - When a tool isn't doing anything.
     Reloading - A shotgun may have a high reload time, whereas swinging a sword wouldn't have a reload at all (would have a recoil)
+    Charging - The time before you start firing. For a sword, this can be the time it takes to pull the sword up into position for a swing. Or it might be the time before unleashing a powerful attack, but after it's triggered.
     Firing - This is the state while something is actively firing. For most guns, this should be instant. However, for a sword swing or a laser, this represents the period of time while a hitbox is active.
     Recoil - The period of time after using the weapon before you can use again. This is the amount of time between bullets in a machine gun, or the amount of time between sword swings.
 */
@@ -18,8 +19,9 @@ public partial class Usable : Node2D
     {
         Idle = 0,
         Reloading = 1,
-        Firing = 2,
-        Recoil = 3
+        Charging = 2,
+        Firing = 3,
+        Recoil = 4
     }
 
     [Signal]
@@ -29,7 +31,7 @@ public partial class Usable : Node2D
     private UsableConfig config;
 
     [Export]
-    public bool alwaysFire;
+    public bool autofire;
 
     // Ammo variables
     [Export]
@@ -46,7 +48,7 @@ public partial class Usable : Node2D
         if (currentState == FireState.Reloading && ShouldFire())
         {
             currentStateCooldown = 0.0f;
-            Fire();
+            Charge();
         }
 
         currentStateCooldown -= (float)delta;
@@ -64,6 +66,10 @@ public partial class Usable : Node2D
                     ProcessReloadState();
                     break;
 
+                case FireState.Charging:
+                    ProcessChargeState();
+                    break;
+
                 case FireState.Firing:
                     ProcessFireState();
                     break;
@@ -79,12 +85,20 @@ public partial class Usable : Node2D
         }
     }
 
+    private void ProcessChargeState()
+    {
+        if (currentStateCooldown <= 0)
+        {
+            Fire();
+        }
+    }
+
     private bool ProcessIdleState()
     {
         bool nothingElseToDo = false;
         if (ShouldFire())
         {
-            Fire();
+            Charge();
         }
         else if (ShouldReload())
         {
@@ -98,6 +112,12 @@ public partial class Usable : Node2D
         }
 
         return nothingElseToDo;
+    }
+
+    private void Charge()
+    {
+        currentState = FireState.Charging;
+        currentStateCooldown += config.chargeDuration;
     }
 
     private void StartReload()
@@ -143,12 +163,22 @@ public partial class Usable : Node2D
 
     public bool ShouldFire()
     {
-        return CanFire() && (alwaysFire || Input.IsMouseButtonPressed(MouseButton.Left));
+        return CanFire() && (autofire || Input.IsMouseButtonPressed(MouseButton.Left));
     }
 
     public bool IsFiring()
     {
         return currentState == FireState.Firing;
+    }
+
+    public bool IsReloading()
+    {
+        return currentState == FireState.Reloading;
+    }
+
+    public bool IsCharging()
+    {
+        return currentState == FireState.Charging;
     }
 
     public bool CanFire()
@@ -168,8 +198,27 @@ public partial class Usable : Node2D
     }
 
     // Returns a float between 0 and 1. 0 if the action is just staring, and 1 if it's finishing up.
-    public float GetFireStatePercent()
+    public float GetCurrentStatePercent()
     {
-        return 1.0f - (currentStateCooldown / config.fireDuration);
+        float maxTime;
+        switch (currentState)
+        {
+            case FireState.Charging:
+                maxTime = config.chargeDuration;
+                break;
+            case FireState.Firing:
+                maxTime = config.fireDuration;
+                break;
+            case FireState.Recoil:
+                maxTime = config.recoilTime;
+                break;
+            case FireState.Reloading:
+                maxTime = config.reloadTimePerUnit;
+                break;
+            default:
+                return 0.0f;
+        }
+
+        return 1.0f - (currentStateCooldown / maxTime);
     }
 }

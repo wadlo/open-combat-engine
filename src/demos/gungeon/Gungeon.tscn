@@ -101,7 +101,7 @@ target = NodePath("../Target")
 [node name="TankGun" type="Node2D" parent="Enemy/GunVisuals2"]
 script = ExtResource("2_pjf18")
 config = ExtResource("12_f8bqh")
-alwaysFire = true
+autofire = true
 
 [node name="Square" type="Sprite2D" parent="Enemy/GunVisuals2"]
 position = Vector2(42, 7)
