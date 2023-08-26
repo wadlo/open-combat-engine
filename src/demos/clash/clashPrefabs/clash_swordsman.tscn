@@ -17,7 +17,10 @@ height = 66.0
 motion_mode = 1
 script = ExtResource("1_pimrj")
 maxSpeed = 120.0
-preferredRadius = 20.0
+maxAcceleration = 300.0
+preferredRadius = 80.0
+decelerationRadius = 60.0
+arrivalTolerance = 20.0
 
 [node name="Body" type="Sprite2D" parent="."]
 modulate = Color(0.996078, 0, 0.301961, 1)
