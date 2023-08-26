@@ -9,6 +9,8 @@ To run the examples locally, download this repo as a `.zip` and open up `src/pro
 # Beta
 This project is still in its early stages. There may be lack of documentation or features that you want added. If this is the case. Please file a request in "Issues". Or if you want to contribute to the project, please create or pick up an issue and request that it be assigned to you. 
 
+If you have questions or run into issues running the code, the quickest way to get help is to reach out through discord: https://discord.gg/h3d8bTbcE2
+
 # Demos
 The following demos are in progress:
 - diep -- A demonstration of how a game like diep.io could be built using the framework. Multiplayer not included. (In progress)
