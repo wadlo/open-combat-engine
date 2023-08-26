@@ -11,7 +11,7 @@ Features
 # Installation
 To install Godot, go to https://godotengine.org/download. Make sure to download the `.net` version.
 
-To run the examples locally, download this repo as a `.zip` and open up `src/project.godot`.
+To run the examples locally, download this repo as a `.zip` and open up `src/project.godot`. You'll have to click the "build" button in the top-right of the editor before it'll allow you to run the game.
 
 # Beta
 This project is still in its early stages. There may be lack of documentation or features that you want added. If this is the case. Please file a request in "Issues" or reach out on Discord: https://discord.gg/h3d8bTbcE2. Or if you want to contribute to the project, please create or pick up an issue and request that it be assigned to you. 
