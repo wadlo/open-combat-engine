@@ -8,4 +8,5 @@ maxUses = 1.0
 recoilTime = 0.07
 reloadTimePerUnit = 0.0
 fireDuration = 0.0
+chargeDuration = 0.0
 autoReload = true
