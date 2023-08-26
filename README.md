@@ -1,6 +1,13 @@
 # open-top-down-engine
 A framework for common top down game code, with examples. Everything in this repo is completely open source and tested in Godot version `4.1.1`. Note, you must use the `.net` version of Godot in order to run the code.
 
+Features
+- Enemy AI movement
+- Auto targetting enemies by group
+- Projectile firing and spawning
+- Usable items framework with charging, ammo, recoil, and reloading
+- Examples on how this framework could be used for some popular game mechanics
+
 # Installation
 To install Godot, go to https://godotengine.org/download. Make sure to download the `.net` version.
 
@@ -13,4 +20,6 @@ If you have questions or run into issues running the code, the quickest way to g
 
 # Demos
 The following demos are in progress:
-- diep -- A demonstration of how a game like diep.io could be built using the framework. Multiplayer not included. (In progress)
+- Diep -- A demonstration of how a game like diep.io could be built using the framework. Multiplayer not included. (In progress)
+- Gungeon -- Simple player movement and enemy auto-targeting the player. Similar to Enter the gungeon.
+- Clash -- An example with swordsmen and archers that can be spawned by both sides.
