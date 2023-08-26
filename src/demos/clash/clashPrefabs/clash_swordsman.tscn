@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://d2fj7t1vhauhr"]
+[gd_scene load_steps=11 format=3 uid="uid://d2fj7t1vhauhr"]
 
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_pimrj"]
 [ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="2_sfi8m"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_x01o8"]
 [ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demos/clash/clashPrefabs/basic_sword.tres" id="7_jwrps"]
 [ext_resource type="Script" path="res://demos/clash/SwordSwing.cs" id="8_kr5iw"]
+[ext_resource type="Script" path="res://core/Knockback.cs" id="9_lo1hm"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
 radius = 21.5
@@ -70,3 +71,6 @@ position = Vector2(0.00012207, -4.50233)
 rotation = -1.5708
 scale = Vector2(0.238623, 3.55892)
 texture = ExtResource("2_sfi8m")
+
+[node name="Knockback" type="Node" parent="."]
+script = ExtResource("9_lo1hm")

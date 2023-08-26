@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://eva18l8vsr8y"]
+[gd_scene load_steps=6 format=3 uid="uid://eva18l8vsr8y"]
 
 [ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/simpleGraphics/circle.png" id="1_3m7bo"]
 [ext_resource type="Script" path="res://core/KinematicArea2D/KinematicArea2D.cs" id="1_k482g"]
 [ext_resource type="Script" path="res://demos/demoPrefabs/CollisionDamage.cs" id="3_wvucm"]
+[ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="4_yvu7g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_kn0l0"]
 radius = 12.0
@@ -24,5 +25,8 @@ shape = SubResource("CircleShape2D_kn0l0")
 script = ExtResource("3_wvucm")
 damage = 2.0
 knockback = 200.0
+
+[node name="Target" type="Node" parent="."]
+script = ExtResource("4_yvu7g")
 
 [connection signal="body_entered" from="." to="CollisionDamage" method="BodyEntered"]

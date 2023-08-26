@@ -2,7 +2,7 @@ using Godot;
 using GodotSteeringAI;
 using System;
 
-public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
+public partial class MoveTowardTarget : CharacterBody2D
 {
     [Export]
     public float maxSpeed = 200.0f;
@@ -29,7 +29,6 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
 
     private GSAISteeringAgent agent;
     private GSAIArrive steering;
-    private GSAIApplyForce force;
     private GSAIAgentLocation locationWithRadius;
 
     public override void _Ready()
@@ -48,24 +47,14 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
         agent.LinearAccelerationMax = maxAcceleration;
         steering.DecelerationRadius = decelerationRadius;
         steering.ArrivalTolerance = arrivalTolerance;
-        //agent.CalculateVelocities = false;
-        force = new GSAIApplyForce(this, agent, Vector3.Zero);
     }
 
     public override void _PhysicsProcess(double _delta)
     {
         float delta = (float)_delta;
 
-        force.CalculateSteering(acceleration);
-
         // Apply friction
-        Velocity *= (1.0f - delta * friction);
-
-        // Apply external force (knockback for example)
-        Vector2 lastVelocity = Velocity;
-        Velocity = GSAIUtils.ToVector2(this.acceleration.Linear);
-        MoveAndSlide();
-        Velocity = lastVelocity;
+        Velocity *= 1.0f - delta * friction;
 
         // Apply desired movement
         steering.CalculateSteering(acceleration);
@@ -74,10 +63,5 @@ public partial class MoveTowardTarget : CharacterBody2D, Knockbackable
 
         MoveAndSlide();
         agent.LinearVelocity = GSAIUtils.ToVector3(Velocity);
-    }
-
-    public GSAIApplyForce GetKnockbackForce()
-    {
-        return this.force;
     }
 }

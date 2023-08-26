@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://w0eyot1e728o"]
+[gd_scene load_steps=17 format=3 uid="uid://dx6avuo70vri4"]
 
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_22a33"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_pjf18"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="5_5ndvi"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="7_1ahq0"]
 [ext_resource type="PackedScene" uid="uid://eva18l8vsr8y" path="res://demos/demoPrefabs/demoBullet.tscn" id="7_44yfi"]
+[ext_resource type="Script" path="res://core/Knockback.cs" id="8_dqj0p"]
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="8_qt6xg"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="9_imdjb"]
 [ext_resource type="Script" path="res://core/Health.cs" id="10_0ew15"]
@@ -22,7 +23,7 @@ size = Vector2(33, 64)
 
 [node name="Gungeon" type="Node2D"]
 
-[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("weapon")]
+[node name="Player" type="CharacterBody2D" parent="." node_paths=PackedStringArray("weapon") groups=["Player"]]
 motion_mode = 1
 script = ExtResource("1_22a33")
 maxSpeed = 240.0
@@ -30,6 +31,13 @@ userAcceleration = 2000.0
 maxAcceleration = 2000.0
 friction = 5.0
 weapon = NodePath("GunVisuals/TankGun")
+
+[node name="Knockback" type="Node" parent="Player"]
+script = ExtResource("8_dqj0p")
+
+[node name="Target" type="Node" parent="Player"]
+script = ExtResource("9_imdjb")
+targetGroups = ["Enemy"]
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 position = Vector2(0, 12)
@@ -56,11 +64,12 @@ position = Vector2(54.0235, -3.8147e-07)
 scale = Vector2(0.27045, 0.0854321)
 texture = ExtResource("5_5ndvi")
 
-[node name="BulletSpawner" type="Node2D" parent="Player/GunVisuals/Barrel"]
+[node name="BulletSpawner" type="Node2D" parent="Player/GunVisuals/Barrel" node_paths=PackedStringArray("target")]
 position = Vector2(12.5281, 1.33647e-06)
 script = ExtResource("7_1ahq0")
 bulletPrefab = ExtResource("7_44yfi")
 bulletAngleVariance = 17.0
+target = NodePath("../../../Target")
 
 [node name="Body" type="Sprite2D" parent="Player"]
 modulate = Color(0.160784, 0.67451, 0.996078, 1)
@@ -71,7 +80,7 @@ texture = ExtResource("5_5ndvi")
 position = Vector2(61, -5.68434e-14)
 scale = Vector2(0.287353, 0.303272)
 
-[node name="Enemy" type="CharacterBody2D" parent="."]
+[node name="Enemy" type="CharacterBody2D" parent="." groups=["Enemy"]]
 position = Vector2(179.315, 0)
 motion_mode = 1
 script = ExtResource("8_qt6xg")
@@ -88,7 +97,11 @@ shape = SubResource("RectangleShape2D_3foxp")
 
 [node name="Target" type="Node" parent="Enemy" node_paths=PackedStringArray("target")]
 script = ExtResource("9_imdjb")
+targetGroups = ["Player"]
 target = NodePath("../../Player")
+
+[node name="Knockback" type="Node" parent="Enemy"]
+script = ExtResource("8_dqj0p")
 
 [node name="Health" type="Node" parent="Enemy"]
 script = ExtResource("10_0ew15")
@@ -115,11 +128,12 @@ position = Vector2(54.0235, -3.8147e-07)
 scale = Vector2(0.27045, 0.0854321)
 texture = ExtResource("5_5ndvi")
 
-[node name="BulletSpawner" type="Node2D" parent="Enemy/GunVisuals2/Barrel"]
+[node name="BulletSpawner" type="Node2D" parent="Enemy/GunVisuals2/Barrel" node_paths=PackedStringArray("target")]
 position = Vector2(12.5281, 1.33647e-06)
 script = ExtResource("7_1ahq0")
 bulletPrefab = ExtResource("12_v2lu1")
 bulletAngleVariance = 17.0
+target = NodePath("../../../Target")
 
 [connection signal="OnFire" from="Player/GunVisuals/TankGun" to="Player/GunVisuals/Barrel/BulletSpawner" method="FireBullet"]
 [connection signal="OnFire" from="Enemy/GunVisuals2/TankGun" to="Enemy/GunVisuals2/Barrel/BulletSpawner" method="FireBullet"]

@@ -21,13 +21,14 @@ public partial class CollisionDamage : Node
         if (other.GetGroups().Contains(target.targetGroups[0]))
         {
             KinematicArea2D parent = this.GetParent() as KinematicArea2D;
-            (other as Knockbackable)
-                .GetKnockbackForce()
-                .ApplyForce(
+            foreach (Knockback knockbackNode in OpenTDE.Utils.GetChildrenOfType<Knockback>(other))
+            {
+                knockbackNode.knockback.ApplyForce(
                     GodotSteeringAI.GSAIUtils.ToVector3(
                         knockback * parent.LinearVelocity.Normalized()
                     )
                 );
+            }
 
             foreach (Health health in OpenTDE.Utils.GetChildrenOfType<Health>(other))
             {

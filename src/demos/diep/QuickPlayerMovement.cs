@@ -2,7 +2,7 @@ using Godot;
 using GodotSteeringAI;
 using System;
 
-public partial class QuickPlayerMovement : CharacterBody2D, GSAITargetable, Knockbackable
+public partial class QuickPlayerMovement : CharacterBody2D, GSAITargetable
 {
     [Export]
     public float maxSpeed = 200.0f;
@@ -19,9 +19,6 @@ public partial class QuickPlayerMovement : CharacterBody2D, GSAITargetable, Knoc
     [Export]
     public Usable weapon;
 
-    [Export]
-    public float knockbackDuration = 0.1f;
-
     public GSAIAgentLocation gSAIAgentLocation;
     private GSAIApplyForce knockback;
     private GSAITargetAcceleration knockbackAcceleration = new GSAITargetAcceleration();
@@ -31,19 +28,15 @@ public partial class QuickPlayerMovement : CharacterBody2D, GSAITargetable, Knoc
     public override void _Ready()
     {
         gSAIAgentLocation = new GSAINodeAgentLocation(this);
-        knockback = new GSAIApplyForce(this, steeringAgent, Vector3.Zero, knockbackDuration);
-        UsableKnockback.ApplyKnockbackAfterUse(weapon, this);
+        var knockback = OpenTDE.Utils.GetChildrenOfType<Knockback>(this);
+        if (knockback.Count > 0)
+        {
+            UsableKnockback.ApplyKnockbackAfterUse(weapon, knockback[0]);
+        }
     }
 
     public override void _PhysicsProcess(double delta)
     {
-        knockback.CalculateSteering(knockbackAcceleration);
-        knockbackVelocity = GSAIUtils.ToVector2(knockbackAcceleration.Linear);
-
-        Vector2 currVelocity = Velocity;
-        Velocity = knockbackVelocity;
-        MoveAndSlide();
-        Velocity = currVelocity;
         Velocity = Velocity.Lerp(Vector2.Zero, friction * (float)delta);
 
         Vector2 userInputAcceleration =
@@ -58,11 +51,6 @@ public partial class QuickPlayerMovement : CharacterBody2D, GSAITargetable, Knoc
         Velocity += acceleration;
         Velocity = Velocity.LimitLength(maxSpeed);
         MoveAndSlide();
-    }
-
-    public GSAIApplyForce GetKnockbackForce()
-    {
-        return this.knockback;
     }
 
     public GSAIAgentLocation GetAgentLocation()

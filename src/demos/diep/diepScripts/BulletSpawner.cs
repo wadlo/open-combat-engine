@@ -32,9 +32,13 @@ public partial class BulletSpawner : Node2D
         instantiated.GlobalRotation = randomAngle;
         instantiated.LinearVelocity = instantiated.LinearVelocity.Rotated(randomAngle);
 
-        OpenTDE.Utils.GetChildrenOfType<Target>(instantiated)[0].targetGroups.AddRange(
-            target.targetGroups
-        );
         EmitSignal(SignalName.BulletSpawn, instantiated.LinearVelocity.Rotated(Mathf.Pi));
+
+        if (target != null)
+        {
+            OpenTDE.Utils.GetChildrenOfType<Target>(instantiated)[0].targetGroups.AddRange(
+                target.targetGroups
+            );
+        }
     }
 }

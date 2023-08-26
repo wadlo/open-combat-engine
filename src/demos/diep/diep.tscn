@@ -1,6 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://fd61hetj3fk3"]
+[gd_scene load_steps=11 format=3 uid="uid://fd61hetj3fk3"]
 
 [ext_resource type="Script" path="res://demos/diep/QuickPlayerMovement.cs" id="1_pkrce"]
+[ext_resource type="Script" path="res://core/Knockback.cs" id="2_5dlqk"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="2_rdpbj"]
 [ext_resource type="Resource" uid="uid://ccry4q0yij2vk" path="res://demos/diep/diepResources/diep_machine_gun.tres" id="3_nebeb"]
 [ext_resource type="Texture2D" uid="uid://0vlambbhsr1i" path="res://demos/simpleGraphics/circle.png" id="4_33jyl"]
@@ -19,10 +20,12 @@ motion_mode = 1
 script = ExtResource("1_pkrce")
 friction = 1.0
 weapon = NodePath("TurretVisuals/TankGun")
-knockbackDuration = 1.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerTank"]
 shape = SubResource("CircleShape2D_y2m56")
+
+[node name="Knockback" type="Node" parent="PlayerTank"]
+script = ExtResource("2_5dlqk")
 
 [node name="TurretVisuals" type="Sprite2D" parent="PlayerTank"]
 self_modulate = Color(0.160784, 0.67451, 0.996078, 1)

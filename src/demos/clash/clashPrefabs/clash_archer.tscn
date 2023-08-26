@@ -1,9 +1,10 @@
-[gd_scene load_steps=11 format=3 uid="uid://cqfg2f501lbsl"]
+[gd_scene load_steps=12 format=3 uid="uid://cqfg2f501lbsl"]
 
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_u8jjy"]
 [ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="2_5h3rd"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="3_wdi67"]
 [ext_resource type="Script" path="res://core/Health.cs" id="4_apd40"]
+[ext_resource type="Script" path="res://core/Knockback.cs" id="5_7f3c8"]
 [ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="5_rqp6m"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_l618p"]
 [ext_resource type="Resource" uid="uid://b4yrr0s5cgwg5" path="res://demos/clash/clashPrefabs/archer_bow.tres" id="7_4fcoa"]
@@ -36,6 +37,9 @@ script = ExtResource("3_wdi67")
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_apd40")
 health = 10.0
+
+[node name="Knockback" type="Node" parent="."]
+script = ExtResource("5_7f3c8")
 
 [node name="GunVisuals2" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 modulate = Color(0.666667, 0.321569, 0.211765, 1)

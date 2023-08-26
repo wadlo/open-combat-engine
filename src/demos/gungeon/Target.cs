@@ -13,17 +13,17 @@ public partial class Target : Node
 
     public override void _PhysicsProcess(double delta)
     {
-        if (target == null || !IsInstanceValid(target))
+        if (target != null && IsInstanceValid(target))
+        {
+            targetLocation.Position = GSAIUtils.ToVector3(target.Position);
+        }
+        else if (targetGroups.Count > 0)
         {
             target = OpenTDE.Utils.GetClosestNodeInGroup(
                 GetTree(),
                 GetParent<Node2D>().Position,
                 targetGroups[0]
             );
-        }
-        else
-        {
-            targetLocation.Position = GSAIUtils.ToVector3(target.Position);
         }
     }
 }
