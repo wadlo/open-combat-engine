@@ -21,5 +21,13 @@ If you have questions or run into issues running the code, the quickest way to g
 # Demos
 The following demos are in progress:
 - Diep -- A demonstration of how a game like diep.io could be built using the framework. Multiplayer not included. (In progress)
+
+![Diep](gifs/Diep.gif)
+
 - Gungeon -- Simple player movement and enemy auto-targeting the player. Similar to Enter the gungeon.
+
+![Gungeon](gifs/Gungeon.gif)
+
 - Clash -- An example with swordsmen and archers that can be spawned by both sides.
+
+![Clash](gifs/Clash.gif)
