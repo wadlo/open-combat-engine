@@ -9,21 +9,27 @@ public partial class Target : Node
     public GSAIAgentLocation targetLocation = new GSAIAgentLocation();
 
     [Export]
+    public bool shouldCalculateTarget = false;
+
+    [Export]
     public Node2D target;
 
     public override void _PhysicsProcess(double delta)
     {
-        if (target != null && IsInstanceValid(target))
+        if (shouldCalculateTarget)
         {
-            targetLocation.Position = GSAIUtils.ToVector3(target.Position);
-        }
-        else if (targetGroups.Count > 0)
-        {
-            target = OpenTDE.Utils.GetClosestNodeInGroup(
-                GetTree(),
-                GetParent<Node2D>().Position,
-                targetGroups[0]
-            );
+            if (target != null && IsInstanceValid(target))
+            {
+                targetLocation.Position = GSAIUtils.ToVector3(target.Position);
+            }
+            else if (targetGroups.Count > 0)
+            {
+                target = OpenTDE.Utils.GetClosestNodeInGroup(
+                    GetTree(),
+                    GetParent<Node2D>().Position,
+                    targetGroups[0]
+                );
+            }
         }
     }
 }

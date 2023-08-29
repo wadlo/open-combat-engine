@@ -1,10 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://diic3wiy8kkkh"]
+[gd_scene load_steps=8 format=3 uid="uid://diic3wiy8kkkh"]
 
 [ext_resource type="Script" path="res://core/KinematicArea2D/KinematicArea2D.cs" id="1_g7u12"]
 [ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="2_b74v0"]
 [ext_resource type="Script" path="res://demos/demoPrefabs/CollisionDamage.cs" id="3_r5vth"]
 [ext_resource type="Texture2D" uid="uid://c0inc23nna5e7" path="res://demos/simpleGraphics/triangle1.png" id="3_tjuja"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="4_q3n5d"]
+[ext_resource type="Script" path="res://demos/demoPrefabs/DestroyTimer.cs" id="6_3kyj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjy42"]
 size = Vector2(37, 6)
@@ -46,5 +47,8 @@ knockback = 200.0
 
 [node name="Target" type="Node" parent="."]
 script = ExtResource("4_q3n5d")
+
+[node name="DestroyTimer" type="Node" parent="."]
+script = ExtResource("6_3kyj5")
 
 [connection signal="body_entered" from="." to="CollisionDamage" method="BodyEntered"]

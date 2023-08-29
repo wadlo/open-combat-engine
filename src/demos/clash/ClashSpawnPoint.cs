@@ -15,8 +15,7 @@ public partial class ClashSpawnPoint : Node2D
     [Export]
     public PackedScene swordsmanPrefab;
 
-    [Export]
-    public float spawnRadius = 200.0f;
+    public float spawnRadius = 2000.0f;
 
     [Export]
     public Color unitColor;
@@ -39,7 +38,7 @@ public partial class ClashSpawnPoint : Node2D
 
     public void RandomlyPositionUnit(CharacterBody2D instantiated)
     {
-        int maxIterations = 100;
+        int maxIterations = 500;
         for (int i = 0; i < maxIterations; i++)
         {
             instantiated.GlobalPosition =

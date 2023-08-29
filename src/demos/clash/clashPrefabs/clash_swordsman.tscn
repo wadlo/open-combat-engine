@@ -34,6 +34,7 @@ shape = SubResource("CapsuleShape2D_lid4q")
 
 [node name="Target" type="Node" parent="."]
 script = ExtResource("3_r0qmv")
+shouldCalculateTarget = true
 
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_33xxg")
