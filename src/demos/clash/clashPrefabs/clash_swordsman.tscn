@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://d2fj7t1vhauhr"]
+[gd_scene load_steps=13 format=3 uid="uid://d2fj7t1vhauhr"]
 
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_pimrj"]
 [ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="2_sfi8m"]
+[ext_resource type="Texture2D" uid="uid://gcxfbrtfg8lr" path="res://demos/medievalGraphics/swordsman.png" id="2_wawup"]
+[ext_resource type="Texture2D" uid="uid://b6ia3lr7ceyyp" path="res://demos/medievalGraphics/swordsmanShield.png" id="3_3g036"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="3_r0qmv"]
 [ext_resource type="Script" path="res://core/Health.cs" id="4_33xxg"]
 [ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="5_053x0"]
@@ -24,9 +26,12 @@ decelerationRadius = 60.0
 arrivalTolerance = 20.0
 
 [node name="Body" type="Sprite2D" parent="."]
-modulate = Color(0.996078, 0, 0.301961, 1)
-scale = Vector2(0.295, 0.445)
-texture = ExtResource("2_sfi8m")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_wawup")
+
+[node name="SwordsmanShield" type="Sprite2D" parent="Body"]
+position = Vector2(-22.6667, 4)
+texture = ExtResource("3_3g036")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.184998, 0)

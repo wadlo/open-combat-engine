@@ -50,5 +50,6 @@ script = ExtResource("4_q3n5d")
 
 [node name="DestroyTimer" type="Node" parent="."]
 script = ExtResource("6_3kyj5")
+destroyTimer = 1.5
 
 [connection signal="body_entered" from="." to="CollisionDamage" method="BodyEntered"]

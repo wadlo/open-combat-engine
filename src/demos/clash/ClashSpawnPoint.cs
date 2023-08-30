@@ -50,7 +50,7 @@ public partial class ClashSpawnPoint : Node2D
             }
         }
 
-        instantiated.GetChild<Node2D>(0).Modulate = unitColor;
+        // instantiated.GetChild<Node2D>(0).Modulate = unitColor;
         instantiated.AddToGroup(group);
         OpenTDE.Utils.GetChildrenOfType<Target>(instantiated)[0].targetGroups.Add(attackGroup);
     }
