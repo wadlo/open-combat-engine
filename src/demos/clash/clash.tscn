@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://oebpblr7c1ls"]
+[gd_scene load_steps=6 format=3 uid="uid://oebpblr7c1ls"]
 
 [ext_resource type="Script" path="res://demos/clash/ClashSpawnPoint.cs" id="1_shnhb"]
 [ext_resource type="PackedScene" uid="uid://cqfg2f501lbsl" path="res://demos/clash/clashPrefabs/clash_archer.tscn" id="2_m20vt"]
 [ext_resource type="PackedScene" uid="uid://b45ksu3jsflyq" path="res://demos/clash/clash_buttons.tscn" id="3_eda7a"]
 [ext_resource type="PackedScene" uid="uid://d2fj7t1vhauhr" path="res://demos/clash/clashPrefabs/clash_swordsman.tscn" id="3_sgwli"]
+[ext_resource type="Texture2D" uid="uid://dl55255306e4n" path="res://demos/medievalGraphics/grass.png" id="5_sa4tn"]
 
 [node name="clash" type="Node2D"]
 
@@ -41,3 +42,15 @@ offset_left = -220.0
 offset_right = 0.0
 grow_horizontal = 0
 spawnPoint = NodePath("../../RedSpawnPoint")
+
+[node name="Grass" type="Node2D" parent="."]
+position = Vector2(158, 317)
+scale = Vector2(0.75, 0.75)
+
+[node name="TextureRect" type="TextureRect" parent="Grass"]
+offset_left = -3135.0
+offset_top = -2107.0
+offset_right = 3155.0
+offset_bottom = 1236.0
+texture = ExtResource("5_sa4tn")
+stretch_mode = 1
