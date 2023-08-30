@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=3 uid="uid://oebpblr7c1ls"]
+[gd_scene load_steps=7 format=3 uid="uid://oebpblr7c1ls"]
 
 [ext_resource type="Script" path="res://demos/clash/ClashSpawnPoint.cs" id="1_shnhb"]
 [ext_resource type="PackedScene" uid="uid://cqfg2f501lbsl" path="res://demos/clash/clashPrefabs/clash_archer.tscn" id="2_m20vt"]
 [ext_resource type="PackedScene" uid="uid://b45ksu3jsflyq" path="res://demos/clash/clash_buttons.tscn" id="3_eda7a"]
 [ext_resource type="PackedScene" uid="uid://d2fj7t1vhauhr" path="res://demos/clash/clashPrefabs/clash_swordsman.tscn" id="3_sgwli"]
 [ext_resource type="Texture2D" uid="uid://dl55255306e4n" path="res://demos/medievalGraphics/grass.png" id="5_sa4tn"]
+[ext_resource type="PackedScene" uid="uid://dmdy01sy2etbs" path="res://demos/clash/clashPrefabs/tree_cluster.tscn" id="6_i55q3"]
 
 [node name="clash" type="Node2D"]
 
@@ -54,3 +55,30 @@ offset_right = 3155.0
 offset_bottom = 1236.0
 texture = ExtResource("5_sa4tn")
 stretch_mode = 1
+
+[node name="TreeCluster" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-804, -346)
+
+[node name="TreeCluster4" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-939, 368)
+
+[node name="TreeCluster2" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-910, -193)
+
+[node name="TreeCluster3" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-834, 175)
+
+[node name="TreeCluster5" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(871, 397)
+
+[node name="TreeCluster6" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(979, 217)
+
+[node name="TreeCluster7" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(1006, 38)
+
+[node name="TreeCluster8" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(835, -308)
+
+[node name="TreeCluster9" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-660, 356)
