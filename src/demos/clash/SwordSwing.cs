@@ -1,104 +1,52 @@
 using Godot;
-using GodotSteeringAI;
 using System;
 
 public partial class SwordSwing : Node2D
 {
     [Export]
-    public Target target;
+    public Usable usable;
 
     [Export]
-    public Usable swordItem;
+    public float startSwingRotation = -45.0f;
 
     [Export]
-    public float swingRadius = 2.0f;
+    public float endSwingRotation = 45.0f;
 
+    [Export]
+    public float idleSwingRotation = 20.0f;
+
+    // Called when the node enters the scene tree for the first time.
     public override void _Ready() { }
 
-    public override void _PhysicsProcess(double _delta)
+    // Called every frame. 'delta' is the elapsed time since the previous frame.
+    public override void _Process(double delta)
     {
-        float defaultArmLength = 25.0f;
+        float animationEndRotation;
+        float animationStartRotation;
 
-        float armLength = defaultArmLength;
-        float armRotation = 0.0f;
-
-        // Arm rotation
-        float swingStartArmRotation = -swingRadius / 2.0f;
-        float swingEndArmRotation = swingRadius / 2.0f;
-        float idleArmRotation = Mathf.Pi / 8.0f;
-
-        // Arm Length
-        var swingSwordStartRotation = () => armRotation + Mathf.Pi / 2.0f - Mathf.Pi / 4.0f;
-        var swingSwordEndRotation = () => armRotation + Mathf.Pi / 2.0f;
-        var idleSwordRotation = () => Mathf.Pi / 4.0f;
-
-        if (swordItem.IsFiring())
+        if (usable.IsCharging())
         {
-            float animate = swordItem.GetCurrentStatePercent();
-            armRotation = OpenTDE.Utils.MapFloat(
-                0,
-                1,
-                swingStartArmRotation,
-                swingEndArmRotation,
-                animate
-            );
-            armLength =
-                defaultArmLength
-                + OpenTDE.Utils.MapFloat(0.25f, 0, 0, 25.0f, Mathf.Pow(animate - 0.5f, 2.0f));
-            Rotation = OpenTDE.Utils.MapFloat(
-                0,
-                1,
-                swingSwordStartRotation(),
-                swingSwordEndRotation(),
-                animate
-            );
+            animationStartRotation = idleSwingRotation;
+            animationEndRotation = startSwingRotation;
         }
-        else if (swordItem.IsReloading())
+        else if (usable.IsFiring())
         {
-            float animate = swordItem.GetCurrentStatePercent();
-            armRotation = OpenTDE.Utils.MapFloat(
-                0,
-                1,
-                swingEndArmRotation,
-                idleArmRotation,
-                animate
-            );
-            armLength = 25.0f;
-            Rotation = OpenTDE.Utils.MapFloat(
-                0,
-                1,
-                swingSwordEndRotation(),
-                idleSwordRotation(),
-                animate
-            );
+            animationStartRotation = startSwingRotation;
+            animationEndRotation = endSwingRotation;
         }
-        else if (swordItem.IsCharging())
+        else if (usable.IsReloading())
         {
-            float animate = swordItem.GetCurrentStatePercent();
-            armRotation = OpenTDE.Utils.MapFloat(
-                0,
-                1,
-                idleArmRotation,
-                swingStartArmRotation,
-                animate
-            );
-            armLength = 25.0f;
-            Rotation = OpenTDE.Utils.MapFloat(
-                0,
-                1,
-                idleSwordRotation(),
-                swingSwordStartRotation(),
-                animate
-            );
+            animationStartRotation = endSwingRotation;
+            animationEndRotation = idleSwingRotation;
         }
         else
         {
-            return;
+            animationStartRotation = idleSwingRotation;
+            animationEndRotation = idleSwingRotation;
         }
 
-        Position = new Vector2(
-            armLength * Mathf.Cos(armRotation),
-            armLength * Mathf.Sin(armRotation)
-        );
+        RotationDegrees =
+            usable.GetCurrentStatePercent() * (animationEndRotation - animationStartRotation)
+            + animationStartRotation;
     }
 }

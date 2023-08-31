@@ -1,13 +1,14 @@
-[gd_scene load_steps=13 format=3 uid="uid://d2fj7t1vhauhr"]
+[gd_scene load_steps=14 format=3 uid="uid://d2fj7t1vhauhr"]
 
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_pimrj"]
-[ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="2_sfi8m"]
 [ext_resource type="Texture2D" uid="uid://gcxfbrtfg8lr" path="res://demos/medievalGraphics/swordsman.png" id="2_wawup"]
 [ext_resource type="Texture2D" uid="uid://b6ia3lr7ceyyp" path="res://demos/medievalGraphics/swordsmanShield.png" id="3_3g036"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="3_r0qmv"]
 [ext_resource type="Script" path="res://core/Health.cs" id="4_33xxg"]
 [ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="5_053x0"]
+[ext_resource type="Script" path="res://demos/clash/AnchorNodeToPosition.cs" id="5_a8ecp"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_x01o8"]
+[ext_resource type="Texture2D" uid="uid://dfjrvc1nve5os" path="res://demos/medievalGraphics/swordsmanArm.png" id="7_3twqw"]
 [ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demos/clash/clashPrefabs/basic_sword.tres" id="7_jwrps"]
 [ext_resource type="Script" path="res://demos/clash/SwordSwing.cs" id="8_kr5iw"]
 [ext_resource type="Script" path="res://core/Knockback.cs" id="9_lo1hm"]
@@ -37,7 +38,14 @@ rotateToFaceTarget = false
 position = Vector2(-22.6667, 4)
 texture = ExtResource("3_3g036")
 
+[node name="ArmAnchor" type="Node2D" parent="Body" node_paths=PackedStringArray("node")]
+position = Vector2(26, -8)
+scale = Vector2(1.33333, 1.33333)
+script = ExtResource("5_a8ecp")
+node = NodePath("../../Arm")
+
 [node name="Arm" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+position = Vector2(19.5, -6)
 script = ExtResource("5_053x0")
 target = NodePath("../Target")
 flipYToFaceTarget = true
@@ -47,29 +55,17 @@ script = ExtResource("6_x01o8")
 config = ExtResource("7_jwrps")
 autofire = true
 
-[node name="Sword" type="Sprite2D" parent="Arm" node_paths=PackedStringArray("target", "swordItem")]
-self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
-position = Vector2(38, 7)
-scale = Vector2(0.0427096, 0.222107)
-texture = ExtResource("2_sfi8m")
+[node name="SwordSwing" type="Node2D" parent="Arm" node_paths=PackedStringArray("usable")]
 script = ExtResource("8_kr5iw")
-target = NodePath("../../Target")
-swordItem = NodePath("../SwordItem")
+usable = NodePath("../SwordItem")
+startSwingRotation = -90.0
+endSwingRotation = 0.0
+idleSwingRotation = -15.0
 
-[node name="Blade" type="Sprite2D" parent="Arm/Sword"]
-self_modulate = Color(0.372549, 0.341176, 0.309804, 1)
-position = Vector2(0.00012207, -153.079)
-rotation = -3.02293
-scale = Vector2(2.1268, 2.31386)
-skew = -0.118667
-texture = ExtResource("2_sfi8m")
-
-[node name="Square2" type="Sprite2D" parent="Arm/Sword"]
-self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
-position = Vector2(0.00012207, -4.50233)
-rotation = -1.5708
-scale = Vector2(0.238623, 3.55892)
-texture = ExtResource("2_sfi8m")
+[node name="SwordsmanArm" type="Sprite2D" parent="Arm/SwordSwing"]
+position = Vector2(21, 12)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("7_3twqw")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.184998, 0)

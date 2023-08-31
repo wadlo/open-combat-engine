@@ -6,7 +6,7 @@
 script = ExtResource("1_j0jfy")
 maxUses = 1.0
 recoilTime = 0.0
-reloadTimePerUnit = 0.6
-fireDuration = 0.15
-chargeDuration = 0.7
+reloadTimePerUnit = 0.2
+fireDuration = 0.09
+chargeDuration = 0.5
 autoReload = true
