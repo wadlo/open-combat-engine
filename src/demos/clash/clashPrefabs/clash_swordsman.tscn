@@ -25,13 +25,51 @@ preferredRadius = 80.0
 decelerationRadius = 60.0
 arrivalTolerance = 20.0
 
-[node name="Body" type="Sprite2D" parent="."]
+[node name="Body" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_wawup")
+script = ExtResource("5_053x0")
+target = NodePath("../Target")
+flipXToFaceTarget = true
+rotateToFaceTarget = false
 
 [node name="SwordsmanShield" type="Sprite2D" parent="Body"]
 position = Vector2(-22.6667, 4)
 texture = ExtResource("3_3g036")
+
+[node name="Arm" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("5_053x0")
+target = NodePath("../Target")
+flipYToFaceTarget = true
+
+[node name="SwordItem" type="Node2D" parent="Arm"]
+script = ExtResource("6_x01o8")
+config = ExtResource("7_jwrps")
+autofire = true
+
+[node name="Sword" type="Sprite2D" parent="Arm" node_paths=PackedStringArray("target", "swordItem")]
+self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
+position = Vector2(38, 7)
+scale = Vector2(0.0427096, 0.222107)
+texture = ExtResource("2_sfi8m")
+script = ExtResource("8_kr5iw")
+target = NodePath("../../Target")
+swordItem = NodePath("../SwordItem")
+
+[node name="Blade" type="Sprite2D" parent="Arm/Sword"]
+self_modulate = Color(0.372549, 0.341176, 0.309804, 1)
+position = Vector2(0.00012207, -153.079)
+rotation = -3.02293
+scale = Vector2(2.1268, 2.31386)
+skew = -0.118667
+texture = ExtResource("2_sfi8m")
+
+[node name="Square2" type="Sprite2D" parent="Arm/Sword"]
+self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
+position = Vector2(0.00012207, -4.50233)
+rotation = -1.5708
+scale = Vector2(0.238623, 3.55892)
+texture = ExtResource("2_sfi8m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.184998, 0)
@@ -44,39 +82,6 @@ shouldCalculateTarget = true
 [node name="Health" type="Node" parent="."]
 script = ExtResource("4_33xxg")
 health = 50.0
-
-[node name="FaceTarget" type="Node2D" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("5_053x0")
-target = NodePath("../Target")
-
-[node name="SwordItem" type="Node2D" parent="FaceTarget"]
-script = ExtResource("6_x01o8")
-config = ExtResource("7_jwrps")
-autofire = true
-
-[node name="Sword" type="Sprite2D" parent="FaceTarget" node_paths=PackedStringArray("target", "swordItem")]
-self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
-position = Vector2(38, 7)
-scale = Vector2(0.0427096, 0.222107)
-texture = ExtResource("2_sfi8m")
-script = ExtResource("8_kr5iw")
-target = NodePath("../../Target")
-swordItem = NodePath("../SwordItem")
-
-[node name="Blade" type="Sprite2D" parent="FaceTarget/Sword"]
-self_modulate = Color(0.372549, 0.341176, 0.309804, 1)
-position = Vector2(0.00012207, -153.079)
-rotation = -3.02293
-scale = Vector2(2.1268, 2.31386)
-skew = -0.118667
-texture = ExtResource("2_sfi8m")
-
-[node name="Square2" type="Sprite2D" parent="FaceTarget/Sword"]
-self_modulate = Color(0.113725, 0.168627, 0.32549, 1)
-position = Vector2(0.00012207, -4.50233)
-rotation = -1.5708
-scale = Vector2(0.238623, 3.55892)
-texture = ExtResource("2_sfi8m")
 
 [node name="Knockback" type="Node" parent="."]
 script = ExtResource("9_lo1hm")

@@ -8,7 +8,6 @@ scale = Vector2(0.75, 0.75)
 
 [node name="LargeTree" parent="." instance=ExtResource("1_ahea2")]
 z_index = 1
-position = Vector2(0, 0)
 scale = Vector2(1, 1)
 
 [node name="LargeTree2" parent="." instance=ExtResource("1_ahea2")]

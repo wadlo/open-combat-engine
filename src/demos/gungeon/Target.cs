@@ -12,7 +12,7 @@ public partial class Target : Node
     public bool shouldCalculateTarget = false;
 
     [Export]
-    public Node2D target;
+    private Node2D target;
 
     public override void _PhysicsProcess(double delta)
     {
