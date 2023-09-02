@@ -1,5 +1,5 @@
-# open-top-down-engine
-Top down combat engine for Godot 4.x, with examples. Everything is completely open source.
+# open-combat-engine
+Combat engine for Godot 4.x, with examples. Everything is completely open source.
 
 # Setup
 1. Use the [Godot Engine .NET / mono build](https://godotengine.org/download). **You can still use GDScript with Mono build.**
@@ -8,7 +8,7 @@ Top down combat engine for Godot 4.x, with examples. Everything is completely op
 4. Build your C# scripts by pressing `Alt` + `B`, or click the square _Build_ button in the top-right corner.
 5. Run the project by pressing `f5` or pressing the play button near the top right of the Godot window.
 
-If you have problems setting up or run into bugs, please [create an issue](https://github.com/wadlo/open-top-down-engine/issues/new) or reach out on [our discord](https://discord.gg/h3d8bTbcE2).
+If you have problems setting up or run into bugs, please [create an issue](https://github.com/wadlo/open-combat-engine/issues/new) or reach out on [our discord](https://discord.gg/h3d8bTbcE2).
 
 # Features
 - Enemy AI movement
@@ -26,4 +26,4 @@ The following demos are in progress:
 
 # Contribute
 For feature requests, or to contribute, [join the discord](https://discord.gg/h3d8bTbcE2).
-For bugs, please [create an issue](https://github.com/wadlo/open-top-down-engine/issues/new).
+For bugs, please [create an issue](https://github.com/wadlo/open-combat-engine/issues/new).
