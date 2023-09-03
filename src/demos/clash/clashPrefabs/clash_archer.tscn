@@ -1,13 +1,15 @@
-[gd_scene load_steps=14 format=3 uid="uid://cqfg2f501lbsl"]
+[gd_scene load_steps=16 format=3 uid="uid://cqfg2f501lbsl"]
 
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_u8jjy"]
 [ext_resource type="Texture2D" uid="uid://dga76cfwxq1ke" path="res://demos/medievalGraphics/archer.png" id="2_b07i4"]
+[ext_resource type="Material" uid="uid://bwj8wobvu6wmf" path="res://demos/clash/clashPrefabs/outlineShader.tres" id="2_fngea"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="3_wdi67"]
 [ext_resource type="Script" path="res://demos/clash/AnchorNodeToPosition.cs" id="4_2hmqk"]
 [ext_resource type="Script" path="res://core/Health.cs" id="4_apd40"]
 [ext_resource type="Script" path="res://core/Knockback.cs" id="5_7f3c8"]
 [ext_resource type="Script" path="res://demos/gungeon/FaceTarget.cs" id="5_rqp6m"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_l618p"]
+[ext_resource type="Texture2D" uid="uid://cts4p6dd438nk" path="res://demos/medievalGraphics/archerBelt.png" id="6_qm134"]
 [ext_resource type="Resource" uid="uid://b4yrr0s5cgwg5" path="res://demos/clash/clashPrefabs/archer_bow.tres" id="7_4fcoa"]
 [ext_resource type="Script" path="res://demos/diep/diepScripts/BulletSpawner.cs" id="8_ecrkt"]
 [ext_resource type="PackedScene" uid="uid://diic3wiy8kkkh" path="res://demos/demoPrefabs/clashArcherArrow.tscn" id="9_rs0ky"]
@@ -25,6 +27,7 @@ maxSpeed = 70.0
 preferredRadius = 500.0
 
 [node name="Body" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+material = ExtResource("2_fngea")
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_b07i4")
 script = ExtResource("5_rqp6m")
@@ -36,6 +39,10 @@ rotateToFaceTarget = false
 position = Vector2(27.58, -8)
 script = ExtResource("4_2hmqk")
 node = NodePath("../../ArcherVisuals/Bow")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+position = Vector2(0, 11.855)
+texture = ExtResource("6_qm134")
 
 [node name="ArcherVisuals" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 show_behind_parent = true

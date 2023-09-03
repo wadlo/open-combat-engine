@@ -1,6 +1,7 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2fj7t1vhauhr"]
+[gd_scene load_steps=16 format=3 uid="uid://d2fj7t1vhauhr"]
 
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_pimrj"]
+[ext_resource type="Material" uid="uid://bwj8wobvu6wmf" path="res://demos/clash/clashPrefabs/outlineShader.tres" id="2_m1siq"]
 [ext_resource type="Texture2D" uid="uid://gcxfbrtfg8lr" path="res://demos/medievalGraphics/swordsman.png" id="2_wawup"]
 [ext_resource type="Texture2D" uid="uid://b6ia3lr7ceyyp" path="res://demos/medievalGraphics/swordsmanShield.png" id="3_3g036"]
 [ext_resource type="Script" path="res://demos/gungeon/Target.cs" id="3_r0qmv"]
@@ -28,6 +29,7 @@ decelerationRadius = 60.0
 arrivalTolerance = 20.0
 
 [node name="Body" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+material = ExtResource("2_m1siq")
 scale = Vector2(0.75, 0.75)
 texture = ExtResource("2_wawup")
 script = ExtResource("5_053x0")
