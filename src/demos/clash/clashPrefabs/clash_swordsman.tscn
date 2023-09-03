@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://d2fj7t1vhauhr"]
+[gd_scene load_steps=15 format=3 uid="uid://d2fj7t1vhauhr"]
 
 [ext_resource type="Script" path="res://demos/gungeon/MoveTowardTarget.cs" id="1_pimrj"]
 [ext_resource type="Texture2D" uid="uid://gcxfbrtfg8lr" path="res://demos/medievalGraphics/swordsman.png" id="2_wawup"]
@@ -12,6 +12,7 @@
 [ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demos/clash/clashPrefabs/basic_sword.tres" id="7_jwrps"]
 [ext_resource type="Script" path="res://demos/clash/SwordSwing.cs" id="8_kr5iw"]
 [ext_resource type="Script" path="res://core/Knockback.cs" id="9_lo1hm"]
+[ext_resource type="Script" path="res://demos/clash/AbilityRange.cs" id="13_406be"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
 radius = 21.5
@@ -50,14 +51,9 @@ script = ExtResource("5_053x0")
 target = NodePath("../Target")
 flipYToFaceTarget = true
 
-[node name="SwordItem" type="Node2D" parent="Arm"]
-script = ExtResource("6_x01o8")
-config = ExtResource("7_jwrps")
-autofire = true
-
 [node name="SwordSwing" type="Node2D" parent="Arm" node_paths=PackedStringArray("usable")]
 script = ExtResource("8_kr5iw")
-usable = NodePath("../SwordItem")
+usable = NodePath("../../SwordSwingAbility")
 startSwingRotation = -90.0
 endSwingRotation = 0.0
 idleSwingRotation = -15.0
@@ -81,3 +77,13 @@ health = 50.0
 
 [node name="Knockback" type="Node" parent="."]
 script = ExtResource("9_lo1hm")
+
+[node name="SwordSwingAbility" type="Node2D" parent="."]
+position = Vector2(19.5, -6)
+script = ExtResource("6_x01o8")
+config = ExtResource("7_jwrps")
+autofire = true
+
+[node name="AbilityRange" type="Node" parent="SwordSwingAbility" node_paths=PackedStringArray("target")]
+script = ExtResource("13_406be")
+target = NodePath("../../Target")
