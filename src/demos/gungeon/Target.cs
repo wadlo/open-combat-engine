@@ -1,6 +1,7 @@
 using Godot;
 using GodotSteeringAI;
 using Godot.Collections;
+using OpenTDE;
 
 public partial class Target : Node
 {
@@ -14,17 +15,27 @@ public partial class Target : Node
     [Export]
     private Node2D target;
 
+    public override void _Ready()
+    {
+        Utils.RepeatFunctionOnTimer(this, 1.0f, RecalculateTarget);
+    }
+
+    private void RecalculateTarget()
+    {
+        target = OpenTDE.Utils.GetClosestNodeInGroup(
+            GetTree(),
+            GetParent<Node2D>().Position,
+            targetGroups[0]
+        );
+    }
+
     public override void _PhysicsProcess(double delta)
     {
         if (shouldCalculateTarget)
         {
             if (!SetTargetLocationIfPossible() && targetGroups.Count > 0)
             {
-                target = OpenTDE.Utils.GetClosestNodeInGroup(
-                    GetTree(),
-                    GetParent<Node2D>().Position,
-                    targetGroups[0]
-                );
+                RecalculateTarget();
                 SetTargetLocationIfPossible();
             }
         }

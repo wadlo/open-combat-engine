@@ -1,3 +1,4 @@
+using System;
 using Godot;
 using Godot.Collections;
 
@@ -61,6 +62,20 @@ namespace OpenTDE
         {
             float percent = (fromValue - fromMin) / (fromMax - fromMin);
             return toMin + (toMax - toMin) * percent;
+        }
+
+        // Useful for spreading out expensive calculations that don't need to happen every frame, but still need to run frequently.
+        public static void RepeatFunctionOnTimer(Node node, float waitTime, Action callback)
+        {
+            var timer = new Godot.Timer();
+            node.AddChild(timer);
+            timer.OneShot = false; // Make sure it loops
+            timer.WaitTime = waitTime;
+            timer.Timeout += () =>
+            {
+                callback();
+            };
+            timer.Start();
         }
     }
 }
