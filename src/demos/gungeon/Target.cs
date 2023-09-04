@@ -18,19 +18,27 @@ public partial class Target : Node
     {
         if (shouldCalculateTarget)
         {
-            if (target != null && IsInstanceValid(target))
-            {
-                targetLocation.Position = GSAIUtils.ToVector3(target.Position);
-            }
-            else if (targetGroups.Count > 0)
+            if (!SetTargetLocationIfPossible() && targetGroups.Count > 0)
             {
                 target = OpenTDE.Utils.GetClosestNodeInGroup(
                     GetTree(),
                     GetParent<Node2D>().Position,
                     targetGroups[0]
                 );
+                SetTargetLocationIfPossible();
             }
         }
+    }
+
+    // Returns true if target position was set successfully, false otherwise.
+    private bool SetTargetLocationIfPossible()
+    {
+        if (target != null && IsInstanceValid(target))
+        {
+            targetLocation.Position = GSAIUtils.ToVector3(target.Position);
+            return true;
+        }
+        return false;
     }
 
     public Node2D GetTargetObject()

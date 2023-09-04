@@ -89,5 +89,6 @@ autofire = true
 
 [node name="SwordDamage" type="Node2D" parent="SwordSwingAbility" node_paths=PackedStringArray("target", "weapon")]
 script = ExtResource("14_fvx23")
+knockback = 500.0
 target = NodePath("../../Target")
 weapon = NodePath("..")

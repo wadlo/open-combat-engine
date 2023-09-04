@@ -29,15 +29,28 @@ public partial class ClashSwordDamage : Node2D
     }
 
     // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
+    public override void _Process(double delta)
+    {
+        if (target.GetTargetObject() != null && IsWithinRange())
+        {
+            weapon.autofire = true;
+        }
+        else
+        {
+            weapon.autofire = false;
+        }
+    }
+
+    private bool IsWithinRange()
+    {
+        return (
+                GodotSteeringAI.GSAIUtils.ToVector2(target.targetLocation.Position) - GlobalPosition
+            ).LengthSquared() <= Mathf.Pow(range, 2.0f);
+    }
 
     private void OnAttack()
     {
-        if (
-            (
-                GodotSteeringAI.GSAIUtils.ToVector2(target.targetLocation.Position) - GlobalPosition
-            ).LengthSquared() <= Mathf.Pow(range, 2.0f)
-        )
+        if (IsWithinRange())
         {
             DamageTarget();
             KnockbackTarget();

@@ -163,7 +163,7 @@ public partial class Usable : Node2D
 
     public bool ShouldFire()
     {
-        return CanFire() && (autofire || Input.IsMouseButtonPressed(MouseButton.Left));
+        return CanFire() && autofire;
     }
 
     public bool IsFiring()
