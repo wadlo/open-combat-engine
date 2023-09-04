@@ -43,7 +43,6 @@ shape = SubResource("RectangleShape2D_sjy42")
 [node name="CollisionDamage" type="Node" parent="."]
 script = ExtResource("3_r5vth")
 damage = 5.0
-knockback = 200.0
 
 [node name="Target" type="Node" parent="."]
 script = ExtResource("4_q3n5d")

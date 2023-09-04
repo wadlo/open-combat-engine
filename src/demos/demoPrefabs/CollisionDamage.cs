@@ -23,7 +23,7 @@ public partial class CollisionDamage : Node
             KinematicArea2D parent = this.GetParent() as KinematicArea2D;
             foreach (Knockback knockbackNode in OpenTDE.Utils.GetChildrenOfType<Knockback>(other))
             {
-                knockbackNode.knockback.ApplyForce(
+                knockbackNode.ApplyForce(
                     GodotSteeringAI.GSAIUtils.ToVector3(
                         knockback * parent.LinearVelocity.Normalized()
                     )

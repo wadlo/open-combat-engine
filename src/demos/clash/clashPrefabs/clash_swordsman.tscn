@@ -13,7 +13,7 @@
 [ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demos/clash/clashPrefabs/basic_sword.tres" id="7_jwrps"]
 [ext_resource type="Script" path="res://demos/clash/SwordSwing.cs" id="8_kr5iw"]
 [ext_resource type="Script" path="res://core/Knockback.cs" id="9_lo1hm"]
-[ext_resource type="Script" path="res://demos/clash/AbilityRange.cs" id="13_406be"]
+[ext_resource type="Script" path="res://demos/clash/clashPrefabs/ClashSwordDamage.cs" id="14_fvx23"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
 radius = 21.5
@@ -79,6 +79,7 @@ health = 50.0
 
 [node name="Knockback" type="Node" parent="."]
 script = ExtResource("9_lo1hm")
+weight = 2.0
 
 [node name="SwordSwingAbility" type="Node2D" parent="."]
 position = Vector2(19.5, -6)
@@ -86,6 +87,7 @@ script = ExtResource("6_x01o8")
 config = ExtResource("7_jwrps")
 autofire = true
 
-[node name="AbilityRange" type="Node" parent="SwordSwingAbility" node_paths=PackedStringArray("target")]
-script = ExtResource("13_406be")
+[node name="SwordDamage" type="Node2D" parent="SwordSwingAbility" node_paths=PackedStringArray("target", "weapon")]
+script = ExtResource("14_fvx23")
 target = NodePath("../../Target")
+weapon = NodePath("..")

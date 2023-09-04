@@ -10,7 +10,7 @@ public class UsableKnockback
             Vector3 pushbackDirection = GSAIUtils.ToVector3(
                 new Vector2(1.0f, 0.0f).Rotated(direction + Mathf.Pi)
             );
-            knockback.knockback.ApplyForce(100.0f * pushbackDirection);
+            knockback.ApplyForce(100.0f * pushbackDirection);
         };
     }
 }

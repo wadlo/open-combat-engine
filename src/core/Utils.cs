@@ -20,6 +20,13 @@ namespace OpenTDE
             return items;
         }
 
+        public static T? GetChildOfType<[MustBeVariant] T>(Node parent)
+            where T : Node
+        {
+            var result = Utils.GetChildrenOfType<T>(parent);
+            return result.Count > 0 ? result[0] : null;
+        }
+
         public static Node2D GetClosestNodeInGroup(SceneTree tree, Vector2 position, string group)
         {
             Array<Node> nodes = tree.GetNodesInGroup(group);

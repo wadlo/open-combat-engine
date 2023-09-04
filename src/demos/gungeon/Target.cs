@@ -32,4 +32,9 @@ public partial class Target : Node
             }
         }
     }
+
+    public Node2D GetTargetObject()
+    {
+        return target;
+    }
 }

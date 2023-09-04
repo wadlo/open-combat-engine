@@ -7,7 +7,10 @@ public partial class Knockback : Node
     [Export]
     public float knockbackDuration = 1.0f;
 
-    public GSAIApplyForce knockback;
+    [Export]
+    public float weight = 1.0f;
+
+    private GSAIApplyForce knockback;
     private GSAISteeringAgent steeringAgent;
     private GSAITargetAcceleration knockbackAcceleration;
     private Vector2 knockbackVelocity = Vector2.Zero;
@@ -35,5 +38,10 @@ public partial class Knockback : Node
             parent.MoveAndSlide();
             parent.Velocity = currVelocity;
         }
+    }
+
+    public void ApplyForce(Vector3 force)
+    {
+        this.knockback.ApplyForce(force / weight);
     }
 }
