@@ -1,0 +1,23 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2p6rf0iikmg7"]
+
+[ext_resource type="Script" path="res://demos/clash/HealthBar.cs" id="1_slqjp"]
+[ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demos/simpleGraphics/square.png" id="2_32b6v"]
+
+[node name="HealthBar" type="Node2D" node_paths=PackedStringArray("healthSprite")]
+scale = Vector2(0.5, 0.1)
+script = ExtResource("1_slqjp")
+healthSprite = NodePath("Foreground")
+metadata/healthSprite = NodePath("Foreground")
+
+[node name="Foreground" type="Sprite2D" parent="."]
+modulate = Color(0, 0.784314, 0, 1)
+z_index = 1
+position = Vector2(-64, -64)
+texture = ExtResource("2_32b6v")
+centered = false
+
+[node name="Background" type="Sprite2D" parent="."]
+modulate = Color(0.784314, 0, 0, 1)
+position = Vector2(-64, -64)
+texture = ExtResource("2_32b6v")
+centered = false
