@@ -14,6 +14,7 @@
 [ext_resource type="Script" path="res://demos/clash/SwordSwing.cs" id="8_kr5iw"]
 [ext_resource type="Script" path="res://core/Knockback.cs" id="9_lo1hm"]
 [ext_resource type="Script" path="res://demos/clash/clashPrefabs/ClashSwordDamage.cs" id="14_fvx23"]
+[ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://demos/clash/clashPrefabs/health_bar.tscn" id="13_pferb"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
 radius = 21.5
@@ -92,3 +93,7 @@ script = ExtResource("14_fvx23")
 knockback = 500.0
 target = NodePath("../../Target")
 weapon = NodePath("..")
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_pferb")]
+position = Vector2(0, -50)
+health = NodePath("../Health")
