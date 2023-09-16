@@ -1,0 +1,84 @@
+[gd_scene load_steps=7 format=3 uid="uid://oebpblr7c1ls"]
+
+[ext_resource type="Script" path="res://demo/clash/ClashSpawnPoint.cs" id="1_shnhb"]
+[ext_resource type="PackedScene" uid="uid://cqfg2f501lbsl" path="res://demo/clash/clashPrefabs/clash_archer.tscn" id="2_m20vt"]
+[ext_resource type="PackedScene" uid="uid://b45ksu3jsflyq" path="res://demo/clash/clash_buttons.tscn" id="3_eda7a"]
+[ext_resource type="PackedScene" uid="uid://d2fj7t1vhauhr" path="res://demo/clash/clashPrefabs/clash_swordsman.tscn" id="3_sgwli"]
+[ext_resource type="Texture2D" uid="uid://dl55255306e4n" path="res://demo/graphics/medievalGraphics/grass.png" id="5_sa4tn"]
+[ext_resource type="PackedScene" uid="uid://dmdy01sy2etbs" path="res://demo/clash/clashPrefabs/tree_cluster.tscn" id="6_i55q3"]
+
+[node name="clash" type="Node2D"]
+
+[node name="BlueSpawnPoint" type="Node2D" parent="."]
+position = Vector2(-320, 0)
+script = ExtResource("1_shnhb")
+group = "Blue"
+attackGroup = "Red"
+archerPrefab = ExtResource("2_m20vt")
+swordsmanPrefab = ExtResource("3_sgwli")
+unitColor = Color(0.278431, 0.658824, 1, 1)
+
+[node name="RedSpawnPoint" type="Node2D" parent="."]
+position = Vector2(320, 0)
+script = ExtResource("1_shnhb")
+group = "Red"
+attackGroup = "Blue"
+archerPrefab = ExtResource("2_m20vt")
+swordsmanPrefab = ExtResource("3_sgwli")
+unitColor = Color(0.901961, 0.180392, 0.258824, 1)
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(0.595, 0.595)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="BlueButtons" parent="CanvasLayer" node_paths=PackedStringArray("spawnPoint") instance=ExtResource("3_eda7a")]
+spawnPoint = NodePath("../../BlueSpawnPoint")
+
+[node name="RedButtons" parent="CanvasLayer" node_paths=PackedStringArray("spawnPoint") instance=ExtResource("3_eda7a")]
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -220.0
+offset_right = 0.0
+grow_horizontal = 0
+spawnPoint = NodePath("../../RedSpawnPoint")
+
+[node name="Grass" type="Node2D" parent="."]
+position = Vector2(158, 317)
+scale = Vector2(0.75, 0.75)
+
+[node name="TextureRect" type="TextureRect" parent="Grass"]
+offset_left = -3135.0
+offset_top = -2107.0
+offset_right = 3155.0
+offset_bottom = 1236.0
+texture = ExtResource("5_sa4tn")
+stretch_mode = 1
+
+[node name="TreeCluster" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-804, -346)
+
+[node name="TreeCluster4" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-939, 368)
+
+[node name="TreeCluster2" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-910, -193)
+
+[node name="TreeCluster3" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-834, 175)
+
+[node name="TreeCluster5" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(871, 397)
+
+[node name="TreeCluster6" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(979, 217)
+
+[node name="TreeCluster7" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(1006, 38)
+
+[node name="TreeCluster8" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(835, -308)
+
+[node name="TreeCluster9" parent="." instance=ExtResource("6_i55q3")]
+position = Vector2(-660, 356)

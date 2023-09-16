@@ -1,7 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://bulty4atje1oh"]
-
-[ext_resource type="Texture2D" uid="uid://bkywklwqisecf" path="res://demos/medievalGraphics/largeTree.png" id="1_t1oj8"]
-
-[node name="LargeTree" type="Sprite2D"]
-scale = Vector2(0.75, 0.75)
-texture = ExtResource("1_t1oj8")

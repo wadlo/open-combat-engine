@@ -1,0 +1,96 @@
+[gd_scene load_steps=16 format=3 uid="uid://cqfg2f501lbsl"]
+
+[ext_resource type="Script" path="res://demo/MoveTowardTarget.cs" id="1_u8jjy"]
+[ext_resource type="Texture2D" uid="uid://dga76cfwxq1ke" path="res://demo/graphics/medievalGraphics/archer.png" id="2_b07i4"]
+[ext_resource type="Material" uid="uid://bwj8wobvu6wmf" path="res://demo/clash/clashPrefabs/outlineShader.tres" id="2_fngea"]
+[ext_resource type="Script" path="res://demo/Target.cs" id="3_wdi67"]
+[ext_resource type="Script" path="res://demo/clash/AnchorNodeToPosition.cs" id="4_2hmqk"]
+[ext_resource type="Script" path="res://core/Health.cs" id="4_apd40"]
+[ext_resource type="Script" path="res://core/Knockback.cs" id="5_7f3c8"]
+[ext_resource type="Script" path="res://demo/FaceTarget.cs" id="5_rqp6m"]
+[ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_l618p"]
+[ext_resource type="Texture2D" uid="uid://cts4p6dd438nk" path="res://demo/graphics/medievalGraphics/archerBelt.png" id="6_qm134"]
+[ext_resource type="Resource" uid="uid://b4yrr0s5cgwg5" path="res://demo/clash/clashPrefabs/archer_bow.tres" id="7_4fcoa"]
+[ext_resource type="Script" path="res://demo/clash/clashPrefabs/BulletSpawner.cs" id="8_ecrkt"]
+[ext_resource type="PackedScene" uid="uid://diic3wiy8kkkh" path="res://demo/demoPrefabs/clashArcherArrow.tscn" id="9_rs0ky"]
+[ext_resource type="Texture2D" uid="uid://d3bmkev7f5peu" path="res://demo/graphics/medievalGraphics/archerArm.png" id="12_jd4y0"]
+[ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://demo/clash/clashPrefabs/health_bar.tscn" id="13_yrtpy"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
+radius = 21.5
+height = 66.0
+
+[node name="ClashSniper" type="CharacterBody2D"]
+position = Vector2(-397.685, -5)
+motion_mode = 1
+script = ExtResource("1_u8jjy")
+maxSpeed = 60.0
+preferredRadius = 500.0
+
+[node name="Body" type="Sprite2D" parent="." node_paths=PackedStringArray("target")]
+material = ExtResource("2_fngea")
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("2_b07i4")
+script = ExtResource("5_rqp6m")
+target = NodePath("../Target")
+flipXToFaceTarget = true
+rotateToFaceTarget = false
+
+[node name="ArmAnchor" type="Node2D" parent="Body" node_paths=PackedStringArray("node")]
+position = Vector2(27.58, -8)
+script = ExtResource("4_2hmqk")
+node = NodePath("../../ArcherVisuals/Bow")
+
+[node name="Sprite2D" type="Sprite2D" parent="Body"]
+position = Vector2(0, 11.855)
+texture = ExtResource("6_qm134")
+
+[node name="ArcherVisuals" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+show_behind_parent = true
+position = Vector2(20.75, -6)
+scale = Vector2(0.999997, 0.999997)
+script = ExtResource("5_rqp6m")
+target = NodePath("../Target")
+flipYToFaceTarget = true
+
+[node name="TankGun" type="Node2D" parent="ArcherVisuals"]
+position = Vector2(15, -6)
+script = ExtResource("6_l618p")
+config = ExtResource("7_4fcoa")
+autofire = true
+
+[node name="Bow" type="Sprite2D" parent="ArcherVisuals"]
+position = Vector2(9.00003, 0)
+scale = Vector2(0.75, 0.75)
+texture = ExtResource("12_jd4y0")
+
+[node name="BulletSpawner" type="Node2D" parent="ArcherVisuals/Bow" node_paths=PackedStringArray("target")]
+position = Vector2(-0.419983, 8)
+rotation = -3.14159
+scale = Vector2(5.75426, 0.327326)
+skew = 1.35899e-05
+script = ExtResource("8_ecrkt")
+bulletPrefab = ExtResource("9_rs0ky")
+bulletAngleVariance = 3.0
+target = NodePath("../../../Target")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0.184998, 0)
+shape = SubResource("CapsuleShape2D_lid4q")
+
+[node name="Target" type="Node" parent="."]
+script = ExtResource("3_wdi67")
+shouldCalculateTarget = true
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("4_apd40")
+health = 10.0
+
+[node name="Knockback" type="Node" parent="."]
+script = ExtResource("5_7f3c8")
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_yrtpy")]
+position = Vector2(0, -50)
+health = NodePath("../Health")
+
+[connection signal="OnFire" from="ArcherVisuals/TankGun" to="ArcherVisuals/Bow/BulletSpawner" method="FireBullet"]
