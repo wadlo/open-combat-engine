@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bis00w745puqf"
-path="res://.godot/imported/triangle2.png-6e7e87d561448bebb4422f4ef1b09114.ctex"
+uid="uid://eck77skw1no0"
+path="res://.godot/imported/pig.png-0ee7838bd37de3425fd70519eecc5039.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/simpleGraphics/triangle2.png"
-dest_files=["res://.godot/imported/triangle2.png-6e7e87d561448bebb4422f4ef1b09114.ctex"]
+source_file="res://demo/graphics/medievalGraphics/other/pig.png"
+dest_files=["res://.godot/imported/pig.png-0ee7838bd37de3425fd70519eecc5039.ctex"]
 
 [params]
 

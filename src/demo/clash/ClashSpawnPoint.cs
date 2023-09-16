@@ -13,7 +13,13 @@ public partial class ClashSpawnPoint : Node2D
     public PackedScene archerPrefab;
 
     [Export]
+    public Texture2D archerSprite;
+
+    [Export]
     public PackedScene swordsmanPrefab;
+
+    [Export]
+    public Texture2D swordsmanSprite;
 
     public float spawnRadius = 2000.0f;
 
@@ -26,7 +32,7 @@ public partial class ClashSpawnPoint : Node2D
         GetTree().Root.AddChild(instantiated);
 
         RandomlyPositionUnit(instantiated);
-        ColorUnit(instantiated);
+        ColorUnit(instantiated, archerSprite);
     }
 
     public void SpawnSwordsman()
@@ -35,10 +41,10 @@ public partial class ClashSpawnPoint : Node2D
         GetTree().Root.AddChild(instantiated);
 
         RandomlyPositionUnit(instantiated);
-        ColorUnit(instantiated);
+        ColorUnit(instantiated, swordsmanSprite);
     }
 
-    public void ColorUnit(CharacterBody2D instantiated)
+    public void ColorUnit(CharacterBody2D instantiated, Texture2D newImage)
     {
         (instantiated.GetChild<FaceTarget>(0).Material as ShaderMaterial).CallDeferred(
             "set_shader_parameter",
@@ -46,8 +52,7 @@ public partial class ClashSpawnPoint : Node2D
             unitColor
         );
 
-        instantiated.GetChild<FaceTarget>(0).Modulate = unitColor;
-        instantiated.GetChild<FaceTarget>(0).SelfModulate = unitColor; // (unitColor + new Color(0, 0, 0)) / 2.0f;
+        instantiated.GetChild<FaceTarget>(0).GetChild<Sprite2D>(0).Texture = newImage;
     }
 
     public void RandomlyPositionUnit(CharacterBody2D instantiated)

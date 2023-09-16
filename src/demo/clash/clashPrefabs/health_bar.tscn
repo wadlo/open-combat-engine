@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://d2p6rf0iikmg7"]
 
 [ext_resource type="Script" path="res://demo/clash/HealthBar.cs" id="1_slqjp"]
-[ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demo/graphics/simpleGraphics/square.png" id="2_32b6v"]
+[ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demo/graphics/simpleShapes/square.png" id="2_32b6v"]
 
 [node name="HealthBar" type="Node2D" node_paths=PackedStringArray("healthSprite")]
 scale = Vector2(0.5, 0.1)

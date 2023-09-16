@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gcxfbrtfg8lr"
-path="res://.godot/imported/swordsman.png-d3840653aa4ed21c7cc5466f8964de78.ctex"
+uid="uid://dwxysf81ialny"
+path="res://.godot/imported/RedArrow.png-cde274ae7a3dab5563b4a7184c7d250d.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/medievalGraphics/swordsman.png"
-dest_files=["res://.godot/imported/swordsman.png-d3840653aa4ed21c7cc5466f8964de78.ctex"]
+source_file="res://demo/graphics/medievalGraphics/other/RedArrow.png"
+dest_files=["res://.godot/imported/RedArrow.png-cde274ae7a3dab5563b4a7184c7d250d.ctex"]
 
 [params]
 

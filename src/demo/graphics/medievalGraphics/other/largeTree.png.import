@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://bkywklwqisecf"
-path="res://.godot/imported/largeTree.png-07aa20f2aebec779c485d50b641f9bde.ctex"
+path="res://.godot/imported/largeTree.png-24f6b682ddd5a87af753710aae6c0ca7.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/medievalGraphics/largeTree.png"
-dest_files=["res://.godot/imported/largeTree.png-07aa20f2aebec779c485d50b641f9bde.ctex"]
+source_file="res://demo/graphics/medievalGraphics/other/largeTree.png"
+dest_files=["res://.godot/imported/largeTree.png-24f6b682ddd5a87af753710aae6c0ca7.ctex"]
 
 [params]
 

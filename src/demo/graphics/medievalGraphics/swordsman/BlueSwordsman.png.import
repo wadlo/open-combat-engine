@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dayhey5fg2lwk"
-path="res://.godot/imported/berserker.png-b753d2468ea66dc620224dc8d6fda22c.ctex"
+uid="uid://b17t40be6yck"
+path="res://.godot/imported/BlueSwordsman.png-05de221126ddd359fa45e3202879b6be.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/medievalGraphics/berserker.png"
-dest_files=["res://.godot/imported/berserker.png-b753d2468ea66dc620224dc8d6fda22c.ctex"]
+source_file="res://demo/graphics/medievalGraphics/swordsman/BlueSwordsman.png"
+dest_files=["res://.godot/imported/BlueSwordsman.png-05de221126ddd359fa45e3202879b6be.ctex"]
 
 [params]
 

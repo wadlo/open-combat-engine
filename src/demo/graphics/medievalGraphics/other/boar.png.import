@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dfjrvc1nve5os"
-path="res://.godot/imported/swordsmanArm.png-d89dae670411bb18e6aa77037db213f7.ctex"
+uid="uid://cv0jvvfr1b3ph"
+path="res://.godot/imported/boar.png-6e9ba9947751fcf35d16501ce28607b0.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/medievalGraphics/swordsmanArm.png"
-dest_files=["res://.godot/imported/swordsmanArm.png-d89dae670411bb18e6aa77037db213f7.ctex"]
+source_file="res://demo/graphics/medievalGraphics/other/boar.png"
+dest_files=["res://.godot/imported/boar.png-6e9ba9947751fcf35d16501ce28607b0.ctex"]
 
 [params]
 

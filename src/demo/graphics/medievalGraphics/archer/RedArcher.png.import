@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dga76cfwxq1ke"
-path="res://.godot/imported/archer.png-c71f1ebea5a5b46b9c274337f893b803.ctex"
+uid="uid://cgf88vdswcjm2"
+path="res://.godot/imported/RedArcher.png-9c1149e616c714680a021e7e2334c523.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/medievalGraphics/archer.png"
-dest_files=["res://.godot/imported/archer.png-c71f1ebea5a5b46b9c274337f893b803.ctex"]
+source_file="res://demo/graphics/medievalGraphics/archer/RedArcher.png"
+dest_files=["res://.godot/imported/RedArcher.png-9c1149e616c714680a021e7e2334c523.ctex"]
 
 [params]
 

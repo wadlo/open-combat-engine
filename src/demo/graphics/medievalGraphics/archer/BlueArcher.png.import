@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://b6ia3lr7ceyyp"
-path="res://.godot/imported/swordsmanShield.png-4d1d6a87e863bd6d860b1d44cf22e32b.ctex"
+uid="uid://bbc1mw6k4msu4"
+path="res://.godot/imported/BlueArcher.png-92868c426decad2dac4162f62b50941f.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/medievalGraphics/swordsmanShield.png"
-dest_files=["res://.godot/imported/swordsmanShield.png-4d1d6a87e863bd6d860b1d44cf22e32b.ctex"]
+source_file="res://demo/graphics/medievalGraphics/archer/BlueArcher.png"
+dest_files=["res://.godot/imported/BlueArcher.png-92868c426decad2dac4162f62b50941f.ctex"]
 
 [params]
 

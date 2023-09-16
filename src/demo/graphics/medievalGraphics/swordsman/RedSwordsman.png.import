@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c0inc23nna5e7"
-path="res://.godot/imported/triangle1.png-01cf0c9c181ddc769a8a7cb05ef6af32.ctex"
+uid="uid://bi72gt7x674gq"
+path="res://.godot/imported/RedSwordsman.png-d5ca57365e4ce0cdb29c88b992929a98.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/simpleGraphics/triangle1.png"
-dest_files=["res://.godot/imported/triangle1.png-01cf0c9c181ddc769a8a7cb05ef6af32.ctex"]
+source_file="res://demo/graphics/medievalGraphics/swordsman/RedSwordsman.png"
+dest_files=["res://.godot/imported/RedSwordsman.png-d5ca57365e4ce0cdb29c88b992929a98.ctex"]
 
 [params]
 

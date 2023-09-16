@@ -1,43 +1,24 @@
-[gd_scene load_steps=8 format=3 uid="uid://diic3wiy8kkkh"]
+[gd_scene load_steps=7 format=3 uid="uid://diic3wiy8kkkh"]
 
 [ext_resource type="Script" path="res://core/KinematicArea2D/KinematicArea2D.cs" id="1_g7u12"]
-[ext_resource type="Texture2D" uid="uid://dox0lxufwguhp" path="res://demo/graphics/simpleGraphics/square.png" id="2_b74v0"]
+[ext_resource type="Texture2D" uid="uid://dow0keq7kslov" path="res://demo/graphics/medievalGraphics/other/BlueArrow.png" id="2_nynmm"]
 [ext_resource type="Script" path="res://demo/demoPrefabs/CollisionDamage.cs" id="3_r5vth"]
-[ext_resource type="Texture2D" uid="uid://c0inc23nna5e7" path="res://demo/graphics/simpleGraphics/triangle1.png" id="3_tjuja"]
 [ext_resource type="Script" path="res://demo/Target.cs" id="4_q3n5d"]
 [ext_resource type="Script" path="res://demo/demoPrefabs/DestroyTimer.cs" id="6_3kyj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjy42"]
-size = Vector2(37, 6)
+size = Vector2(69, 16)
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_g7u12")
-LinearVelocity = Vector2(500, 0)
+LinearVelocity = Vector2(750, 0)
 
-[node name="Arrow" type="Sprite2D" parent="."]
-self_modulate = Color(0.666667, 0.321569, 0.211765, 1)
-z_index = 100
-scale = Vector2(0.403, 0.037)
-texture = ExtResource("2_b74v0")
-
-[node name="Feather" type="Sprite2D" parent="Arrow"]
-self_modulate = Color(0.160784, 0.67451, 0.996078, 1)
-z_index = 100
-position = Vector2(-64.457, 0)
-rotation = 3.14159
-scale = Vector2(0.163, 1.489)
-texture = ExtResource("2_b74v0")
-
-[node name="Head" type="Sprite2D" parent="Arrow"]
-self_modulate = Color(0.372549, 0.341176, 0.309804, 1)
-z_index = 100
-position = Vector2(71.8944, 0)
-rotation = 3.14159
-scale = Vector2(0.162865, -2.10747)
-texture = ExtResource("3_tjuja")
+[node name="BlueArrow" type="Sprite2D" parent="."]
+position = Vector2(4, 0)
+texture = ExtResource("2_nynmm")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-position = Vector2(7.5, 0)
+position = Vector2(4.5, 0)
 shape = SubResource("RectangleShape2D_sjy42")
 
 [node name="CollisionDamage" type="Node" parent="."]

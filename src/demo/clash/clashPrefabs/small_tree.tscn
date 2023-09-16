@@ -1,7 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://hhc5unjvwacb"]
 
-[ext_resource type="Texture2D" uid="uid://8kr4aa5alkd3" path="res://demo/graphics/medievalGraphics/smallTree.png" id="1_ivaeq"]
+[ext_resource type="Texture2D" uid="uid://8kr4aa5alkd3" path="res://demo/graphics/medievalGraphics/other/smallTree.png" id="1_ivaeq"]
 
 [node name="SmallTree" type="Sprite2D"]
-scale = Vector2(0.75, 0.75)
 texture = ExtResource("1_ivaeq")

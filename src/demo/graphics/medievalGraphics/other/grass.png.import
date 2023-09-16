@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bmwk5wbquj8o1"
-path="res://.godot/imported/berserkerArm.png-5e45ba9469b81fa8f9258364bd614696.ctex"
+uid="uid://dl55255306e4n"
+path="res://.godot/imported/grass.png-f37e698f14645d4ab11c966a4eabb4af.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/medievalGraphics/berserkerArm.png"
-dest_files=["res://.godot/imported/berserkerArm.png-5e45ba9469b81fa8f9258364bd614696.ctex"]
+source_file="res://demo/graphics/medievalGraphics/other/grass.png"
+dest_files=["res://.godot/imported/grass.png-f37e698f14645d4ab11c966a4eabb4af.ctex"]
 
 [params]
 

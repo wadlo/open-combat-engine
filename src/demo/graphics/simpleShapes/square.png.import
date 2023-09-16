@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cts4p6dd438nk"
-path="res://.godot/imported/archerBelt.png-e34d4efc7e689d71e18b71b719821e22.ctex"
+uid="uid://dox0lxufwguhp"
+path="res://.godot/imported/square.png-6a72232601cf4f415f8db0b9cd018410.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://demo/graphics/medievalGraphics/archerBelt.png"
-dest_files=["res://.godot/imported/archerBelt.png-e34d4efc7e689d71e18b71b719821e22.ctex"]
+source_file="res://demo/graphics/simpleShapes/square.png"
+dest_files=["res://.godot/imported/square.png-6a72232601cf4f415f8db0b9cd018410.ctex"]
 
 [params]
 
