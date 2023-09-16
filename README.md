@@ -16,13 +16,9 @@ If you have problems setting up or run into bugs, please [create an issue](https
 - Projectile firing and spawning
 - Usable items framework with charging, ammo, recoil, and reloading
 
-# Examples
+# Example
 - Clash -- An example with swordsmen and archers that can be spawned by both sides.
 <img src="gifs/Clash.gif" width="500">
-
-The following demos are in progress:
-- Diep -- A demonstration of how a game like diep.io could be built using the framework. Multiplayer not included. (In progress)
-- Gungeon -- Simple player movement and enemy auto-targeting the player. Similar to Enter the gungeon. (In progress)
 
 # Contribute
 For feature requests, or to contribute, [join the discord](https://discord.gg/h3d8bTbcE2).
