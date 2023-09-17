@@ -1,5 +1,5 @@
 # open-combat-engine
-Combat engine for Godot 4.x, with examples. Everything is completely open source.
+Combat ECS components for Godot 4.x, with examples. Everything is completely open source.
 
 # Setup
 1. Use the [Godot Engine .NET / mono build](https://godotengine.org/download). **You can still use GDScript with Mono build.**
@@ -10,11 +10,16 @@ Combat engine for Godot 4.x, with examples. Everything is completely open source
 
 If you have problems setting up or run into bugs, please [create an issue](https://github.com/wadlo/open-combat-engine/issues/new) or reach out on [our discord](https://discord.gg/h3d8bTbcE2).
 
-# Features
-- Enemy AI movement
-- Auto targetting enemies by group
-- Projectile firing and spawning
-- Usable items framework with charging, ammo, recoil, and reloading
+# Components
+- Health
+- Knockback
+- AbilityTimer (Supports cooldown, charging up an ability etc)
+- Damage
+- Projectiles
+- Target (Used for tracking what groups to target)
+
+# Other Features
+- Unit AI movement (Port of GSAI to C# and Godot 4)
 
 # Example
 - Clash -- An example with swordsmen and archers that can be spawned by both sides.
