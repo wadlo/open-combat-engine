@@ -26,6 +26,30 @@ public partial class ClashSpawnPoint : Node2D
     [Export]
     public Color unitColor;
 
+    public override void _Ready()
+    {
+        // To make each run behave exactly the same
+        GD.Seed(100);
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnArcher");
+        CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnSwordsman");
+    }
+
     public void SpawnArcher()
     {
         CharacterBody2D instantiated = archerPrefab.Instantiate<CharacterBody2D>();
@@ -58,7 +82,7 @@ public partial class ClashSpawnPoint : Node2D
     public void RandomlyPositionUnit(CharacterBody2D instantiated)
     {
         int maxIterations = 500;
-        for (int i = 0; i < maxIterations; i++)
+        for (int i = 100; i < maxIterations; i++)
         {
             instantiated.GlobalPosition =
                 GlobalPosition

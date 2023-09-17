@@ -41,7 +41,7 @@ public partial class AbilityTimer : Node
     private FireState currentState = FireState.Idle;
     private float currentStateCooldown = 0.0f;
 
-    public override void _Process(double delta)
+    public override void _PhysicsProcess(double delta)
     {
         /* The only state that can override another state is firing. If you're firing, you're able to override the
         reload state. So we do that here before decrementing delta. */

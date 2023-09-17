@@ -20,6 +20,4 @@ public partial class ClashButtons : VBoxContainer
             spawnPoint.SpawnSwordsman();
         };
     }
-
-    public override void _Process(double delta) { }
 }
