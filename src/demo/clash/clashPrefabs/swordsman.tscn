@@ -1,15 +1,13 @@
-[gd_scene load_steps=15 format=3 uid="uid://d2fj7t1vhauhr"]
+[gd_scene load_steps=13 format=3 uid="uid://d2fj7t1vhauhr"]
 
 [ext_resource type="Script" path="res://demo/MoveTowardTarget.cs" id="1_pimrj"]
 [ext_resource type="Material" uid="uid://bwj8wobvu6wmf" path="res://demo/clash/clashPrefabs/outlineShader.tres" id="2_m1siq"]
 [ext_resource type="Script" path="res://demo/Target.cs" id="3_r0qmv"]
-[ext_resource type="Texture2D" uid="uid://b17t40be6yck" path="res://demo/graphics/medievalGraphics/BlueSwordsman.png" id="3_vlnfq"]
+[ext_resource type="Texture2D" uid="uid://b17t40be6yck" path="res://demo/graphics/medievalGraphics/swordsman/BlueSwordsman.png" id="3_vlnfq"]
 [ext_resource type="Script" path="res://core/Health.cs" id="4_33xxg"]
 [ext_resource type="Script" path="res://demo/FaceTarget.cs" id="5_053x0"]
-[ext_resource type="Script" path="res://demo/clash/AnchorNodeToPosition.cs" id="5_a8ecp"]
 [ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_x01o8"]
 [ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demo/clash/clashPrefabs/basic_sword.tres" id="7_jwrps"]
-[ext_resource type="Script" path="res://demo/clash/SwordSwing.cs" id="8_kr5iw"]
 [ext_resource type="Script" path="res://core/Knockback.cs" id="9_lo1hm"]
 [ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://demo/clash/clashPrefabs/health_bar.tscn" id="13_pferb"]
 [ext_resource type="Script" path="res://demo/clash/clashPrefabs/ClashSwordDamage.cs" id="14_fvx23"]
@@ -18,7 +16,7 @@
 radius = 32.815
 height = 108.0
 
-[node name="ClashSwordsman" type="CharacterBody2D"]
+[node name="Swordsman" type="CharacterBody2D"]
 motion_mode = 1
 script = ExtResource("1_pimrj")
 maxSpeed = 180.0
@@ -27,7 +25,7 @@ preferredRadius = 120.0
 decelerationRadius = 90.0
 arrivalTolerance = 20.0
 
-[node name="ClashSworsdmanGraphics" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+[node name="SworsdmanGraphics" type="Node2D" parent="." node_paths=PackedStringArray("target")]
 material = ExtResource("2_m1siq")
 position = Vector2(8, -10)
 script = ExtResource("5_053x0")
@@ -35,31 +33,8 @@ target = NodePath("../Target")
 flipXToFaceTarget = true
 rotateToFaceTarget = false
 
-[node name="Sprite2D" type="Sprite2D" parent="ClashSworsdmanGraphics"]
+[node name="Sprite2D" type="Sprite2D" parent="SworsdmanGraphics"]
 texture = ExtResource("3_vlnfq")
-
-[node name="ArmAnchor" type="Node2D" parent="ClashSworsdmanGraphics" node_paths=PackedStringArray("node")]
-position = Vector2(26, -8)
-scale = Vector2(1.33333, 1.33333)
-script = ExtResource("5_a8ecp")
-node = NodePath("../../Arm")
-
-[node name="Arm" type="Node2D" parent="." node_paths=PackedStringArray("target")]
-position = Vector2(19.5, -6)
-script = ExtResource("5_053x0")
-target = NodePath("../Target")
-flipYToFaceTarget = true
-
-[node name="SwordSwing" type="Node2D" parent="Arm" node_paths=PackedStringArray("usable")]
-script = ExtResource("8_kr5iw")
-usable = NodePath("../../SwordSwingAbility")
-startSwingRotation = -90.0
-endSwingRotation = 0.0
-idleSwingRotation = -15.0
-
-[node name="SwordsmanArm" type="Sprite2D" parent="Arm/SwordSwing"]
-position = Vector2(21, 12)
-scale = Vector2(0.75, 0.75)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 position = Vector2(0.184998, 0)
@@ -77,18 +52,17 @@ health = 50.0
 script = ExtResource("9_lo1hm")
 weight = 2.0
 
-[node name="SwordSwingAbility" type="Node2D" parent="."]
-position = Vector2(19.5, -6)
+[node name="Ability" type="Node" parent="."]
 script = ExtResource("6_x01o8")
 config = ExtResource("7_jwrps")
 autofire = true
 
-[node name="SwordDamage" type="Node2D" parent="SwordSwingAbility" node_paths=PackedStringArray("target", "weapon")]
+[node name="ApplyDamage" type="Node" parent="." node_paths=PackedStringArray("target", "weapon")]
 script = ExtResource("14_fvx23")
 range = 250.0
 knockback = 500.0
-target = NodePath("../../Target")
-weapon = NodePath("..")
+target = NodePath("../Target")
+weapon = NodePath("../Ability")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_pferb")]
 position = Vector2(1, -62)

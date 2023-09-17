@@ -2,7 +2,7 @@ using Godot;
 using GodotSteeringAI;
 using System;
 
-public partial class MoveTowardTarget : CharacterBody2D
+public partial class MoveTowardTarget : CharacterBody2D, Entity
 {
     [Export]
     public float maxSpeed = 200.0f;

@@ -13,7 +13,7 @@ using Godot;
     Firing - This is the state while something is actively firing. For most guns, this should be instant. However, for a sword swing or a laser, this represents the period of time while a hitbox is active.
     Recoil - The period of time after using the weapon before you can use again. This is the amount of time between bullets in a machine gun, or the amount of time between sword swings.
 */
-public partial class Usable : Node2D
+public partial class Usable : Node
 {
     enum FireState
     {
@@ -25,7 +25,7 @@ public partial class Usable : Node2D
     }
 
     [Signal]
-    public delegate void OnFireEventHandler(float direction);
+    public delegate void OnFireEventHandler();
 
     [Export]
     private UsableConfig config;
@@ -131,7 +131,7 @@ public partial class Usable : Node2D
         currentState = FireState.Firing;
         currentStateCooldown += config.fireDuration;
         ammo -= 1.0f;
-        EmitSignal(SignalName.OnFire, GlobalRotation);
+        EmitSignal(SignalName.OnFire);
     }
 
     private void ProcessReloadState()

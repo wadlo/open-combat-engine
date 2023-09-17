@@ -2,7 +2,7 @@ using Godot;
 using OpenTDE;
 using System;
 
-public partial class ClashSwordDamage : Node2D
+public partial class ClashSwordDamage : Node
 {
     [Export]
     public float range = 110.0f;
@@ -22,7 +22,7 @@ public partial class ClashSwordDamage : Node2D
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()
     {
-        weapon.OnFire += (float _direction) =>
+        weapon.OnFire += () =>
         {
             OnAttack();
         };
@@ -44,7 +44,8 @@ public partial class ClashSwordDamage : Node2D
     private bool IsWithinRange()
     {
         return (
-                GodotSteeringAI.GSAIUtils.ToVector2(target.targetLocation.Position) - GlobalPosition
+                GodotSteeringAI.GSAIUtils.ToVector2(target.targetLocation.Position)
+                - GetParent<Node2D>().GlobalPosition
             ).LengthSquared() <= Mathf.Pow(range, 2.0f);
     }
 
@@ -78,7 +79,9 @@ public partial class ClashSwordDamage : Node2D
                         knockback
                         * (
                             target.targetLocation.Position
-                            - GodotSteeringAI.GSAIUtils.ToVector3(GlobalPosition)
+                            - GodotSteeringAI.GSAIUtils.ToVector3(
+                                GetParent<Node2D>().GlobalPosition
+                            )
                         ).Normalized()
                     )
                 );

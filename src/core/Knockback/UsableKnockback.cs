@@ -5,8 +5,9 @@ public class UsableKnockback
 {
     public static void ApplyKnockbackAfterUse(Usable usable, Knockback knockback)
     {
-        usable.OnFire += (float direction) =>
+        usable.OnFire += () =>
         {
+            float direction = 0.0f;
             Vector3 pushbackDirection = GSAIUtils.ToVector3(
                 new Vector2(1.0f, 0.0f).Rotated(direction + Mathf.Pi)
             );

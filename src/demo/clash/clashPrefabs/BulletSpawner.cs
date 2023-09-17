@@ -1,4 +1,5 @@
 using Godot;
+using GodotSteeringAI;
 using System;
 
 public partial class BulletSpawner : Node2D
@@ -10,16 +11,23 @@ public partial class BulletSpawner : Node2D
     public PackedScene bulletPrefab;
 
     [Export]
-    public float bulletAngleVariance = 0.0f;
-
-    // Called when the node enters the scene tree for the first time.
-    public override void _Ready() { }
-
-    // Called every frame. 'delta' is the elapsed time since the previous frame.
-    public override void _Process(double delta) { }
-
-    [Export]
     public Target target;
+
+    private Usable ability;
+
+    public override void _Ready()
+    {
+        ability = OpenTDE.Utils.GetSiblingOfType<Usable>(this);
+
+        ability.OnFire += () =>
+        {
+            float angle = (
+                GSAIUtils.ToVector2(target.targetLocation.Position)
+                - GetParent<Node2D>().GlobalPosition
+            ).Angle();
+            FireBullet(angle);
+        };
+    }
 
     public void FireBullet(float angle)
     {
@@ -27,10 +35,7 @@ public partial class BulletSpawner : Node2D
         GetTree().Root.AddChild(instantiated);
 
         instantiated.GlobalPosition = GlobalPosition;
-
-        float randomAngle = (GD.Randf() * 2 - 1) * Mathf.DegToRad(bulletAngleVariance) + angle;
-        instantiated.GlobalRotation = randomAngle;
-        instantiated.LinearVelocity = instantiated.LinearVelocity.Rotated(randomAngle);
+        instantiated.LinearVelocity = instantiated.LinearVelocity.Rotated(angle);
 
         EmitSignal(SignalName.BulletSpawn, instantiated.LinearVelocity.Rotated(Mathf.Pi));
 
