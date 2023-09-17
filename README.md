@@ -20,7 +20,6 @@ If you have problems setting up or run into bugs, please [create an issue](https
 
 # Features
 - Unit AI movement (Port of GSAI to C# and Godot 4)
-- Deterministic, every simulated battle will have the same end result
 
 # Example
 - Clash -- An example with swordsmen and archers that can be spawned by both sides.
