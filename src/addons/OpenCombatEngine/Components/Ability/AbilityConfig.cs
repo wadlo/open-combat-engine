@@ -1,7 +1,7 @@
 using Godot;
 using System;
 
-public partial class UsableConfig : Resource
+public partial class AbilityConfig : Resource
 {
     [Export]
     public float maxUses = 10.0f;

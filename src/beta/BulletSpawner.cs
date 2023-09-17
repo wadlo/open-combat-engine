@@ -2,7 +2,7 @@ using Godot;
 using GodotSteeringAI;
 using System;
 
-public partial class BulletSpawner : Node2D
+public partial class BulletSpawner : Node
 {
     [Signal]
     public delegate void BulletSpawnEventHandler(Vector2 directionVector);
@@ -13,11 +13,11 @@ public partial class BulletSpawner : Node2D
     [Export]
     public Target target;
 
-    private Usable ability;
+    private AbilityTimer ability;
 
     public override void _Ready()
     {
-        ability = OpenTDE.Utils.GetSiblingOfType<Usable>(this);
+        ability = OpenTDE.Utils.GetSiblingOfType<AbilityTimer>(this);
 
         ability.OnFire += () =>
         {
@@ -34,7 +34,7 @@ public partial class BulletSpawner : Node2D
         KinematicArea2D instantiated = bulletPrefab.Instantiate<KinematicArea2D>();
         GetTree().Root.AddChild(instantiated);
 
-        instantiated.GlobalPosition = GlobalPosition;
+        instantiated.GlobalPosition = GetParent<Node2D>().GlobalPosition;
         instantiated.LinearVelocity = instantiated.LinearVelocity.Rotated(angle);
 
         EmitSignal(SignalName.BulletSpawn, instantiated.LinearVelocity.Rotated(Mathf.Pi));

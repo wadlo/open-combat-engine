@@ -17,7 +17,7 @@ public partial class ClashSwordDamage : Node
     public Target target;
 
     [Export]
-    public Usable weapon;
+    public AbilityTimer weapon;
 
     // Called when the node enters the scene tree for the first time.
     public override void _Ready()

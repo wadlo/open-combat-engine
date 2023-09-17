@@ -1,16 +1,16 @@
 [gd_scene load_steps=13 format=3 uid="uid://d2fj7t1vhauhr"]
 
-[ext_resource type="Script" path="res://demo/MoveTowardTarget.cs" id="1_pimrj"]
+[ext_resource type="Script" path="res://beta/MoveTowardTarget.cs" id="1_pimrj"]
 [ext_resource type="Material" uid="uid://bwj8wobvu6wmf" path="res://demo/clash/clashPrefabs/outlineShader.tres" id="2_m1siq"]
-[ext_resource type="Script" path="res://demo/Target.cs" id="3_r0qmv"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Target/Target.cs" id="3_r0qmv"]
 [ext_resource type="Texture2D" uid="uid://b17t40be6yck" path="res://demo/graphics/medievalGraphics/swordsman/BlueSwordsman.png" id="3_vlnfq"]
-[ext_resource type="Script" path="res://core/Health.cs" id="4_33xxg"]
-[ext_resource type="Script" path="res://demo/FaceTarget.cs" id="5_053x0"]
-[ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_x01o8"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Health/Health.cs" id="4_33xxg"]
+[ext_resource type="Script" path="res://beta/FaceTarget.cs" id="5_053x0"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Ability/AbilityTimer.cs" id="6_x01o8"]
 [ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demo/clash/clashPrefabs/basic_sword.tres" id="7_jwrps"]
-[ext_resource type="Script" path="res://core/Knockback.cs" id="9_lo1hm"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Knockback/Knockback.cs" id="9_lo1hm"]
 [ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://demo/clash/clashPrefabs/health_bar.tscn" id="13_pferb"]
-[ext_resource type="Script" path="res://demo/clash/clashPrefabs/ClashSwordDamage.cs" id="14_fvx23"]
+[ext_resource type="Script" path="res://beta/ClashSwordDamage.cs" id="14_fvx23"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
 radius = 32.815

@@ -5,7 +5,7 @@ using Godot;
 /**
     Used for Guns, spells, weapons, abilities, or tools. Anything that has a concept of cooldown, ammo, and stamina.
 
-    A Usable is assumed to always be in one of the following states:
+    An ability timer is assumed to always be in one of the following states:
 
     Idle - When a tool isn't doing anything.
     Reloading - A shotgun may have a high reload time, whereas swinging a sword wouldn't have a reload at all (would have a recoil)
@@ -13,7 +13,7 @@ using Godot;
     Firing - This is the state while something is actively firing. For most guns, this should be instant. However, for a sword swing or a laser, this represents the period of time while a hitbox is active.
     Recoil - The period of time after using the weapon before you can use again. This is the amount of time between bullets in a machine gun, or the amount of time between sword swings.
 */
-public partial class Usable : Node
+public partial class AbilityTimer : Node
 {
     enum FireState
     {
@@ -28,7 +28,7 @@ public partial class Usable : Node
     public delegate void OnFireEventHandler();
 
     [Export]
-    private UsableConfig config;
+    private AbilityConfig config;
 
     [Export]
     public bool autofire;

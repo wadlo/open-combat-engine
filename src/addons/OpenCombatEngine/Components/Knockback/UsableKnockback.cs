@@ -3,9 +3,9 @@ using GodotSteeringAI;
 
 public class UsableKnockback
 {
-    public static void ApplyKnockbackAfterUse(Usable usable, Knockback knockback)
+    public static void ApplyKnockbackAfterUse(AbilityTimer abilityTimer, Knockback knockback)
     {
-        usable.OnFire += () =>
+        abilityTimer.OnFire += () =>
         {
             float direction = 0.0f;
             Vector3 pushbackDirection = GSAIUtils.ToVector3(

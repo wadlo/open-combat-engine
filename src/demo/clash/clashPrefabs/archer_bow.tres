@@ -1,6 +1,6 @@
 [gd_resource type="Resource" load_steps=2 format=3 uid="uid://b4yrr0s5cgwg5"]
 
-[ext_resource type="Script" path="res://core/Usable/UsableConfig.cs" id="1_t87ul"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Ability/AbilityConfig.cs" id="1_t87ul"]
 
 [resource]
 script = ExtResource("1_t87ul")

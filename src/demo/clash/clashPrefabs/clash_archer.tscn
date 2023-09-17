@@ -1,17 +1,17 @@
 [gd_scene load_steps=14 format=3 uid="uid://cqfg2f501lbsl"]
 
-[ext_resource type="Script" path="res://demo/MoveTowardTarget.cs" id="1_u8jjy"]
+[ext_resource type="Script" path="res://beta/MoveTowardTarget.cs" id="1_u8jjy"]
 [ext_resource type="Material" uid="uid://bwj8wobvu6wmf" path="res://demo/clash/clashPrefabs/outlineShader.tres" id="2_fngea"]
-[ext_resource type="Script" path="res://demo/Target.cs" id="3_wdi67"]
-[ext_resource type="Script" path="res://core/Health.cs" id="4_apd40"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Target/Target.cs" id="3_wdi67"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Health/Health.cs" id="4_apd40"]
 [ext_resource type="Texture2D" uid="uid://bbc1mw6k4msu4" path="res://demo/graphics/medievalGraphics/archer/BlueArcher.png" id="4_uyhrv"]
-[ext_resource type="Script" path="res://core/Knockback.cs" id="5_7f3c8"]
-[ext_resource type="Script" path="res://demo/FaceTarget.cs" id="5_rqp6m"]
-[ext_resource type="Script" path="res://core/Usable/Usable.cs" id="6_l618p"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Knockback/Knockback.cs" id="5_7f3c8"]
+[ext_resource type="Script" path="res://beta/FaceTarget.cs" id="5_rqp6m"]
 [ext_resource type="Resource" uid="uid://b4yrr0s5cgwg5" path="res://demo/clash/clashPrefabs/archer_bow.tres" id="7_4fcoa"]
-[ext_resource type="Script" path="res://demo/clash/clashPrefabs/BulletSpawner.cs" id="11_67a2d"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Ability/AbilityTimer.cs" id="8_g588l"]
+[ext_resource type="Script" path="res://beta/BulletSpawner.cs" id="11_67a2d"]
 [ext_resource type="PackedScene" uid="uid://diic3wiy8kkkh" path="res://demo/demoPrefabs/clashArcherArrow.tscn" id="12_oeof3"]
-[ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://demo/clash/clashPrefabs/health_bar.tscn" id="13_yrtpy"]
+[ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://beta/health_bar.tscn" id="13_yrtpy"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
 radius = 33.5
@@ -51,15 +51,15 @@ health = 10.0
 script = ExtResource("5_7f3c8")
 
 [node name="Ability" type="Node" parent="."]
-script = ExtResource("6_l618p")
+script = ExtResource("8_g588l")
 config = ExtResource("7_4fcoa")
 autofire = true
+
+[node name="BulletSpawner" type="Node" parent="." node_paths=PackedStringArray("target")]
+script = ExtResource("11_67a2d")
+bulletPrefab = ExtResource("12_oeof3")
+target = NodePath("../Target")
 
 [node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("13_yrtpy")]
 position = Vector2(0, -61)
 health = NodePath("../Health")
-
-[node name="BulletSpawner" type="Node2D" parent="." node_paths=PackedStringArray("target")]
-script = ExtResource("11_67a2d")
-bulletPrefab = ExtResource("12_oeof3")
-target = NodePath("../Target")

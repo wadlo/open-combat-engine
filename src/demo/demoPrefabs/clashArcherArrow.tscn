@@ -1,10 +1,10 @@
 [gd_scene load_steps=7 format=3 uid="uid://diic3wiy8kkkh"]
 
-[ext_resource type="Script" path="res://core/KinematicArea2D/KinematicArea2D.cs" id="1_g7u12"]
+[ext_resource type="Script" path="res://beta/KinematicArea2D/KinematicArea2D.cs" id="1_g7u12"]
 [ext_resource type="Texture2D" uid="uid://dow0keq7kslov" path="res://demo/graphics/medievalGraphics/other/BlueArrow.png" id="2_nynmm"]
-[ext_resource type="Script" path="res://demo/demoPrefabs/CollisionDamage.cs" id="3_r5vth"]
-[ext_resource type="Script" path="res://demo/Target.cs" id="4_q3n5d"]
-[ext_resource type="Script" path="res://demo/demoPrefabs/DestroyTimer.cs" id="6_3kyj5"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Health/CollisionDamage.cs" id="3_r5vth"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Target/Target.cs" id="4_q3n5d"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/DestroyTimer/DestroyTimer.cs" id="6_3kyj5"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_sjy42"]
 size = Vector2(69, 16)
