@@ -6,6 +6,13 @@ public partial class Health : Node
     [Export]
     public float health = 100.0f;
 
+    private float maxHealth;
+
+    public override void _Ready()
+    {
+        maxHealth = health;
+    }
+
     public void Damage(float damage)
     {
         health = Mathf.Max(0.0f, health - damage);
@@ -13,6 +20,11 @@ public partial class Health : Node
         {
             TriggerDeath();
         }
+    }
+
+    public void Heal(float amount)
+    {
+        health = Mathf.Min(maxHealth, health + amount);
     }
 
     public void TriggerDeath()

@@ -47,7 +47,8 @@ namespace GodotSteeringAI
         private void _UpdateLocation()
         {
             Vector3 diff = (
-                GSAIUtils.ToVector3(GetBody()?.Position ?? Vector2.Zero) - targetsLocation.Position
+                GSAIUtils.ToVector3(GetBody()?.GlobalPosition ?? Vector2.Zero)
+                - targetsLocation.Position
             ).Normalized();
             Position = targetsLocation.Position + diff * preferredRadius;
         }

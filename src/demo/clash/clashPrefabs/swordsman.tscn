@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Ability/AbilityTimer.cs" id="6_x01o8"]
 [ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demo/clash/clashPrefabs/basic_sword.tres" id="7_jwrps"]
 [ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Knockback/Knockback.cs" id="9_lo1hm"]
-[ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://demo/clash/clashPrefabs/health_bar.tscn" id="13_pferb"]
+[ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://beta/health_bar.tscn" id="13_pferb"]
 [ext_resource type="Script" path="res://beta/ClashSwordDamage.cs" id="14_fvx23"]
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]

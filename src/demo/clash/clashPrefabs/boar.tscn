@@ -1,0 +1,70 @@
+[gd_scene load_steps=13 format=3 uid="uid://dexlt7rtxdcgy"]
+
+[ext_resource type="Script" path="res://beta/MoveTowardTarget.cs" id="1_scc8p"]
+[ext_resource type="Material" uid="uid://bwj8wobvu6wmf" path="res://demo/clash/clashPrefabs/outlineShader.tres" id="2_x2ns2"]
+[ext_resource type="Script" path="res://beta/FaceTarget.cs" id="3_epi5o"]
+[ext_resource type="Texture2D" uid="uid://cv0jvvfr1b3ph" path="res://demo/graphics/medievalGraphics/other/boar.png" id="4_2h4hy"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Target/Target.cs" id="5_3hxtm"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Health/Health.cs" id="6_64txq"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Knockback/Knockback.cs" id="7_jxy15"]
+[ext_resource type="Script" path="res://addons/OpenCombatEngine/Components/Ability/AbilityTimer.cs" id="8_t2l30"]
+[ext_resource type="Resource" uid="uid://ltqwwo3jywue" path="res://demo/clash/clashPrefabs/basic_sword.tres" id="9_4v6dl"]
+[ext_resource type="Script" path="res://beta/ClashSwordDamage.cs" id="10_c08hq"]
+[ext_resource type="PackedScene" uid="uid://d2p6rf0iikmg7" path="res://beta/health_bar.tscn" id="11_a24eb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_lid4q"]
+radius = 30.0
+height = 84.0
+
+[node name="Boar" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_scc8p")
+maxSpeed = 180.0
+maxAcceleration = 330.0
+preferredRadius = 120.0
+decelerationRadius = 90.0
+arrivalTolerance = 20.0
+
+[node name="BoarGraphics" type="Node2D" parent="." node_paths=PackedStringArray("target")]
+material = ExtResource("2_x2ns2")
+position = Vector2(8, -10)
+script = ExtResource("3_epi5o")
+target = NodePath("../Target")
+flipXToFaceTarget = true
+rotateToFaceTarget = false
+
+[node name="Sprite2D" type="Sprite2D" parent="BoarGraphics"]
+texture = ExtResource("4_2h4hy")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(10, -13)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_lid4q")
+
+[node name="Target" type="Node" parent="."]
+script = ExtResource("5_3hxtm")
+shouldCalculateTarget = true
+
+[node name="Health" type="Node" parent="."]
+script = ExtResource("6_64txq")
+health = 50.0
+
+[node name="Knockback" type="Node" parent="."]
+script = ExtResource("7_jxy15")
+weight = 2.0
+
+[node name="Ability" type="Node" parent="."]
+script = ExtResource("8_t2l30")
+config = ExtResource("9_4v6dl")
+autofire = true
+
+[node name="ApplyDamage" type="Node" parent="." node_paths=PackedStringArray("target", "weapon")]
+script = ExtResource("10_c08hq")
+range = 250.0
+knockback = 1000.0
+target = NodePath("../Target")
+weapon = NodePath("../Ability")
+
+[node name="HealthBar" parent="." node_paths=PackedStringArray("health") instance=ExtResource("11_a24eb")]
+position = Vector2(1, -62)
+health = NodePath("../Health")

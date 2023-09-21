@@ -44,7 +44,7 @@ namespace OpenTDE
                 float closestDist = float.MaxValue;
                 foreach (Node node in nodes)
                 {
-                    float distSqr = ((node as Node2D).Position - position).LengthSquared();
+                    float distSqr = ((node as Node2D).GlobalPosition - position).LengthSquared();
                     if (distSqr < closestDist)
                     {
                         closestDist = distSqr;

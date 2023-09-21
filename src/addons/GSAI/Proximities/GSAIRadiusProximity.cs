@@ -16,11 +16,14 @@ namespace GodotSteeringAI
         /// </summary>
         public float Radius { get; set; }
 
-
         private long _last_frame = 0;
         private SceneTree _scene_tree;
 
-        public GSAIRadiusProximity(GSAISteeringAgent agent, List<GSAISteeringAgent> agents, float radius)
+        public GSAIRadiusProximity(
+            GSAISteeringAgent agent,
+            List<GSAISteeringAgent> agents,
+            float radius
+        )
             : base(agent, agents)
         {
             Radius = radius;
@@ -76,6 +79,5 @@ namespace GodotSteeringAI
 
             return neighbor_count;
         }
-
     }
 }

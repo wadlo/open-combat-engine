@@ -24,7 +24,7 @@ public partial class Target : Node
     {
         target = OpenTDE.Utils.GetClosestNodeInGroup(
             GetTree(),
-            GetParent<Node2D>().Position,
+            GetParent<Node2D>().GlobalPosition,
             targetGroups[0]
         );
     }
@@ -46,7 +46,7 @@ public partial class Target : Node
     {
         if (target != null && IsInstanceValid(target))
         {
-            targetLocation.Position = GSAIUtils.ToVector3(target.Position);
+            targetLocation.Position = GSAIUtils.ToVector3(target.GlobalPosition);
             return true;
         }
         return false;

@@ -16,6 +16,9 @@ public partial class ClashSpawnPoint : Node2D
     public Texture2D archerSprite;
 
     [Export]
+    public PackedScene boarPrefab;
+
+    [Export]
     public PackedScene swordsmanPrefab;
 
     [Export]
@@ -48,6 +51,9 @@ public partial class ClashSpawnPoint : Node2D
         CallDeferred("SpawnSwordsman");
         CallDeferred("SpawnSwordsman");
         CallDeferred("SpawnSwordsman");
+        CallDeferred("SpawnBoar");
+        CallDeferred("SpawnBoar");
+        CallDeferred("SpawnBoar");
     }
 
     public void SpawnArcher()
@@ -66,6 +72,15 @@ public partial class ClashSpawnPoint : Node2D
 
         RandomlyPositionUnit(instantiated);
         ColorUnit(instantiated, swordsmanSprite);
+    }
+
+    public void SpawnBoar()
+    {
+        CharacterBody2D instantiated = boarPrefab.Instantiate<CharacterBody2D>();
+        GetTree().Root.AddChild(instantiated);
+
+        RandomlyPositionUnit(instantiated);
+        //ColorUnit(instantiated, boarSprite);
     }
 
     public void ColorUnit(CharacterBody2D instantiated, Texture2D newImage)

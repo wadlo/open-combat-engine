@@ -1,10 +1,11 @@
-[gd_scene load_steps=11 format=3 uid="uid://oebpblr7c1ls"]
+[gd_scene load_steps=12 format=3 uid="uid://oebpblr7c1ls"]
 
 [ext_resource type="Script" path="res://demo/clash/ClashSpawnPoint.cs" id="1_shnhb"]
 [ext_resource type="PackedScene" uid="uid://cqfg2f501lbsl" path="res://demo/clash/clashPrefabs/clash_archer.tscn" id="2_m20vt"]
 [ext_resource type="PackedScene" uid="uid://b45ksu3jsflyq" path="res://demo/clash/clash_buttons.tscn" id="3_eda7a"]
 [ext_resource type="Texture2D" uid="uid://bbc1mw6k4msu4" path="res://demo/graphics/medievalGraphics/archer/BlueArcher.png" id="3_m0m4h"]
 [ext_resource type="PackedScene" uid="uid://d2fj7t1vhauhr" path="res://demo/clash/clashPrefabs/swordsman.tscn" id="4_4dmyr"]
+[ext_resource type="PackedScene" uid="uid://dexlt7rtxdcgy" path="res://demo/clash/clashPrefabs/boar.tscn" id="4_t83ku"]
 [ext_resource type="Texture2D" uid="uid://b17t40be6yck" path="res://demo/graphics/medievalGraphics/swordsman/BlueSwordsman.png" id="5_4386r"]
 [ext_resource type="Texture2D" uid="uid://dl55255306e4n" path="res://demo/graphics/medievalGraphics/other/grass.png" id="5_sa4tn"]
 [ext_resource type="Texture2D" uid="uid://cgf88vdswcjm2" path="res://demo/graphics/medievalGraphics/archer/RedArcher.png" id="6_dlduy"]
@@ -20,6 +21,7 @@ group = "Blue"
 attackGroup = "Red"
 archerPrefab = ExtResource("2_m20vt")
 archerSprite = ExtResource("3_m0m4h")
+boarPrefab = ExtResource("4_t83ku")
 swordsmanPrefab = ExtResource("4_4dmyr")
 swordsmanSprite = ExtResource("5_4386r")
 unitColor = Color(0.278431, 0.658824, 1, 1)
@@ -31,6 +33,7 @@ group = "Red"
 attackGroup = "Blue"
 archerPrefab = ExtResource("2_m20vt")
 archerSprite = ExtResource("6_dlduy")
+boarPrefab = ExtResource("4_t83ku")
 swordsmanPrefab = ExtResource("4_4dmyr")
 swordsmanSprite = ExtResource("7_fwcjp")
 unitColor = Color(0.901961, 0.180392, 0.258824, 1)
